@@ -1,0 +1,1360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Agencija">
+    <Key>
+      <PropertyRef Name="Agencija_ID" />
+    </Key>
+    <Property Name="Agencija_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="15" />
+    <Property Name="Srediste" Type="nvarchar" MaxLength="30" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="30" />
+    <Property Name="Telefon" Type="char" MaxLength="18" />
+    <Property Name="Email" Type="char" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Cenovnik">
+    <Key>
+      <PropertyRef Name="Cenovnik_ID" />
+    </Key>
+    <Property Name="Cenovnik_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CenaVazenjaOd" Type="datetime" />
+    <Property Name="CenaVazenjaDo" Type="datetime" />
+    <Property Name="Cena" Type="int" />
+  </EntityType>
+  <EntityType Name="Grad">
+    <Key>
+      <PropertyRef Name="Grad_ID" />
+    </Key>
+    <Property Name="Grad_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Region_ID" Type="int" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Kanali">
+    <Key>
+      <PropertyRef Name="Kanali_ID" />
+    </Key>
+    <Property Name="Kanali_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TV_kuca_ID" Type="int" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Kompanija">
+    <Key>
+      <PropertyRef Name="Kompanija_ID" />
+    </Key>
+    <Property Name="Kompanija_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+    <Property Name="Sifra" Type="char" MaxLength="6" />
+    <Property Name="Sediste" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="MSpeer_conflictdetectionconfigrequest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="sent_date" Type="datetime" Nullable="false" />
+    <Property Name="timeout" Type="int" Nullable="false" />
+    <Property Name="modified_date" Type="datetime" Nullable="false" />
+    <Property Name="progress_phase" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="phase_timed_out" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_conflictdetectionconfigresponse' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MSpeer_conflictdetectionconfigresponse">
+    <Key>
+      <PropertyRef Name="request_id" />
+      <PropertyRef Name="peer_node" />
+      <PropertyRef Name="peer_db" />
+      <PropertyRef Name="progress_phase" />
+    </Key>
+    <Property Name="request_id" Type="int" Nullable="false" />
+    <Property Name="peer_node" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="peer_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="peer_version" Type="int" />
+    <Property Name="peer_db_version" Type="int" />
+    <Property Name="is_peer" Type="bit" />
+    <Property Name="conflictdetection_enabled" Type="bit" />
+    <Property Name="originator_id" Type="int" />
+    <Property Name="peer_conflict_retention" Type="int" />
+    <Property Name="peer_continue_onconflict" Type="bit" />
+    <Property Name="peer_subscriptions" Type="xml" />
+    <Property Name="progress_phase" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="modified_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MSpeer_lsns">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="last_updated" Type="datetime" />
+    <Property Name="originator" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="originator_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="originator_publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="originator_publication_id" Type="int" />
+    <Property Name="originator_db_version" Type="int" />
+    <Property Name="originator_lsn" Type="varbinary" MaxLength="16" />
+    <Property Name="originator_version" Type="int" />
+    <Property Name="originator_id" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_originatorid_history' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MSpeer_originatorid_history">
+    <Key>
+      <PropertyRef Name="originator_publication" />
+      <PropertyRef Name="originator_id" />
+      <PropertyRef Name="originator_node" />
+      <PropertyRef Name="originator_db" />
+      <PropertyRef Name="originator_db_version" />
+      <PropertyRef Name="originator_version" />
+      <PropertyRef Name="inserted_date" />
+    </Key>
+    <Property Name="originator_publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="originator_id" Type="int" Nullable="false" />
+    <Property Name="originator_node" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="originator_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="originator_db_version" Type="int" Nullable="false" />
+    <Property Name="originator_version" Type="int" Nullable="false" />
+    <Property Name="inserted_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_request' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MSpeer_request">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="publication" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="sent_date" Type="datetime" />
+    <Property Name="description" Type="nvarchar" MaxLength="4000" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_response' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MSpeer_response">
+    <Key>
+      <PropertyRef Name="peer" />
+      <PropertyRef Name="peer_db" />
+    </Key>
+    <Property Name="request_id" Type="int" />
+    <Property Name="peer" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="peer_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="received_date" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_topologyrequest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MSpeer_topologyrequest">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="publication" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="sent_date" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_topologyresponse' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MSpeer_topologyresponse">
+    <Key>
+      <PropertyRef Name="peer" />
+      <PropertyRef Name="peer_db" />
+    </Key>
+    <Property Name="request_id" Type="int" />
+    <Property Name="peer" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="peer_version" Type="int" />
+    <Property Name="peer_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="originator_id" Type="int" />
+    <Property Name="peer_conflict_retention" Type="int" />
+    <Property Name="received_date" Type="datetime" />
+    <Property Name="connection_info" Type="xml" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpub_identity_range' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MSpub_identity_range">
+    <Key>
+      <PropertyRef Name="objid" />
+      <PropertyRef Name="range" />
+      <PropertyRef Name="pub_range" />
+      <PropertyRef Name="current_pub_range" />
+      <PropertyRef Name="threshold" />
+    </Key>
+    <Property Name="objid" Type="int" Nullable="false" />
+    <Property Name="range" Type="bigint" Nullable="false" />
+    <Property Name="pub_range" Type="bigint" Nullable="false" />
+    <Property Name="current_pub_range" Type="bigint" Nullable="false" />
+    <Property Name="threshold" Type="int" Nullable="false" />
+    <Property Name="last_seed" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Narudzbenica">
+    <Key>
+      <PropertyRef Name="Narudzbenica_ID" />
+    </Key>
+    <Property Name="Narudzbenica_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Zaposleni_ID" Type="int" Nullable="false" />
+    <Property Name="Kompanija_ID" Type="int" Nullable="false" />
+    <Property Name="Broj_narudzbenice" Type="int" />
+    <Property Name="Datum" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Odbor">
+    <Key>
+      <PropertyRef Name="Odbor_ID" />
+    </Key>
+    <Property Name="Odbor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Grad_ID" Type="int" Nullable="false" />
+    <Property Name="Politicka_stranka_ID" Type="int" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+    <Property Name="Oznaka" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Politicka_stranka">
+    <Key>
+      <PropertyRef Name="Politicka_stranka_ID" />
+    </Key>
+    <Property Name="Politicka_stranka_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+    <Property Name="Mesto" Type="nvarchar" MaxLength="20" />
+    <Property Name="Opstina" Type="nvarchar" MaxLength="20" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Pozicija_zaposlenog">
+    <Key>
+      <PropertyRef Name="Poz_zaposlenog_ID" />
+    </Key>
+    <Property Name="Poz_zaposlenog_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pozicija" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Prikazuje">
+    <Key>
+      <PropertyRef Name="Prikazuje_ID" />
+    </Key>
+    <Property Name="Prikazuje_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kanali_ID" Type="int" Nullable="false" />
+    <Property Name="Reklama_ID" Type="int" Nullable="false" />
+    <Property Name="Termin_prikaza_Od" Type="datetime" />
+    <Property Name="Termin_prikaza_Do" Type="datetime" />
+    <Property Name="Broj_prikaza" Type="int" />
+  </EntityType>
+  <EntityType Name="Privredna_grana">
+    <Key>
+      <PropertyRef Name="Priv_grana_ID" />
+    </Key>
+    <Property Name="Priv_grana_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Region_ID" />
+    </Key>
+    <Property Name="Region_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Reklama">
+    <Key>
+      <PropertyRef Name="Reklama_ID" />
+    </Key>
+    <Property Name="Reklama_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Odbor_ID" Type="int" />
+    <Property Name="Tip_reklame_ID" Type="int" Nullable="false" />
+    <Property Name="Priv_grana_ID" Type="int" />
+    <Property Name="Agencija_ID" Type="int" Nullable="false" />
+    <Property Name="Cenovnik_ID" Type="int" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="20" />
+    <Property Name="Sifra" Type="char" MaxLength="6" />
+    <Property Name="Duzina_trajanja" Type="int" />
+  </EntityType>
+  <EntityType Name="Stavka_narudzenice">
+    <Key>
+      <PropertyRef Name="Stavka_narudzenice_ID" />
+    </Key>
+    <Property Name="Stavka_narudzenice_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reklama_ID" Type="int" Nullable="false" />
+    <Property Name="Narudzbenica_ID" Type="int" Nullable="false" />
+    <Property Name="Kolicina" Type="int" />
+  </EntityType>
+  <EntityType Name="Struktura_vlasnistva">
+    <Key>
+      <PropertyRef Name="Struktura_vlasnistva_ID" />
+    </Key>
+    <Property Name="Struktura_vlasnistva_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Opis_strukture_vlasnistva" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysarticlecolumns' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sysarticlecolumns">
+    <Key>
+      <PropertyRef Name="artid" />
+      <PropertyRef Name="colid" />
+    </Key>
+    <Property Name="artid" Type="int" Nullable="false" />
+    <Property Name="colid" Type="int" Nullable="false" />
+    <Property Name="is_udt" Type="bit" />
+    <Property Name="is_xml" Type="bit" />
+    <Property Name="is_max" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysarticles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sysarticles">
+    <Key>
+      <PropertyRef Name="artid" />
+      <PropertyRef Name="dest_table" />
+      <PropertyRef Name="filter" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="objid" />
+      <PropertyRef Name="pubid" />
+      <PropertyRef Name="pre_creation_cmd" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="sync_objid" />
+      <PropertyRef Name="type" />
+      <PropertyRef Name="fire_triggers_on_snapshot" />
+    </Key>
+    <Property Name="artid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="creation_script" Type="nvarchar" MaxLength="255" />
+    <Property Name="del_cmd" Type="nvarchar" MaxLength="255" />
+    <Property Name="description" Type="nvarchar" MaxLength="255" />
+    <Property Name="dest_table" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="filter" Type="int" Nullable="false" />
+    <Property Name="filter_clause" Type="ntext" />
+    <Property Name="ins_cmd" Type="nvarchar" MaxLength="255" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="objid" Type="int" Nullable="false" />
+    <Property Name="pubid" Type="int" Nullable="false" />
+    <Property Name="pre_creation_cmd" Type="tinyint" Nullable="false" />
+    <Property Name="status" Type="tinyint" Nullable="false" />
+    <Property Name="sync_objid" Type="int" Nullable="false" />
+    <Property Name="type" Type="tinyint" Nullable="false" />
+    <Property Name="upd_cmd" Type="nvarchar" MaxLength="255" />
+    <Property Name="schema_option" Type="binary" MaxLength="8" />
+    <Property Name="dest_owner" Type="nvarchar" MaxLength="128" />
+    <Property Name="ins_scripting_proc" Type="int" />
+    <Property Name="del_scripting_proc" Type="int" />
+    <Property Name="upd_scripting_proc" Type="int" />
+    <Property Name="custom_script" Type="nvarchar" MaxLength="2048" />
+    <Property Name="fire_triggers_on_snapshot" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysarticleupdates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sysarticleupdates">
+    <Key>
+      <PropertyRef Name="artid" />
+      <PropertyRef Name="pubid" />
+      <PropertyRef Name="sync_ins_proc" />
+      <PropertyRef Name="sync_upd_proc" />
+      <PropertyRef Name="sync_del_proc" />
+      <PropertyRef Name="autogen" />
+      <PropertyRef Name="sync_upd_trig" />
+      <PropertyRef Name="identity_support" />
+    </Key>
+    <Property Name="artid" Type="int" Nullable="false" />
+    <Property Name="pubid" Type="int" Nullable="false" />
+    <Property Name="sync_ins_proc" Type="int" Nullable="false" />
+    <Property Name="sync_upd_proc" Type="int" Nullable="false" />
+    <Property Name="sync_del_proc" Type="int" Nullable="false" />
+    <Property Name="autogen" Type="bit" Nullable="false" />
+    <Property Name="sync_upd_trig" Type="int" Nullable="false" />
+    <Property Name="conflict_tableid" Type="int" />
+    <Property Name="ins_conflict_proc" Type="int" />
+    <Property Name="identity_support" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.syspublications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="syspublications">
+    <Key>
+      <PropertyRef Name="name" />
+      <PropertyRef Name="pubid" />
+      <PropertyRef Name="repl_freq" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="sync_method" />
+      <PropertyRef Name="independent_agent" />
+      <PropertyRef Name="immediate_sync" />
+      <PropertyRef Name="enabled_for_internet" />
+      <PropertyRef Name="allow_push" />
+      <PropertyRef Name="allow_pull" />
+      <PropertyRef Name="allow_anonymous" />
+      <PropertyRef Name="immediate_sync_ready" />
+      <PropertyRef Name="allow_sync_tran" />
+      <PropertyRef Name="autogen_sync_procs" />
+      <PropertyRef Name="allow_queued_tran" />
+      <PropertyRef Name="snapshot_in_defaultfolder" />
+      <PropertyRef Name="compress_snapshot" />
+      <PropertyRef Name="ftp_port" />
+      <PropertyRef Name="allow_dts" />
+      <PropertyRef Name="allow_subscription_copy" />
+      <PropertyRef Name="backward_comp_level" />
+      <PropertyRef Name="allow_initialize_from_backup" />
+      <PropertyRef Name="options" />
+    </Key>
+    <Property Name="description" Type="nvarchar" MaxLength="255" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="pubid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="repl_freq" Type="tinyint" Nullable="false" />
+    <Property Name="status" Type="tinyint" Nullable="false" />
+    <Property Name="sync_method" Type="tinyint" Nullable="false" />
+    <Property Name="snapshot_jobid" Type="binary" MaxLength="16" />
+    <Property Name="independent_agent" Type="bit" Nullable="false" />
+    <Property Name="immediate_sync" Type="bit" Nullable="false" />
+    <Property Name="enabled_for_internet" Type="bit" Nullable="false" />
+    <Property Name="allow_push" Type="bit" Nullable="false" />
+    <Property Name="allow_pull" Type="bit" Nullable="false" />
+    <Property Name="allow_anonymous" Type="bit" Nullable="false" />
+    <Property Name="immediate_sync_ready" Type="bit" Nullable="false" />
+    <Property Name="allow_sync_tran" Type="bit" Nullable="false" />
+    <Property Name="autogen_sync_procs" Type="bit" Nullable="false" />
+    <Property Name="retention" Type="int" />
+    <Property Name="allow_queued_tran" Type="bit" Nullable="false" />
+    <Property Name="snapshot_in_defaultfolder" Type="bit" Nullable="false" />
+    <Property Name="alt_snapshot_folder" Type="nvarchar" MaxLength="255" />
+    <Property Name="pre_snapshot_script" Type="nvarchar" MaxLength="255" />
+    <Property Name="post_snapshot_script" Type="nvarchar" MaxLength="255" />
+    <Property Name="compress_snapshot" Type="bit" Nullable="false" />
+    <Property Name="ftp_address" Type="nvarchar" MaxLength="128" />
+    <Property Name="ftp_port" Type="int" Nullable="false" />
+    <Property Name="ftp_subdirectory" Type="nvarchar" MaxLength="255" />
+    <Property Name="ftp_login" Type="nvarchar" MaxLength="128" />
+    <Property Name="ftp_password" Type="nvarchar" MaxLength="524" />
+    <Property Name="allow_dts" Type="bit" Nullable="false" />
+    <Property Name="allow_subscription_copy" Type="bit" Nullable="false" />
+    <Property Name="centralized_conflicts" Type="bit" />
+    <Property Name="conflict_retention" Type="int" />
+    <Property Name="conflict_policy" Type="int" />
+    <Property Name="queue_type" Type="int" />
+    <Property Name="ad_guidname" Type="nvarchar" MaxLength="128" />
+    <Property Name="backward_comp_level" Type="int" Nullable="false" />
+    <Property Name="allow_initialize_from_backup" Type="bit" Nullable="false" />
+    <Property Name="min_autonosync_lsn" Type="binary" MaxLength="10" />
+    <Property Name="replicate_ddl" Type="int" />
+    <Property Name="options" Type="int" Nullable="false" />
+    <Property Name="originator_id" Type="int" />
+  </EntityType>
+  <EntityType Name="sysreplservers">
+    <Key>
+      <PropertyRef Name="srvname" />
+    </Key>
+    <Property Name="srvname" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="srvid" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysschemaarticles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sysschemaarticles">
+    <Key>
+      <PropertyRef Name="artid" />
+      <PropertyRef Name="dest_object" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="objid" />
+      <PropertyRef Name="pubid" />
+      <PropertyRef Name="pre_creation_cmd" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="type" />
+    </Key>
+    <Property Name="artid" Type="int" Nullable="false" />
+    <Property Name="creation_script" Type="nvarchar" MaxLength="255" />
+    <Property Name="description" Type="nvarchar" MaxLength="255" />
+    <Property Name="dest_object" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="objid" Type="int" Nullable="false" />
+    <Property Name="pubid" Type="int" Nullable="false" />
+    <Property Name="pre_creation_cmd" Type="tinyint" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="type" Type="tinyint" Nullable="false" />
+    <Property Name="schema_option" Type="binary" MaxLength="8" />
+    <Property Name="dest_owner" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.syssubscriptions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="syssubscriptions">
+    <Key>
+      <PropertyRef Name="artid" />
+      <PropertyRef Name="srvid" />
+      <PropertyRef Name="dest_db" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="sync_type" />
+      <PropertyRef Name="login_name" />
+      <PropertyRef Name="subscription_type" />
+      <PropertyRef Name="timestamp" />
+      <PropertyRef Name="update_mode" />
+      <PropertyRef Name="loopback_detection" />
+      <PropertyRef Name="queued_reinit" />
+      <PropertyRef Name="nosync_type" />
+      <PropertyRef Name="srvname" />
+    </Key>
+    <Property Name="artid" Type="int" Nullable="false" />
+    <Property Name="srvid" Type="smallint" Nullable="false" />
+    <Property Name="dest_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="status" Type="tinyint" Nullable="false" />
+    <Property Name="sync_type" Type="tinyint" Nullable="false" />
+    <Property Name="login_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="subscription_type" Type="int" Nullable="false" />
+    <Property Name="distribution_jobid" Type="binary" MaxLength="16" />
+    <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="update_mode" Type="tinyint" Nullable="false" />
+    <Property Name="loopback_detection" Type="bit" Nullable="false" />
+    <Property Name="queued_reinit" Type="bit" Nullable="false" />
+    <Property Name="nosync_type" Type="tinyint" Nullable="false" />
+    <Property Name="srvname" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.systranschemas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="systranschemas">
+    <Key>
+      <PropertyRef Name="tabid" />
+      <PropertyRef Name="startlsn" />
+      <PropertyRef Name="endlsn" />
+      <PropertyRef Name="typeid" />
+    </Key>
+    <Property Name="tabid" Type="int" Nullable="false" />
+    <Property Name="startlsn" Type="binary" MaxLength="10" Nullable="false" />
+    <Property Name="endlsn" Type="binary" MaxLength="10" Nullable="false" />
+    <Property Name="typeid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tip_reklame">
+    <Key>
+      <PropertyRef Name="Tip_reklame_ID" />
+    </Key>
+    <Property Name="Tip_reklame_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TV_kuca">
+    <Key>
+      <PropertyRef Name="TV_kuca_ID" />
+    </Key>
+    <Property Name="TV_kuca_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Struktura_vlasnistva_ID" Type="int" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="20" />
+    <Property Name="Sediste" Type="nvarchar" MaxLength="30" />
+    <Property Name="Adresa" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telefon" Type="char" MaxLength="18" />
+    <Property Name="Email" Type="char" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="Zaposleni">
+    <Key>
+      <PropertyRef Name="Zaposleni_ID" />
+    </Key>
+    <Property Name="Zaposleni_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Poz_zaposlenog_ID" Type="int" Nullable="false" />
+    <Property Name="Agencija_ID" Type="int" Nullable="false" />
+    <Property Name="Nadredjeni_ID" Type="int" />
+    <Property Name="Ime" Type="nvarchar" MaxLength="20" />
+    <Property Name="Prezime" Type="nvarchar" MaxLength="20" />
+    <Property Name="JMBG" Type="char" MaxLength="13" />
+    <Property Name="Email" Type="char" MaxLength="20" />
+    <Property Name="Telefon" Type="char" MaxLength="18" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysextendedarticlesview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="sysextendedarticlesview">
+    <Key>
+      <PropertyRef Name="artid" />
+      <PropertyRef Name="dest_table" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="objid" />
+      <PropertyRef Name="pubid" />
+      <PropertyRef Name="pre_creation_cmd" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="type" />
+      <PropertyRef Name="fire_triggers_on_snapshot" />
+    </Key>
+    <Property Name="artid" Type="int" Nullable="false" />
+    <Property Name="creation_script" Type="nvarchar" MaxLength="255" />
+    <Property Name="del_cmd" Type="nvarchar" MaxLength="255" />
+    <Property Name="description" Type="nvarchar" MaxLength="255" />
+    <Property Name="dest_table" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="filter" Type="int" />
+    <Property Name="filter_clause" Type="ntext" />
+    <Property Name="ins_cmd" Type="nvarchar" MaxLength="255" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="objid" Type="int" Nullable="false" />
+    <Property Name="pubid" Type="int" Nullable="false" />
+    <Property Name="pre_creation_cmd" Type="tinyint" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="sync_objid" Type="int" />
+    <Property Name="type" Type="tinyint" Nullable="false" />
+    <Property Name="upd_cmd" Type="nvarchar" MaxLength="255" />
+    <Property Name="schema_option" Type="binary" MaxLength="8" />
+    <Property Name="dest_owner" Type="nvarchar" MaxLength="128" />
+    <Property Name="ins_scripting_proc" Type="int" />
+    <Property Name="del_scripting_proc" Type="int" />
+    <Property Name="upd_scripting_proc" Type="int" />
+    <Property Name="custom_script" Type="nvarchar" MaxLength="2048" />
+    <Property Name="fire_triggers_on_snapshot" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.View_Dim_Odbor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_Dim_Odbor">
+    <Key>
+      <PropertyRef Name="Odbor_ID" />
+    </Key>
+    <Property Name="Odbor_ID" Type="int" Nullable="false" />
+    <Property Name="Odbor" Type="nvarchar" MaxLength="30" />
+    <Property Name="Politicka_stranka" Type="nvarchar" MaxLength="30" />
+    <Property Name="Opstina_stranke" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.View_Dim_Region' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_Dim_Region">
+    <Key>
+      <PropertyRef Name="Region_ID" />
+    </Key>
+    <Property Name="Region_ID" Type="int" Nullable="false" />
+    <Property Name="Grad" Type="nvarchar" MaxLength="30" />
+    <Property Name="Region" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.View_Dim_TV_kanali' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_Dim_TV_kanali">
+    <Key>
+      <PropertyRef Name="Kanali_ID" />
+    </Key>
+    <Property Name="Kanali_ID" Type="int" Nullable="false" />
+    <Property Name="Kanal" Type="nvarchar" MaxLength="15" />
+    <Property Name="Vlasnistvo" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.View_Dim_Zaposleni' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_Dim_Zaposleni">
+    <Key>
+      <PropertyRef Name="Zaposleni_ID" />
+    </Key>
+    <Property Name="Zaposleni_ID" Type="int" Nullable="false" />
+    <Property Name="Ime" Type="nvarchar" MaxLength="20" />
+    <Property Name="Prezime" Type="nvarchar" MaxLength="20" />
+    <Property Name="JMBG" Type="char" MaxLength="13" />
+    <Property Name="Pozicija" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK_Agencija_Reklama">
+    <End Role="Agencija" Type="Self.Agencija" Multiplicity="1" />
+    <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agencija">
+        <PropertyRef Name="Agencija_ID" />
+      </Principal>
+      <Dependent Role="Reklama">
+        <PropertyRef Name="Agencija_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Agencija_Zaposleni">
+    <End Role="Agencija" Type="Self.Agencija" Multiplicity="1" />
+    <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agencija">
+        <PropertyRef Name="Agencija_ID" />
+      </Principal>
+      <Dependent Role="Zaposleni">
+        <PropertyRef Name="Agencija_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cenovinik_Reklama">
+    <End Role="Cenovnik" Type="Self.Cenovnik" Multiplicity="1" />
+    <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cenovnik">
+        <PropertyRef Name="Cenovnik_ID" />
+      </Principal>
+      <Dependent Role="Reklama">
+        <PropertyRef Name="Cenovnik_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grad_Odbor">
+    <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+    <End Role="Odbor" Type="Self.Odbor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grad">
+        <PropertyRef Name="Grad_ID" />
+      </Principal>
+      <Dependent Role="Odbor">
+        <PropertyRef Name="Grad_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kanali_Prikazuje">
+    <End Role="Kanali" Type="Self.Kanali" Multiplicity="1" />
+    <End Role="Prikazuje" Type="Self.Prikazuje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kanali">
+        <PropertyRef Name="Kanali_ID" />
+      </Principal>
+      <Dependent Role="Prikazuje">
+        <PropertyRef Name="Kanali_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kompanija_Narudzbenica">
+    <End Role="Kompanija" Type="Self.Kompanija" Multiplicity="1" />
+    <End Role="Narudzbenica" Type="Self.Narudzbenica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kompanija">
+        <PropertyRef Name="Kompanija_ID" />
+      </Principal>
+      <Dependent Role="Narudzbenica">
+        <PropertyRef Name="Kompanija_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nardredjeni_Zaposleni">
+    <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="0..1" />
+    <End Role="Zaposleni1" Type="Self.Zaposleni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zaposleni">
+        <PropertyRef Name="Zaposleni_ID" />
+      </Principal>
+      <Dependent Role="Zaposleni1">
+        <PropertyRef Name="Nadredjeni_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Narudzbenica_Stavke_narudzbenice">
+    <End Role="Narudzbenica" Type="Self.Narudzbenica" Multiplicity="1" />
+    <End Role="Stavka_narudzenice" Type="Self.Stavka_narudzenice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Narudzbenica">
+        <PropertyRef Name="Narudzbenica_ID" />
+      </Principal>
+      <Dependent Role="Stavka_narudzenice">
+        <PropertyRef Name="Narudzbenica_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Odbor_Reklama">
+    <End Role="Odbor" Type="Self.Odbor" Multiplicity="0..1" />
+    <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Odbor">
+        <PropertyRef Name="Odbor_ID" />
+      </Principal>
+      <Dependent Role="Reklama">
+        <PropertyRef Name="Odbor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Politicka_stranka_Odbor">
+    <End Role="Politicka_stranka" Type="Self.Politicka_stranka" Multiplicity="1" />
+    <End Role="Odbor" Type="Self.Odbor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Politicka_stranka">
+        <PropertyRef Name="Politicka_stranka_ID" />
+      </Principal>
+      <Dependent Role="Odbor">
+        <PropertyRef Name="Politicka_stranka_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Poz_zaposlenog_Zaposleni">
+    <End Role="Pozicija_zaposlenog" Type="Self.Pozicija_zaposlenog" Multiplicity="1" />
+    <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pozicija_zaposlenog">
+        <PropertyRef Name="Poz_zaposlenog_ID" />
+      </Principal>
+      <Dependent Role="Zaposleni">
+        <PropertyRef Name="Poz_zaposlenog_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Privredna_grana_Reklama">
+    <End Role="Privredna_grana" Type="Self.Privredna_grana" Multiplicity="0..1" />
+    <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privredna_grana">
+        <PropertyRef Name="Priv_grana_ID" />
+      </Principal>
+      <Dependent Role="Reklama">
+        <PropertyRef Name="Priv_grana_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Region_Grad">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="Grad" Type="Self.Grad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Region_ID" />
+      </Principal>
+      <Dependent Role="Grad">
+        <PropertyRef Name="Region_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reklama_Prikazuje">
+    <End Role="Reklama" Type="Self.Reklama" Multiplicity="1" />
+    <End Role="Prikazuje" Type="Self.Prikazuje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reklama">
+        <PropertyRef Name="Reklama_ID" />
+      </Principal>
+      <Dependent Role="Prikazuje">
+        <PropertyRef Name="Reklama_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reklama_Stavke_narudzbenice">
+    <End Role="Reklama" Type="Self.Reklama" Multiplicity="1" />
+    <End Role="Stavka_narudzenice" Type="Self.Stavka_narudzenice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reklama">
+        <PropertyRef Name="Reklama_ID" />
+      </Principal>
+      <Dependent Role="Stavka_narudzenice">
+        <PropertyRef Name="Reklama_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Str_Vlasnistva_TV_kuca">
+    <End Role="Struktura_vlasnistva" Type="Self.Struktura_vlasnistva" Multiplicity="1" />
+    <End Role="TV_kuca" Type="Self.TV_kuca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Struktura_vlasnistva">
+        <PropertyRef Name="Struktura_vlasnistva_ID" />
+      </Principal>
+      <Dependent Role="TV_kuca">
+        <PropertyRef Name="Struktura_vlasnistva_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tip_reklame_Reklama">
+    <End Role="Tip_reklame" Type="Self.Tip_reklame" Multiplicity="1" />
+    <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tip_reklame">
+        <PropertyRef Name="Tip_reklame_ID" />
+      </Principal>
+      <Dependent Role="Reklama">
+        <PropertyRef Name="Tip_reklame_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TVkuca_Kanali">
+    <End Role="TV_kuca" Type="Self.TV_kuca" Multiplicity="1" />
+    <End Role="Kanali" Type="Self.Kanali" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TV_kuca">
+        <PropertyRef Name="TV_kuca_ID" />
+      </Principal>
+      <Dependent Role="Kanali">
+        <PropertyRef Name="TV_kuca_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zaposleni_Nardzbenica">
+    <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+    <End Role="Narudzbenica" Type="Self.Narudzbenica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zaposleni">
+        <PropertyRef Name="Zaposleni_ID" />
+      </Principal>
+      <Dependent Role="Narudzbenica">
+        <PropertyRef Name="Zaposleni_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="Insert_Agencija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+    <Parameter Name="Srediste" Type="nvarchar" Mode="In" />
+    <Parameter Name="Adresa" Type="nvarchar" Mode="In" />
+    <Parameter Name="Telefon" Type="char" Mode="In" />
+    <Parameter Name="Email" Type="char" Mode="In" />
+  </Function>
+  <Function Name="Insert_Cenovnik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CenaVazenjaOd" Type="datetime" Mode="In" />
+    <Parameter Name="CenaVazenjaDo" Type="datetime" Mode="In" />
+    <Parameter Name="Cena" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Insert_Grad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Region_ID" Type="int" Mode="In" />
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_Kanali" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TV_kuca_ID" Type="int" Mode="In" />
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_Kompanija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+    <Parameter Name="Sifra" Type="char" Mode="In" />
+    <Parameter Name="Sediste" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_Narudzbenica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Zaposleni_ID" Type="int" Mode="In" />
+    <Parameter Name="Kompanija_ID" Type="int" Mode="In" />
+    <Parameter Name="Broj_narudzbenice" Type="int" Mode="In" />
+    <Parameter Name="Datum" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Insert_Odbor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Grad_ID" Type="int" Mode="In" />
+    <Parameter Name="Politicka_stranka_ID" Type="int" Mode="In" />
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+    <Parameter Name="Oznaka" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_Politicka_stranka" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mesto" Type="nvarchar" Mode="In" />
+    <Parameter Name="Opstina" Type="nvarchar" Mode="In" />
+    <Parameter Name="Adresa" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_Pozicija_zaposlenog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Pozicija" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_Prikazuje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Kanali_ID" Type="int" Mode="In" />
+    <Parameter Name="Reklama_ID" Type="int" Mode="In" />
+    <Parameter Name="Termin_prikaza_Od" Type="datetime" Mode="In" />
+    <Parameter Name="Termin_prikaza_Do" Type="datetime" Mode="In" />
+    <Parameter Name="Broj_prikaza" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Insert_Privredna_grana" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_Region" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_Reklama" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Odbor_ID" Type="int" Mode="In" />
+    <Parameter Name="Tip_reklame_ID" Type="int" Mode="In" />
+    <Parameter Name="Priv_grana_ID" Type="int" Mode="In" />
+    <Parameter Name="Agencija_ID" Type="int" Mode="In" />
+    <Parameter Name="Cenovnik_ID" Type="int" Mode="In" />
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+    <Parameter Name="Sifra" Type="char" Mode="In" />
+    <Parameter Name="Duzina_trajanja" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Insert_Stavka_narudzenice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Reklama_ID" Type="int" Mode="In" />
+    <Parameter Name="Narudzbenica_ID" Type="int" Mode="In" />
+    <Parameter Name="Kolicina" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Insert_Struktura_vlasnistva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Opis_strukture_vlasnistva" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_Tip_reklame" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_TV_kuca" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Struktura_vlasnistva_ID" Type="int" Mode="In" />
+    <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+    <Parameter Name="Sediste" Type="nvarchar" Mode="In" />
+    <Parameter Name="Adresa" Type="nvarchar" Mode="In" />
+    <Parameter Name="Telefon" Type="char" Mode="In" />
+    <Parameter Name="Email" Type="char" Mode="In" />
+  </Function>
+  <Function Name="Insert_Zaposleni" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Poz_zaposlenog_ID" Type="int" Mode="In" />
+    <Parameter Name="Agencija_ID" Type="int" Mode="In" />
+    <Parameter Name="Nadredjeni_ID" Type="int" Mode="In" />
+    <Parameter Name="Ime" Type="nvarchar" Mode="In" />
+    <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
+    <Parameter Name="JMBG" Type="char" Mode="In" />
+    <Parameter Name="Email" Type="char" Mode="In" />
+    <Parameter Name="Telefon" Type="char" Mode="In" />
+  </Function>
+  <Function Name="Nedelje_U_Godini" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="DATE" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Transfer_DimVreme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Transfer_FactNarudzbine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Transfer_FactReklama" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="RDAModelStoreContainer">
+    <EntitySet Name="Agencija" EntityType="Self.Agencija" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cenovnik" EntityType="Self.Cenovnik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kanali" EntityType="Self.Kanali" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kompanija" EntityType="Self.Kompanija" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MSpeer_conflictdetectionconfigrequest" EntityType="Self.MSpeer_conflictdetectionconfigrequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MSpeer_lsns" EntityType="Self.MSpeer_lsns" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Narudzbenica" EntityType="Self.Narudzbenica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Odbor" EntityType="Self.Odbor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Politicka_stranka" EntityType="Self.Politicka_stranka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pozicija_zaposlenog" EntityType="Self.Pozicija_zaposlenog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prikazuje" EntityType="Self.Prikazuje" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Privredna_grana" EntityType="Self.Privredna_grana" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reklama" EntityType="Self.Reklama" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stavka_narudzenice" EntityType="Self.Stavka_narudzenice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Struktura_vlasnistva" EntityType="Self.Struktura_vlasnistva" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysreplservers" EntityType="Self.sysreplservers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tip_reklame" EntityType="Self.Tip_reklame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TV_kuca" EntityType="Self.TV_kuca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zaposleni" EntityType="Self.Zaposleni" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MSpeer_conflictdetectionconfigresponse" EntityType="Self.MSpeer_conflictdetectionconfigresponse" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MSpeer_conflictdetectionconfigresponse].[request_id] AS [request_id], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_node] AS [peer_node], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_db] AS [peer_db], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_version] AS [peer_version], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_db_version] AS [peer_db_version], 
+    [MSpeer_conflictdetectionconfigresponse].[is_peer] AS [is_peer], 
+    [MSpeer_conflictdetectionconfigresponse].[conflictdetection_enabled] AS [conflictdetection_enabled], 
+    [MSpeer_conflictdetectionconfigresponse].[originator_id] AS [originator_id], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_conflict_retention] AS [peer_conflict_retention], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_continue_onconflict] AS [peer_continue_onconflict], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_subscriptions] AS [peer_subscriptions], 
+    [MSpeer_conflictdetectionconfigresponse].[progress_phase] AS [progress_phase], 
+    [MSpeer_conflictdetectionconfigresponse].[modified_date] AS [modified_date]
+    FROM [dbo].[MSpeer_conflictdetectionconfigresponse] AS [MSpeer_conflictdetectionconfigresponse]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MSpeer_originatorid_history" EntityType="Self.MSpeer_originatorid_history" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MSpeer_originatorid_history].[originator_publication] AS [originator_publication], 
+    [MSpeer_originatorid_history].[originator_id] AS [originator_id], 
+    [MSpeer_originatorid_history].[originator_node] AS [originator_node], 
+    [MSpeer_originatorid_history].[originator_db] AS [originator_db], 
+    [MSpeer_originatorid_history].[originator_db_version] AS [originator_db_version], 
+    [MSpeer_originatorid_history].[originator_version] AS [originator_version], 
+    [MSpeer_originatorid_history].[inserted_date] AS [inserted_date]
+    FROM [dbo].[MSpeer_originatorid_history] AS [MSpeer_originatorid_history]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MSpeer_request" EntityType="Self.MSpeer_request" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MSpeer_request].[id] AS [id], 
+    [MSpeer_request].[publication] AS [publication], 
+    [MSpeer_request].[sent_date] AS [sent_date], 
+    [MSpeer_request].[description] AS [description]
+    FROM [dbo].[MSpeer_request] AS [MSpeer_request]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MSpeer_response" EntityType="Self.MSpeer_response" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MSpeer_response].[request_id] AS [request_id], 
+    [MSpeer_response].[peer] AS [peer], 
+    [MSpeer_response].[peer_db] AS [peer_db], 
+    [MSpeer_response].[received_date] AS [received_date]
+    FROM [dbo].[MSpeer_response] AS [MSpeer_response]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MSpeer_topologyrequest" EntityType="Self.MSpeer_topologyrequest" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MSpeer_topologyrequest].[id] AS [id], 
+    [MSpeer_topologyrequest].[publication] AS [publication], 
+    [MSpeer_topologyrequest].[sent_date] AS [sent_date]
+    FROM [dbo].[MSpeer_topologyrequest] AS [MSpeer_topologyrequest]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MSpeer_topologyresponse" EntityType="Self.MSpeer_topologyresponse" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MSpeer_topologyresponse].[request_id] AS [request_id], 
+    [MSpeer_topologyresponse].[peer] AS [peer], 
+    [MSpeer_topologyresponse].[peer_version] AS [peer_version], 
+    [MSpeer_topologyresponse].[peer_db] AS [peer_db], 
+    [MSpeer_topologyresponse].[originator_id] AS [originator_id], 
+    [MSpeer_topologyresponse].[peer_conflict_retention] AS [peer_conflict_retention], 
+    [MSpeer_topologyresponse].[received_date] AS [received_date], 
+    [MSpeer_topologyresponse].[connection_info] AS [connection_info]
+    FROM [dbo].[MSpeer_topologyresponse] AS [MSpeer_topologyresponse]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MSpub_identity_range" EntityType="Self.MSpub_identity_range" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MSpub_identity_range].[objid] AS [objid], 
+    [MSpub_identity_range].[range] AS [range], 
+    [MSpub_identity_range].[pub_range] AS [pub_range], 
+    [MSpub_identity_range].[current_pub_range] AS [current_pub_range], 
+    [MSpub_identity_range].[threshold] AS [threshold], 
+    [MSpub_identity_range].[last_seed] AS [last_seed]
+    FROM [dbo].[MSpub_identity_range] AS [MSpub_identity_range]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sysarticlecolumns" EntityType="Self.sysarticlecolumns" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sysarticlecolumns].[artid] AS [artid], 
+    [sysarticlecolumns].[colid] AS [colid], 
+    [sysarticlecolumns].[is_udt] AS [is_udt], 
+    [sysarticlecolumns].[is_xml] AS [is_xml], 
+    [sysarticlecolumns].[is_max] AS [is_max]
+    FROM [dbo].[sysarticlecolumns] AS [sysarticlecolumns]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sysarticles" EntityType="Self.sysarticles" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sysarticles].[artid] AS [artid], 
+    [sysarticles].[creation_script] AS [creation_script], 
+    [sysarticles].[del_cmd] AS [del_cmd], 
+    [sysarticles].[description] AS [description], 
+    [sysarticles].[dest_table] AS [dest_table], 
+    [sysarticles].[filter] AS [filter], 
+    [sysarticles].[filter_clause] AS [filter_clause], 
+    [sysarticles].[ins_cmd] AS [ins_cmd], 
+    [sysarticles].[name] AS [name], 
+    [sysarticles].[objid] AS [objid], 
+    [sysarticles].[pubid] AS [pubid], 
+    [sysarticles].[pre_creation_cmd] AS [pre_creation_cmd], 
+    [sysarticles].[status] AS [status], 
+    [sysarticles].[sync_objid] AS [sync_objid], 
+    [sysarticles].[type] AS [type], 
+    [sysarticles].[upd_cmd] AS [upd_cmd], 
+    [sysarticles].[schema_option] AS [schema_option], 
+    [sysarticles].[dest_owner] AS [dest_owner], 
+    [sysarticles].[ins_scripting_proc] AS [ins_scripting_proc], 
+    [sysarticles].[del_scripting_proc] AS [del_scripting_proc], 
+    [sysarticles].[upd_scripting_proc] AS [upd_scripting_proc], 
+    [sysarticles].[custom_script] AS [custom_script], 
+    [sysarticles].[fire_triggers_on_snapshot] AS [fire_triggers_on_snapshot]
+    FROM [dbo].[sysarticles] AS [sysarticles]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sysarticleupdates" EntityType="Self.sysarticleupdates" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sysarticleupdates].[artid] AS [artid], 
+    [sysarticleupdates].[pubid] AS [pubid], 
+    [sysarticleupdates].[sync_ins_proc] AS [sync_ins_proc], 
+    [sysarticleupdates].[sync_upd_proc] AS [sync_upd_proc], 
+    [sysarticleupdates].[sync_del_proc] AS [sync_del_proc], 
+    [sysarticleupdates].[autogen] AS [autogen], 
+    [sysarticleupdates].[sync_upd_trig] AS [sync_upd_trig], 
+    [sysarticleupdates].[conflict_tableid] AS [conflict_tableid], 
+    [sysarticleupdates].[ins_conflict_proc] AS [ins_conflict_proc], 
+    [sysarticleupdates].[identity_support] AS [identity_support]
+    FROM [dbo].[sysarticleupdates] AS [sysarticleupdates]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="syspublications" EntityType="Self.syspublications" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [syspublications].[description] AS [description], 
+    [syspublications].[name] AS [name], 
+    [syspublications].[pubid] AS [pubid], 
+    [syspublications].[repl_freq] AS [repl_freq], 
+    [syspublications].[status] AS [status], 
+    [syspublications].[sync_method] AS [sync_method], 
+    [syspublications].[snapshot_jobid] AS [snapshot_jobid], 
+    [syspublications].[independent_agent] AS [independent_agent], 
+    [syspublications].[immediate_sync] AS [immediate_sync], 
+    [syspublications].[enabled_for_internet] AS [enabled_for_internet], 
+    [syspublications].[allow_push] AS [allow_push], 
+    [syspublications].[allow_pull] AS [allow_pull], 
+    [syspublications].[allow_anonymous] AS [allow_anonymous], 
+    [syspublications].[immediate_sync_ready] AS [immediate_sync_ready], 
+    [syspublications].[allow_sync_tran] AS [allow_sync_tran], 
+    [syspublications].[autogen_sync_procs] AS [autogen_sync_procs], 
+    [syspublications].[retention] AS [retention], 
+    [syspublications].[allow_queued_tran] AS [allow_queued_tran], 
+    [syspublications].[snapshot_in_defaultfolder] AS [snapshot_in_defaultfolder], 
+    [syspublications].[alt_snapshot_folder] AS [alt_snapshot_folder], 
+    [syspublications].[pre_snapshot_script] AS [pre_snapshot_script], 
+    [syspublications].[post_snapshot_script] AS [post_snapshot_script], 
+    [syspublications].[compress_snapshot] AS [compress_snapshot], 
+    [syspublications].[ftp_address] AS [ftp_address], 
+    [syspublications].[ftp_port] AS [ftp_port], 
+    [syspublications].[ftp_subdirectory] AS [ftp_subdirectory], 
+    [syspublications].[ftp_login] AS [ftp_login], 
+    [syspublications].[ftp_password] AS [ftp_password], 
+    [syspublications].[allow_dts] AS [allow_dts], 
+    [syspublications].[allow_subscription_copy] AS [allow_subscription_copy], 
+    [syspublications].[centralized_conflicts] AS [centralized_conflicts], 
+    [syspublications].[conflict_retention] AS [conflict_retention], 
+    [syspublications].[conflict_policy] AS [conflict_policy], 
+    [syspublications].[queue_type] AS [queue_type], 
+    [syspublications].[ad_guidname] AS [ad_guidname], 
+    [syspublications].[backward_comp_level] AS [backward_comp_level], 
+    [syspublications].[allow_initialize_from_backup] AS [allow_initialize_from_backup], 
+    [syspublications].[min_autonosync_lsn] AS [min_autonosync_lsn], 
+    [syspublications].[replicate_ddl] AS [replicate_ddl], 
+    [syspublications].[options] AS [options], 
+    [syspublications].[originator_id] AS [originator_id]
+    FROM [dbo].[syspublications] AS [syspublications]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sysschemaarticles" EntityType="Self.sysschemaarticles" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sysschemaarticles].[artid] AS [artid], 
+    [sysschemaarticles].[creation_script] AS [creation_script], 
+    [sysschemaarticles].[description] AS [description], 
+    [sysschemaarticles].[dest_object] AS [dest_object], 
+    [sysschemaarticles].[name] AS [name], 
+    [sysschemaarticles].[objid] AS [objid], 
+    [sysschemaarticles].[pubid] AS [pubid], 
+    [sysschemaarticles].[pre_creation_cmd] AS [pre_creation_cmd], 
+    [sysschemaarticles].[status] AS [status], 
+    [sysschemaarticles].[type] AS [type], 
+    [sysschemaarticles].[schema_option] AS [schema_option], 
+    [sysschemaarticles].[dest_owner] AS [dest_owner]
+    FROM [dbo].[sysschemaarticles] AS [sysschemaarticles]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="syssubscriptions" EntityType="Self.syssubscriptions" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [syssubscriptions].[artid] AS [artid], 
+    [syssubscriptions].[srvid] AS [srvid], 
+    [syssubscriptions].[dest_db] AS [dest_db], 
+    [syssubscriptions].[status] AS [status], 
+    [syssubscriptions].[sync_type] AS [sync_type], 
+    [syssubscriptions].[login_name] AS [login_name], 
+    [syssubscriptions].[subscription_type] AS [subscription_type], 
+    [syssubscriptions].[distribution_jobid] AS [distribution_jobid], 
+    [syssubscriptions].[timestamp] AS [timestamp], 
+    [syssubscriptions].[update_mode] AS [update_mode], 
+    [syssubscriptions].[loopback_detection] AS [loopback_detection], 
+    [syssubscriptions].[queued_reinit] AS [queued_reinit], 
+    [syssubscriptions].[nosync_type] AS [nosync_type], 
+    [syssubscriptions].[srvname] AS [srvname]
+    FROM [dbo].[syssubscriptions] AS [syssubscriptions]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="systranschemas" EntityType="Self.systranschemas" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [systranschemas].[tabid] AS [tabid], 
+    [systranschemas].[startlsn] AS [startlsn], 
+    [systranschemas].[endlsn] AS [endlsn], 
+    [systranschemas].[typeid] AS [typeid]
+    FROM [dbo].[systranschemas] AS [systranschemas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="sysextendedarticlesview" EntityType="Self.sysextendedarticlesview" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [sysextendedarticlesview].[artid] AS [artid], 
+    [sysextendedarticlesview].[creation_script] AS [creation_script], 
+    [sysextendedarticlesview].[del_cmd] AS [del_cmd], 
+    [sysextendedarticlesview].[description] AS [description], 
+    [sysextendedarticlesview].[dest_table] AS [dest_table], 
+    [sysextendedarticlesview].[filter] AS [filter], 
+    [sysextendedarticlesview].[filter_clause] AS [filter_clause], 
+    [sysextendedarticlesview].[ins_cmd] AS [ins_cmd], 
+    [sysextendedarticlesview].[name] AS [name], 
+    [sysextendedarticlesview].[objid] AS [objid], 
+    [sysextendedarticlesview].[pubid] AS [pubid], 
+    [sysextendedarticlesview].[pre_creation_cmd] AS [pre_creation_cmd], 
+    [sysextendedarticlesview].[status] AS [status], 
+    [sysextendedarticlesview].[sync_objid] AS [sync_objid], 
+    [sysextendedarticlesview].[type] AS [type], 
+    [sysextendedarticlesview].[upd_cmd] AS [upd_cmd], 
+    [sysextendedarticlesview].[schema_option] AS [schema_option], 
+    [sysextendedarticlesview].[dest_owner] AS [dest_owner], 
+    [sysextendedarticlesview].[ins_scripting_proc] AS [ins_scripting_proc], 
+    [sysextendedarticlesview].[del_scripting_proc] AS [del_scripting_proc], 
+    [sysextendedarticlesview].[upd_scripting_proc] AS [upd_scripting_proc], 
+    [sysextendedarticlesview].[custom_script] AS [custom_script], 
+    [sysextendedarticlesview].[fire_triggers_on_snapshot] AS [fire_triggers_on_snapshot]
+    FROM [dbo].[sysextendedarticlesview] AS [sysextendedarticlesview]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_Dim_Odbor" EntityType="Self.View_Dim_Odbor" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Dim_Odbor].[Odbor_ID] AS [Odbor_ID], 
+    [View_Dim_Odbor].[Odbor] AS [Odbor], 
+    [View_Dim_Odbor].[Politicka_stranka] AS [Politicka_stranka], 
+    [View_Dim_Odbor].[Opstina_stranke] AS [Opstina_stranke]
+    FROM [dbo].[View_Dim_Odbor] AS [View_Dim_Odbor]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_Dim_Region" EntityType="Self.View_Dim_Region" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Dim_Region].[Region_ID] AS [Region_ID], 
+    [View_Dim_Region].[Grad] AS [Grad], 
+    [View_Dim_Region].[Region] AS [Region]
+    FROM [dbo].[View_Dim_Region] AS [View_Dim_Region]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_Dim_TV_kanali" EntityType="Self.View_Dim_TV_kanali" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Dim_TV_kanali].[Kanali_ID] AS [Kanali_ID], 
+    [View_Dim_TV_kanali].[Kanal] AS [Kanal], 
+    [View_Dim_TV_kanali].[Vlasnistvo] AS [Vlasnistvo]
+    FROM [dbo].[View_Dim_TV_kanali] AS [View_Dim_TV_kanali]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_Dim_Zaposleni" EntityType="Self.View_Dim_Zaposleni" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Dim_Zaposleni].[Zaposleni_ID] AS [Zaposleni_ID], 
+    [View_Dim_Zaposleni].[Ime] AS [Ime], 
+    [View_Dim_Zaposleni].[Prezime] AS [Prezime], 
+    [View_Dim_Zaposleni].[JMBG] AS [JMBG], 
+    [View_Dim_Zaposleni].[Pozicija] AS [Pozicija]
+    FROM [dbo].[View_Dim_Zaposleni] AS [View_Dim_Zaposleni]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Agencija_Reklama" Association="Self.FK_Agencija_Reklama">
+      <End Role="Agencija" EntitySet="Agencija" />
+      <End Role="Reklama" EntitySet="Reklama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Agencija_Zaposleni" Association="Self.FK_Agencija_Zaposleni">
+      <End Role="Agencija" EntitySet="Agencija" />
+      <End Role="Zaposleni" EntitySet="Zaposleni" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cenovinik_Reklama" Association="Self.FK_Cenovinik_Reklama">
+      <End Role="Cenovnik" EntitySet="Cenovnik" />
+      <End Role="Reklama" EntitySet="Reklama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grad_Odbor" Association="Self.FK_Grad_Odbor">
+      <End Role="Grad" EntitySet="Grad" />
+      <End Role="Odbor" EntitySet="Odbor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kanali_Prikazuje" Association="Self.FK_Kanali_Prikazuje">
+      <End Role="Kanali" EntitySet="Kanali" />
+      <End Role="Prikazuje" EntitySet="Prikazuje" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kompanija_Narudzbenica" Association="Self.FK_Kompanija_Narudzbenica">
+      <End Role="Kompanija" EntitySet="Kompanija" />
+      <End Role="Narudzbenica" EntitySet="Narudzbenica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nardredjeni_Zaposleni" Association="Self.FK_Nardredjeni_Zaposleni">
+      <End Role="Zaposleni" EntitySet="Zaposleni" />
+      <End Role="Zaposleni1" EntitySet="Zaposleni" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Narudzbenica_Stavke_narudzbenice" Association="Self.FK_Narudzbenica_Stavke_narudzbenice">
+      <End Role="Narudzbenica" EntitySet="Narudzbenica" />
+      <End Role="Stavka_narudzenice" EntitySet="Stavka_narudzenice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Odbor_Reklama" Association="Self.FK_Odbor_Reklama">
+      <End Role="Odbor" EntitySet="Odbor" />
+      <End Role="Reklama" EntitySet="Reklama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Politicka_stranka_Odbor" Association="Self.FK_Politicka_stranka_Odbor">
+      <End Role="Politicka_stranka" EntitySet="Politicka_stranka" />
+      <End Role="Odbor" EntitySet="Odbor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Poz_zaposlenog_Zaposleni" Association="Self.FK_Poz_zaposlenog_Zaposleni">
+      <End Role="Pozicija_zaposlenog" EntitySet="Pozicija_zaposlenog" />
+      <End Role="Zaposleni" EntitySet="Zaposleni" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Privredna_grana_Reklama" Association="Self.FK_Privredna_grana_Reklama">
+      <End Role="Privredna_grana" EntitySet="Privredna_grana" />
+      <End Role="Reklama" EntitySet="Reklama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Region_Grad" Association="Self.FK_Region_Grad">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Grad" EntitySet="Grad" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reklama_Prikazuje" Association="Self.FK_Reklama_Prikazuje">
+      <End Role="Reklama" EntitySet="Reklama" />
+      <End Role="Prikazuje" EntitySet="Prikazuje" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reklama_Stavke_narudzbenice" Association="Self.FK_Reklama_Stavke_narudzbenice">
+      <End Role="Reklama" EntitySet="Reklama" />
+      <End Role="Stavka_narudzenice" EntitySet="Stavka_narudzenice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Str_Vlasnistva_TV_kuca" Association="Self.FK_Str_Vlasnistva_TV_kuca">
+      <End Role="Struktura_vlasnistva" EntitySet="Struktura_vlasnistva" />
+      <End Role="TV_kuca" EntitySet="TV_kuca" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tip_reklame_Reklama" Association="Self.FK_Tip_reklame_Reklama">
+      <End Role="Tip_reklame" EntitySet="Tip_reklame" />
+      <End Role="Reklama" EntitySet="Reklama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TVkuca_Kanali" Association="Self.FK_TVkuca_Kanali">
+      <End Role="TV_kuca" EntitySet="TV_kuca" />
+      <End Role="Kanali" EntitySet="Kanali" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zaposleni_Nardzbenica" Association="Self.FK_Zaposleni_Nardzbenica">
+      <End Role="Zaposleni" EntitySet="Zaposleni" />
+      <End Role="Narudzbenica" EntitySet="Narudzbenica" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RDAModelStoreContainer" CdmEntityContainer="RDAEntities">
+    <EntitySetMapping Name="Agencija">
+      <EntityTypeMapping TypeName="RDAModel.Agencija">
+        <MappingFragment StoreEntitySet="Agencija">
+          <ScalarProperty Name="Agencija_ID" ColumnName="Agencija_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Srediste" ColumnName="Srediste" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cenovnik">
+      <EntityTypeMapping TypeName="RDAModel.Cenovnik">
+        <MappingFragment StoreEntitySet="Cenovnik">
+          <ScalarProperty Name="Cenovnik_ID" ColumnName="Cenovnik_ID" />
+          <ScalarProperty Name="CenaVazenjaOd" ColumnName="CenaVazenjaOd" />
+          <ScalarProperty Name="CenaVazenjaDo" ColumnName="CenaVazenjaDo" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grad">
+      <EntityTypeMapping TypeName="RDAModel.Grad">
+        <MappingFragment StoreEntitySet="Grad">
+          <ScalarProperty Name="Grad_ID" ColumnName="Grad_ID" />
+          <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kanali">
+      <EntityTypeMapping TypeName="RDAModel.Kanali">
+        <MappingFragment StoreEntitySet="Kanali">
+          <ScalarProperty Name="Kanali_ID" ColumnName="Kanali_ID" />
+          <ScalarProperty Name="TV_kuca_ID" ColumnName="TV_kuca_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kompanija">
+      <EntityTypeMapping TypeName="RDAModel.Kompanija">
+        <MappingFragment StoreEntitySet="Kompanija">
+          <ScalarProperty Name="Kompanija_ID" ColumnName="Kompanija_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+          <ScalarProperty Name="Sediste" ColumnName="Sediste" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSpeer_conflictdetectionconfigrequest">
+      <EntityTypeMapping TypeName="RDAModel.MSpeer_conflictdetectionconfigrequest">
+        <MappingFragment StoreEntitySet="MSpeer_conflictdetectionconfigrequest">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="publication" ColumnName="publication" />
+          <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+          <ScalarProperty Name="timeout" ColumnName="timeout" />
+          <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+          <ScalarProperty Name="progress_phase" ColumnName="progress_phase" />
+          <ScalarProperty Name="phase_timed_out" ColumnName="phase_timed_out" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSpeer_lsns">
+      <EntityTypeMapping TypeName="RDAModel.MSpeer_lsns">
+        <MappingFragment StoreEntitySet="MSpeer_lsns">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="last_updated" ColumnName="last_updated" />
+          <ScalarProperty Name="originator" ColumnName="originator" />
+          <ScalarProperty Name="originator_db" ColumnName="originator_db" />
+          <ScalarProperty Name="originator_publication" ColumnName="originator_publication" />
+          <ScalarProperty Name="originator_publication_id" ColumnName="originator_publication_id" />
+          <ScalarProperty Name="originator_db_version" ColumnName="originator_db_version" />
+          <ScalarProperty Name="originator_lsn" ColumnName="originator_lsn" />
+          <ScalarProperty Name="originator_version" ColumnName="originator_version" />
+          <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Narudzbenica">
+      <EntityTypeMapping TypeName="RDAModel.Narudzbenica">
+        <MappingFragment StoreEntitySet="Narudzbenica">
+          <ScalarProperty Name="Narudzbenica_ID" ColumnName="Narudzbenica_ID" />
+          <ScalarProperty Name="Zaposleni_ID" ColumnName="Zaposleni_ID" />
+          <ScalarProperty Name="Kompanija_ID" ColumnName="Kompanija_ID" />
+          <ScalarProperty Name="Broj_narudzbenice" ColumnName="Broj_narudzbenice" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Odbor">
+      <EntityTypeMapping TypeName="RDAModel.Odbor">
+        <MappingFragment StoreEntitySet="Odbor">
+          <ScalarProperty Name="Odbor_ID" ColumnName="Odbor_ID" />
+          <ScalarProperty Name="Grad_ID" ColumnName="Grad_ID" />
+          <ScalarProperty Name="Politicka_stranka_ID" ColumnName="Politicka_stranka_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Oznaka" ColumnName="Oznaka" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Politicka_stranka">
+      <EntityTypeMapping TypeName="RDAModel.Politicka_stranka">
+        <MappingFragment StoreEntitySet="Politicka_stranka">
+          <ScalarProperty Name="Politicka_stranka_ID" ColumnName="Politicka_stranka_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Mesto" ColumnName="Mesto" />
+          <ScalarProperty Name="Opstina" ColumnName="Opstina" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pozicija_zaposlenog">
+      <EntityTypeMapping TypeName="RDAModel.Pozicija_zaposlenog">
+        <MappingFragment StoreEntitySet="Pozicija_zaposlenog">
+          <ScalarProperty Name="Poz_zaposlenog_ID" ColumnName="Poz_zaposlenog_ID" />
+          <ScalarProperty Name="Pozicija" ColumnName="Pozicija" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prikazuje">
+      <EntityTypeMapping TypeName="RDAModel.Prikazuje">
+        <MappingFragment StoreEntitySet="Prikazuje">
+          <ScalarProperty Name="Prikazuje_ID" ColumnName="Prikazuje_ID" />
+          <ScalarProperty Name="Kanali_ID" ColumnName="Kanali_ID" />
+          <ScalarProperty Name="Reklama_ID" ColumnName="Reklama_ID" />
+          <ScalarProperty Name="Termin_prikaza_Od" ColumnName="Termin_prikaza_Od" />
+          <ScalarProperty Name="Termin_prikaza_Do" ColumnName="Termin_prikaza_Do" />
+          <ScalarProperty Name="Broj_prikaza" ColumnName="Broj_prikaza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Privredna_grana">
+      <EntityTypeMapping TypeName="RDAModel.Privredna_grana">
+        <MappingFragment StoreEntitySet="Privredna_grana">
+          <ScalarProperty Name="Priv_grana_ID" ColumnName="Priv_grana_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Region">
+      <EntityTypeMapping TypeName="RDAModel.Region">
+        <MappingFragment StoreEntitySet="Region">
+          <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reklama">
+      <EntityTypeMapping TypeName="RDAModel.Reklama">
+        <MappingFragment StoreEntitySet="Reklama">
+          <ScalarProperty Name="Reklama_ID" ColumnName="Reklama_ID" />
+          <ScalarProperty Name="Odbor_ID" ColumnName="Odbor_ID" />
+          <ScalarProperty Name="Tip_reklame_ID" ColumnName="Tip_reklame_ID" />
+          <ScalarProperty Name="Priv_grana_ID" ColumnName="Priv_grana_ID" />
+          <ScalarProperty Name="Agencija_ID" ColumnName="Agencija_ID" />
+          <ScalarProperty Name="Cenovnik_ID" ColumnName="Cenovnik_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+          <ScalarProperty Name="Duzina_trajanja" ColumnName="Duzina_trajanja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stavka_narudzenice">
+      <EntityTypeMapping TypeName="RDAModel.Stavka_narudzenice">
+        <MappingFragment StoreEntitySet="Stavka_narudzenice">
+          <ScalarProperty Name="Stavka_narudzenice_ID" ColumnName="Stavka_narudzenice_ID" />
+          <ScalarProperty Name="Reklama_ID" ColumnName="Reklama_ID" />
+          <ScalarProperty Name="Narudzbenica_ID" ColumnName="Narudzbenica_ID" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Struktura_vlasnistva">
+      <EntityTypeMapping TypeName="RDAModel.Struktura_vlasnistva">
+        <MappingFragment StoreEntitySet="Struktura_vlasnistva">
+          <ScalarProperty Name="Struktura_vlasnistva_ID" ColumnName="Struktura_vlasnistva_ID" />
+          <ScalarProperty Name="Opis_strukture_vlasnistva" ColumnName="Opis_strukture_vlasnistva" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="RDAModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysreplservers">
+      <EntityTypeMapping TypeName="RDAModel.sysreplservers">
+        <MappingFragment StoreEntitySet="sysreplservers">
+          <ScalarProperty Name="srvname" ColumnName="srvname" />
+          <ScalarProperty Name="srvid" ColumnName="srvid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tip_reklame">
+      <EntityTypeMapping TypeName="RDAModel.Tip_reklame">
+        <MappingFragment StoreEntitySet="Tip_reklame">
+          <ScalarProperty Name="Tip_reklame_ID" ColumnName="Tip_reklame_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TV_kuca">
+      <EntityTypeMapping TypeName="RDAModel.TV_kuca">
+        <MappingFragment StoreEntitySet="TV_kuca">
+          <ScalarProperty Name="TV_kuca_ID" ColumnName="TV_kuca_ID" />
+          <ScalarProperty Name="Struktura_vlasnistva_ID" ColumnName="Struktura_vlasnistva_ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Sediste" ColumnName="Sediste" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zaposleni">
+      <EntityTypeMapping TypeName="RDAModel.Zaposleni">
+        <MappingFragment StoreEntitySet="Zaposleni">
+          <ScalarProperty Name="Zaposleni_ID" ColumnName="Zaposleni_ID" />
+          <ScalarProperty Name="Poz_zaposlenog_ID" ColumnName="Poz_zaposlenog_ID" />
+          <ScalarProperty Name="Agencija_ID" ColumnName="Agencija_ID" />
+          <ScalarProperty Name="Nadredjeni_ID" ColumnName="Nadredjeni_ID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSpeer_conflictdetectionconfigresponse">
+      <EntityTypeMapping TypeName="RDAModel.MSpeer_conflictdetectionconfigresponse">
+        <MappingFragment StoreEntitySet="MSpeer_conflictdetectionconfigresponse">
+          <ScalarProperty Name="request_id" ColumnName="request_id" />
+          <ScalarProperty Name="peer_node" ColumnName="peer_node" />
+          <ScalarProperty Name="peer_db" ColumnName="peer_db" />
+          <ScalarProperty Name="peer_version" ColumnName="peer_version" />
+          <ScalarProperty Name="peer_db_version" ColumnName="peer_db_version" />
+          <ScalarProperty Name="is_peer" ColumnName="is_peer" />
+          <ScalarProperty Name="conflictdetection_enabled" ColumnName="conflictdetection_enabled" />
+          <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+          <ScalarProperty Name="peer_conflict_retention" ColumnName="peer_conflict_retention" />
+          <ScalarProperty Name="peer_continue_onconflict" ColumnName="peer_continue_onconflict" />
+          <ScalarProperty Name="peer_subscriptions" ColumnName="peer_subscriptions" />
+          <ScalarProperty Name="progress_phase" ColumnName="progress_phase" />
+          <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSpeer_originatorid_history">
+      <EntityTypeMapping TypeName="RDAModel.MSpeer_originatorid_history">
+        <MappingFragment StoreEntitySet="MSpeer_originatorid_history">
+          <ScalarProperty Name="originator_publication" ColumnName="originator_publication" />
+          <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+          <ScalarProperty Name="originator_node" ColumnName="originator_node" />
+          <ScalarProperty Name="originator_db" ColumnName="originator_db" />
+          <ScalarProperty Name="originator_db_version" ColumnName="originator_db_version" />
+          <ScalarProperty Name="originator_version" ColumnName="originator_version" />
+          <ScalarProperty Name="inserted_date" ColumnName="inserted_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSpeer_request">
+      <EntityTypeMapping TypeName="RDAModel.MSpeer_request">
+        <MappingFragment StoreEntitySet="MSpeer_request">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="publication" ColumnName="publication" />
+          <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSpeer_response">
+      <EntityTypeMapping TypeName="RDAModel.MSpeer_response">
+        <MappingFragment StoreEntitySet="MSpeer_response">
+          <ScalarProperty Name="request_id" ColumnName="request_id" />
+          <ScalarProperty Name="peer" ColumnName="peer" />
+          <ScalarProperty Name="peer_db" ColumnName="peer_db" />
+          <ScalarProperty Name="received_date" ColumnName="received_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSpeer_topologyrequest">
+      <EntityTypeMapping TypeName="RDAModel.MSpeer_topologyrequest">
+        <MappingFragment StoreEntitySet="MSpeer_topologyrequest">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="publication" ColumnName="publication" />
+          <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSpeer_topologyresponse">
+      <EntityTypeMapping TypeName="RDAModel.MSpeer_topologyresponse">
+        <MappingFragment StoreEntitySet="MSpeer_topologyresponse">
+          <ScalarProperty Name="request_id" ColumnName="request_id" />
+          <ScalarProperty Name="peer" ColumnName="peer" />
+          <ScalarProperty Name="peer_version" ColumnName="peer_version" />
+          <ScalarProperty Name="peer_db" ColumnName="peer_db" />
+          <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+          <ScalarProperty Name="peer_conflict_retention" ColumnName="peer_conflict_retention" />
+          <ScalarProperty Name="received_date" ColumnName="received_date" />
+          <ScalarProperty Name="connection_info" ColumnName="connection_info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MSpub_identity_range">
+      <EntityTypeMapping TypeName="RDAModel.MSpub_identity_range">
+        <MappingFragment StoreEntitySet="MSpub_identity_range">
+          <ScalarProperty Name="objid" ColumnName="objid" />
+          <ScalarProperty Name="range" ColumnName="range" />
+          <ScalarProperty Name="pub_range" ColumnName="pub_range" />
+          <ScalarProperty Name="current_pub_range" ColumnName="current_pub_range" />
+          <ScalarProperty Name="threshold" ColumnName="threshold" />
+          <ScalarProperty Name="last_seed" ColumnName="last_seed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysarticlecolumns">
+      <EntityTypeMapping TypeName="RDAModel.sysarticlecolumns">
+        <MappingFragment StoreEntitySet="sysarticlecolumns">
+          <ScalarProperty Name="artid" ColumnName="artid" />
+          <ScalarProperty Name="colid" ColumnName="colid" />
+          <ScalarProperty Name="is_udt" ColumnName="is_udt" />
+          <ScalarProperty Name="is_xml" ColumnName="is_xml" />
+          <ScalarProperty Name="is_max" ColumnName="is_max" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysarticles">
+      <EntityTypeMapping TypeName="RDAModel.sysarticles">
+        <MappingFragment StoreEntitySet="sysarticles">
+          <ScalarProperty Name="artid" ColumnName="artid" />
+          <ScalarProperty Name="creation_script" ColumnName="creation_script" />
+          <ScalarProperty Name="del_cmd" ColumnName="del_cmd" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="dest_table" ColumnName="dest_table" />
+          <ScalarProperty Name="filter" ColumnName="filter" />
+          <ScalarProperty Name="filter_clause" ColumnName="filter_clause" />
+          <ScalarProperty Name="ins_cmd" ColumnName="ins_cmd" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="objid" ColumnName="objid" />
+          <ScalarProperty Name="pubid" ColumnName="pubid" />
+          <ScalarProperty Name="pre_creation_cmd" ColumnName="pre_creation_cmd" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="sync_objid" ColumnName="sync_objid" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="upd_cmd" ColumnName="upd_cmd" />
+          <ScalarProperty Name="schema_option" ColumnName="schema_option" />
+          <ScalarProperty Name="dest_owner" ColumnName="dest_owner" />
+          <ScalarProperty Name="ins_scripting_proc" ColumnName="ins_scripting_proc" />
+          <ScalarProperty Name="del_scripting_proc" ColumnName="del_scripting_proc" />
+          <ScalarProperty Name="upd_scripting_proc" ColumnName="upd_scripting_proc" />
+          <ScalarProperty Name="custom_script" ColumnName="custom_script" />
+          <ScalarProperty Name="fire_triggers_on_snapshot" ColumnName="fire_triggers_on_snapshot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysarticleupdates">
+      <EntityTypeMapping TypeName="RDAModel.sysarticleupdates">
+        <MappingFragment StoreEntitySet="sysarticleupdates">
+          <ScalarProperty Name="artid" ColumnName="artid" />
+          <ScalarProperty Name="pubid" ColumnName="pubid" />
+          <ScalarProperty Name="sync_ins_proc" ColumnName="sync_ins_proc" />
+          <ScalarProperty Name="sync_upd_proc" ColumnName="sync_upd_proc" />
+          <ScalarProperty Name="sync_del_proc" ColumnName="sync_del_proc" />
+          <ScalarProperty Name="autogen" ColumnName="autogen" />
+          <ScalarProperty Name="sync_upd_trig" ColumnName="sync_upd_trig" />
+          <ScalarProperty Name="conflict_tableid" ColumnName="conflict_tableid" />
+          <ScalarProperty Name="ins_conflict_proc" ColumnName="ins_conflict_proc" />
+          <ScalarProperty Name="identity_support" ColumnName="identity_support" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="syspublications">
+      <EntityTypeMapping TypeName="RDAModel.syspublications">
+        <MappingFragment StoreEntitySet="syspublications">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="pubid" ColumnName="pubid" />
+          <ScalarProperty Name="repl_freq" ColumnName="repl_freq" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="sync_method" ColumnName="sync_method" />
+          <ScalarProperty Name="snapshot_jobid" ColumnName="snapshot_jobid" />
+          <ScalarProperty Name="independent_agent" ColumnName="independent_agent" />
+          <ScalarProperty Name="immediate_sync" ColumnName="immediate_sync" />
+          <ScalarProperty Name="enabled_for_internet" ColumnName="enabled_for_internet" />
+          <ScalarProperty Name="allow_push" ColumnName="allow_push" />
+          <ScalarProperty Name="allow_pull" ColumnName="allow_pull" />
+          <ScalarProperty Name="allow_anonymous" ColumnName="allow_anonymous" />
+          <ScalarProperty Name="immediate_sync_ready" ColumnName="immediate_sync_ready" />
+          <ScalarProperty Name="allow_sync_tran" ColumnName="allow_sync_tran" />
+          <ScalarProperty Name="autogen_sync_procs" ColumnName="autogen_sync_procs" />
+          <ScalarProperty Name="retention" ColumnName="retention" />
+          <ScalarProperty Name="allow_queued_tran" ColumnName="allow_queued_tran" />
+          <ScalarProperty Name="snapshot_in_defaultfolder" ColumnName="snapshot_in_defaultfolder" />
+          <ScalarProperty Name="alt_snapshot_folder" ColumnName="alt_snapshot_folder" />
+          <ScalarProperty Name="pre_snapshot_script" ColumnName="pre_snapshot_script" />
+          <ScalarProperty Name="post_snapshot_script" ColumnName="post_snapshot_script" />
+          <ScalarProperty Name="compress_snapshot" ColumnName="compress_snapshot" />
+          <ScalarProperty Name="ftp_address" ColumnName="ftp_address" />
+          <ScalarProperty Name="ftp_port" ColumnName="ftp_port" />
+          <ScalarProperty Name="ftp_subdirectory" ColumnName="ftp_subdirectory" />
+          <ScalarProperty Name="ftp_login" ColumnName="ftp_login" />
+          <ScalarProperty Name="ftp_password" ColumnName="ftp_password" />
+          <ScalarProperty Name="allow_dts" ColumnName="allow_dts" />
+          <ScalarProperty Name="allow_subscription_copy" ColumnName="allow_subscription_copy" />
+          <ScalarProperty Name="centralized_conflicts" ColumnName="centralized_conflicts" />
+          <ScalarProperty Name="conflict_retention" ColumnName="conflict_retention" />
+          <ScalarProperty Name="conflict_policy" ColumnName="conflict_policy" />
+          <ScalarProperty Name="queue_type" ColumnName="queue_type" />
+          <ScalarProperty Name="ad_guidname" ColumnName="ad_guidname" />
+          <ScalarProperty Name="backward_comp_level" ColumnName="backward_comp_level" />
+          <ScalarProperty Name="allow_initialize_from_backup" ColumnName="allow_initialize_from_backup" />
+          <ScalarProperty Name="min_autonosync_lsn" ColumnName="min_autonosync_lsn" />
+          <ScalarProperty Name="replicate_ddl" ColumnName="replicate_ddl" />
+          <ScalarProperty Name="options" ColumnName="options" />
+          <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysschemaarticles">
+      <EntityTypeMapping TypeName="RDAModel.sysschemaarticles">
+        <MappingFragment StoreEntitySet="sysschemaarticles">
+          <ScalarProperty Name="artid" ColumnName="artid" />
+          <ScalarProperty Name="creation_script" ColumnName="creation_script" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="dest_object" ColumnName="dest_object" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="objid" ColumnName="objid" />
+          <ScalarProperty Name="pubid" ColumnName="pubid" />
+          <ScalarProperty Name="pre_creation_cmd" ColumnName="pre_creation_cmd" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="schema_option" ColumnName="schema_option" />
+          <ScalarProperty Name="dest_owner" ColumnName="dest_owner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="syssubscriptions">
+      <EntityTypeMapping TypeName="RDAModel.syssubscriptions">
+        <MappingFragment StoreEntitySet="syssubscriptions">
+          <ScalarProperty Name="artid" ColumnName="artid" />
+          <ScalarProperty Name="srvid" ColumnName="srvid" />
+          <ScalarProperty Name="dest_db" ColumnName="dest_db" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="sync_type" ColumnName="sync_type" />
+          <ScalarProperty Name="login_name" ColumnName="login_name" />
+          <ScalarProperty Name="subscription_type" ColumnName="subscription_type" />
+          <ScalarProperty Name="distribution_jobid" ColumnName="distribution_jobid" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="update_mode" ColumnName="update_mode" />
+          <ScalarProperty Name="loopback_detection" ColumnName="loopback_detection" />
+          <ScalarProperty Name="queued_reinit" ColumnName="queued_reinit" />
+          <ScalarProperty Name="nosync_type" ColumnName="nosync_type" />
+          <ScalarProperty Name="srvname" ColumnName="srvname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="systranschemas">
+      <EntityTypeMapping TypeName="RDAModel.systranschemas">
+        <MappingFragment StoreEntitySet="systranschemas">
+          <ScalarProperty Name="tabid" ColumnName="tabid" />
+          <ScalarProperty Name="startlsn" ColumnName="startlsn" />
+          <ScalarProperty Name="endlsn" ColumnName="endlsn" />
+          <ScalarProperty Name="typeid" ColumnName="typeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysextendedarticlesview">
+      <EntityTypeMapping TypeName="RDAModel.sysextendedarticlesview">
+        <MappingFragment StoreEntitySet="sysextendedarticlesview">
+          <ScalarProperty Name="artid" ColumnName="artid" />
+          <ScalarProperty Name="creation_script" ColumnName="creation_script" />
+          <ScalarProperty Name="del_cmd" ColumnName="del_cmd" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="dest_table" ColumnName="dest_table" />
+          <ScalarProperty Name="filter" ColumnName="filter" />
+          <ScalarProperty Name="filter_clause" ColumnName="filter_clause" />
+          <ScalarProperty Name="ins_cmd" ColumnName="ins_cmd" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="objid" ColumnName="objid" />
+          <ScalarProperty Name="pubid" ColumnName="pubid" />
+          <ScalarProperty Name="pre_creation_cmd" ColumnName="pre_creation_cmd" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="sync_objid" ColumnName="sync_objid" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="upd_cmd" ColumnName="upd_cmd" />
+          <ScalarProperty Name="schema_option" ColumnName="schema_option" />
+          <ScalarProperty Name="dest_owner" ColumnName="dest_owner" />
+          <ScalarProperty Name="ins_scripting_proc" ColumnName="ins_scripting_proc" />
+          <ScalarProperty Name="del_scripting_proc" ColumnName="del_scripting_proc" />
+          <ScalarProperty Name="upd_scripting_proc" ColumnName="upd_scripting_proc" />
+          <ScalarProperty Name="custom_script" ColumnName="custom_script" />
+          <ScalarProperty Name="fire_triggers_on_snapshot" ColumnName="fire_triggers_on_snapshot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Dim_Odbor">
+      <EntityTypeMapping TypeName="RDAModel.View_Dim_Odbor">
+        <MappingFragment StoreEntitySet="View_Dim_Odbor">
+          <ScalarProperty Name="Odbor_ID" ColumnName="Odbor_ID" />
+          <ScalarProperty Name="Odbor" ColumnName="Odbor" />
+          <ScalarProperty Name="Politicka_stranka" ColumnName="Politicka_stranka" />
+          <ScalarProperty Name="Opstina_stranke" ColumnName="Opstina_stranke" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Dim_Region">
+      <EntityTypeMapping TypeName="RDAModel.View_Dim_Region">
+        <MappingFragment StoreEntitySet="View_Dim_Region">
+          <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+          <ScalarProperty Name="Grad" ColumnName="Grad" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Dim_TV_kanali">
+      <EntityTypeMapping TypeName="RDAModel.View_Dim_TV_kanali">
+        <MappingFragment StoreEntitySet="View_Dim_TV_kanali">
+          <ScalarProperty Name="Kanali_ID" ColumnName="Kanali_ID" />
+          <ScalarProperty Name="Kanal" ColumnName="Kanal" />
+          <ScalarProperty Name="Vlasnistvo" ColumnName="Vlasnistvo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Dim_Zaposleni">
+      <EntityTypeMapping TypeName="RDAModel.View_Dim_Zaposleni">
+        <MappingFragment StoreEntitySet="View_Dim_Zaposleni">
+          <ScalarProperty Name="Zaposleni_ID" ColumnName="Zaposleni_ID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="Pozicija" ColumnName="Pozicija" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Insert_Agencija" FunctionName="RDAModel.Store.Insert_Agencija" />
+    <FunctionImportMapping FunctionImportName="Insert_Cenovnik" FunctionName="RDAModel.Store.Insert_Cenovnik" />
+    <FunctionImportMapping FunctionImportName="Insert_Grad" FunctionName="RDAModel.Store.Insert_Grad" />
+    <FunctionImportMapping FunctionImportName="Insert_Kanali" FunctionName="RDAModel.Store.Insert_Kanali" />
+    <FunctionImportMapping FunctionImportName="Insert_Kompanija" FunctionName="RDAModel.Store.Insert_Kompanija" />
+    <FunctionImportMapping FunctionImportName="Insert_Narudzbenica" FunctionName="RDAModel.Store.Insert_Narudzbenica" />
+    <FunctionImportMapping FunctionImportName="Insert_Odbor" FunctionName="RDAModel.Store.Insert_Odbor" />
+    <FunctionImportMapping FunctionImportName="Insert_Politicka_stranka" FunctionName="RDAModel.Store.Insert_Politicka_stranka" />
+    <FunctionImportMapping FunctionImportName="Insert_Pozicija_zaposlenog" FunctionName="RDAModel.Store.Insert_Pozicija_zaposlenog" />
+    <FunctionImportMapping FunctionImportName="Insert_Prikazuje" FunctionName="RDAModel.Store.Insert_Prikazuje" />
+    <FunctionImportMapping FunctionImportName="Insert_Privredna_grana" FunctionName="RDAModel.Store.Insert_Privredna_grana" />
+    <FunctionImportMapping FunctionImportName="Insert_Region" FunctionName="RDAModel.Store.Insert_Region" />
+    <FunctionImportMapping FunctionImportName="Insert_Reklama" FunctionName="RDAModel.Store.Insert_Reklama" />
+    <FunctionImportMapping FunctionImportName="Insert_Stavka_narudzenice" FunctionName="RDAModel.Store.Insert_Stavka_narudzenice" />
+    <FunctionImportMapping FunctionImportName="Insert_Struktura_vlasnistva" FunctionName="RDAModel.Store.Insert_Struktura_vlasnistva" />
+    <FunctionImportMapping FunctionImportName="Insert_Tip_reklame" FunctionName="RDAModel.Store.Insert_Tip_reklame" />
+    <FunctionImportMapping FunctionImportName="Insert_TV_kuca" FunctionName="RDAModel.Store.Insert_TV_kuca" />
+    <FunctionImportMapping FunctionImportName="Insert_Zaposleni" FunctionName="RDAModel.Store.Insert_Zaposleni" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="RDAModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="RDAModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="RDAModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="RDAModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RDAModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="RDAModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RDAModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RDAModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RDAModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="Transfer_DimVreme" FunctionName="RDAModel.Store.Transfer_DimVreme">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RDAModel.Transfer_DimVreme_Result">
+          <ScalarProperty Name="Datum_prikaza" ColumnName="Datum_prikaza" />
+          <ScalarProperty Name="Termin_prikaza" ColumnName="Termin_prikaza" />
+          <ScalarProperty Name="Godina" ColumnName="Godina" />
+          <ScalarProperty Name="Kvartal" ColumnName="Kvartal" />
+          <ScalarProperty Name="Mesec" ColumnName="Mesec" />
+          <ScalarProperty Name="Nedelja" ColumnName="Nedelja" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Transfer_FactNarudzbine" FunctionName="RDAModel.Store.Transfer_FactNarudzbine" />
+    <FunctionImportMapping FunctionImportName="Transfer_FactReklama" FunctionName="RDAModel.Store.Transfer_FactReklama" />
+  </EntityContainerMapping>
+</Mapping>

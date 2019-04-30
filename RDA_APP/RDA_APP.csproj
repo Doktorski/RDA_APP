@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,10 +45,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\ProjectRDA\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\ProjectRDA\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -112,17 +123,162 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NarudzbenicasController.cs" />
+    <Compile Include="Controllers\ReklamasController.cs" />
+    <Compile Include="Controllers\Stavka_narudzeniceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Agencija.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cenovnik.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Grad.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Kanali.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Kompanija.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSpeer_conflictdetectionconfigrequest.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSpeer_conflictdetectionconfigresponse.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSpeer_lsns.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSpeer_originatorid_history.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSpeer_request.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSpeer_response.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSpeer_topologyrequest.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSpeer_topologyresponse.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSpub_identity_range.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Narudzbenica.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Odbor.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Politicka_stranka.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pozicija_zaposlenog.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Prikazuje.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Privredna_grana.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RDA_DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RDA_DB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RDA_DB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RDA_DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RDA_DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reklama.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stavka_narudzenice.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Struktura_vlasnistva.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysarticlecolumns.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysarticles.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysarticleupdates.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysextendedarticlesview.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\syspublications.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysreplservers.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysschemaarticles.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\syssubscriptions.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\systranschemas.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tip_reklame.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transfer_DimVreme_Result.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TV_kuca.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_Dim_Odbor.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_Dim_Region.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_Dim_TV_kanali.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_Dim_Zaposleni.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Zaposleni.cs">
+      <DependentUpon>RDA_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -135,8 +291,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\RDA_DB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RDA_DB.Context.cs</LastGenOutput>
+      <DependentUpon>RDA_DB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\RDA_DB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RDA_DB.edmx</DependentUpon>
+      <LastGenOutput>RDA_DB.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\RDA_DB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RDA_DB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\RDA_DB.edmx.diagram">
+      <DependentUpon>RDA_DB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -162,10 +335,24 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Narudzbenicas\Create.cshtml" />
+    <Content Include="Views\Narudzbenicas\Delete.cshtml" />
+    <Content Include="Views\Narudzbenicas\Details.cshtml" />
+    <Content Include="Views\Narudzbenicas\Edit.cshtml" />
+    <Content Include="Views\Narudzbenicas\Index.cshtml" />
+    <Content Include="Views\Stavka_narudzenice\Create.cshtml" />
+    <Content Include="Views\Stavka_narudzenice\Delete.cshtml" />
+    <Content Include="Views\Stavka_narudzenice\Details.cshtml" />
+    <Content Include="Views\Stavka_narudzenice\Edit.cshtml" />
+    <Content Include="Views\Stavka_narudzenice\Index.cshtml" />
+    <Content Include="Views\Reklamas\Create.cshtml" />
+    <Content Include="Views\Reklamas\Delete.cshtml" />
+    <Content Include="Views\Reklamas\Details.cshtml" />
+    <Content Include="Views\Reklamas\Edit.cshtml" />
+    <Content Include="Views\Reklamas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -179,6 +366,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -212,8 +402,10 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets'))" />
+    <Error Condition="!Exists('..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <Import Project="..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets" Condition="Exists('..\..\..\ProjectRDA\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.BinFix.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

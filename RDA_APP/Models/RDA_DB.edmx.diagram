@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="03d571a7ed4247b585a2f31ad0c1d0eb" Name="Diagram1">
+        <EntityTypeShape EntityType="RDAModel.Agencija" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Cenovnik" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Grad" Width="1.5" PointX="1.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Kanali" Width="1.5" PointX="6" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Kompanija" Width="1.5" PointX="9" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.MSpeer_conflictdetectionconfigrequest" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.MSpeer_lsns" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Narudzbenica" Width="1.5" PointX="11.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Odbor" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Politicka_stranka" Width="1.5" PointX="1.5" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Pozicija_zaposlenog" Width="1.5" PointX="3.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Prikazuje" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Privredna_grana" Width="1.5" PointX="0.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Region" Width="1.5" PointX="1.5" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Reklama" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Stavka_narudzenice" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Struktura_vlasnistva" Width="1.5" PointX="1.5" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.sysreplservers" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Tip_reklame" Width="1.5" PointX="0.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.TV_kuca" Width="1.5" PointX="3.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.Zaposleni" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.MSpeer_conflictdetectionconfigresponse" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.MSpeer_originatorid_history" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.MSpeer_request" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.MSpeer_response" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.MSpeer_topologyrequest" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.MSpeer_topologyresponse" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.MSpub_identity_range" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.sysarticlecolumns" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.sysarticles" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.sysarticleupdates" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.syspublications" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.sysschemaarticles" Width="1.5" PointX="3.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.syssubscriptions" Width="1.5" PointX="5.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.systranschemas" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.sysextendedarticlesview" Width="1.5" PointX="7.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.View_Dim_Odbor" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.View_Dim_Region" Width="1.5" PointX="16.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.View_Dim_TV_kanali" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDAModel.View_Dim_Zaposleni" Width="1.5" PointX="9.75" PointY="16.75" IsExpanded="true" />
+        <AssociationConnector Association="RDAModel.FK_Agencija_Reklama" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Agencija_Zaposleni" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Cenovinik_Reklama" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Grad_Odbor" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Region_Grad" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Kanali_Prikazuje" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_TVkuca_Kanali" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Kompanija_Narudzbenica" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Narudzbenica_Stavke_narudzbenice" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Zaposleni_Nardzbenica" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Odbor_Reklama" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Politicka_stranka_Odbor" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Poz_zaposlenog_Zaposleni" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Reklama_Prikazuje" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Privredna_grana_Reklama" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Reklama_Stavke_narudzbenice" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Tip_reklame_Reklama" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Str_Vlasnistva_TV_kuca" ManuallyRouted="false" />
+        <AssociationConnector Association="RDAModel.FK_Nardredjeni_Zaposleni" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RDA_APP.Models.Reklama>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sifra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duzina_trajanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Agencija.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cenovnik.Cenovnik_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Odbor.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Privredna_grana.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tip_reklame.Naziv)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sifra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duzina_trajanja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Agencija.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cenovnik.Cenovnik_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Odbor.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Privredna_grana.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tip_reklame.Naziv)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Reklama_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Reklama_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Reklama_ID })
+        </td>
+    </tr>
+}
+
+</table>
