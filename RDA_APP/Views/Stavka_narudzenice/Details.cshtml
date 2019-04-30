@@ -1,0 +1,42 @@
+﻿@model RDA_APP.Models.Stavka_narudzenice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Stavka_narudzenice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kolicina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kolicina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Narudzbenica.Narudzbenica_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Narudzbenica.Narudzbenica_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reklama.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reklama.Naziv)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Stavka_narudzenice_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

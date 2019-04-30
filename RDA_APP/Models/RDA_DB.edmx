@@ -1,0 +1,3120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agencija">
+          <Key>
+            <PropertyRef Name="Agencija_ID" />
+          </Key>
+          <Property Name="Agencija_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="15" />
+          <Property Name="Srediste" Type="nvarchar" MaxLength="30" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="30" />
+          <Property Name="Telefon" Type="char" MaxLength="18" />
+          <Property Name="Email" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Cenovnik">
+          <Key>
+            <PropertyRef Name="Cenovnik_ID" />
+          </Key>
+          <Property Name="Cenovnik_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CenaVazenjaOd" Type="datetime" />
+          <Property Name="CenaVazenjaDo" Type="datetime" />
+          <Property Name="Cena" Type="int" />
+        </EntityType>
+        <EntityType Name="Grad">
+          <Key>
+            <PropertyRef Name="Grad_ID" />
+          </Key>
+          <Property Name="Grad_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Region_ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Kanali">
+          <Key>
+            <PropertyRef Name="Kanali_ID" />
+          </Key>
+          <Property Name="Kanali_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TV_kuca_ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Kompanija">
+          <Key>
+            <PropertyRef Name="Kompanija_ID" />
+          </Key>
+          <Property Name="Kompanija_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+          <Property Name="Sifra" Type="char" MaxLength="6" />
+          <Property Name="Sediste" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="MSpeer_conflictdetectionconfigrequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="sent_date" Type="datetime" Nullable="false" />
+          <Property Name="timeout" Type="int" Nullable="false" />
+          <Property Name="modified_date" Type="datetime" Nullable="false" />
+          <Property Name="progress_phase" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="phase_timed_out" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_conflictdetectionconfigresponse' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MSpeer_conflictdetectionconfigresponse">
+          <Key>
+            <PropertyRef Name="request_id" />
+            <PropertyRef Name="peer_node" />
+            <PropertyRef Name="peer_db" />
+            <PropertyRef Name="progress_phase" />
+          </Key>
+          <Property Name="request_id" Type="int" Nullable="false" />
+          <Property Name="peer_node" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="peer_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="peer_version" Type="int" />
+          <Property Name="peer_db_version" Type="int" />
+          <Property Name="is_peer" Type="bit" />
+          <Property Name="conflictdetection_enabled" Type="bit" />
+          <Property Name="originator_id" Type="int" />
+          <Property Name="peer_conflict_retention" Type="int" />
+          <Property Name="peer_continue_onconflict" Type="bit" />
+          <Property Name="peer_subscriptions" Type="xml" />
+          <Property Name="progress_phase" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="modified_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MSpeer_lsns">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="last_updated" Type="datetime" />
+          <Property Name="originator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="originator_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="originator_publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="originator_publication_id" Type="int" />
+          <Property Name="originator_db_version" Type="int" />
+          <Property Name="originator_lsn" Type="varbinary" MaxLength="16" />
+          <Property Name="originator_version" Type="int" />
+          <Property Name="originator_id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_originatorid_history' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MSpeer_originatorid_history">
+          <Key>
+            <PropertyRef Name="originator_publication" />
+            <PropertyRef Name="originator_id" />
+            <PropertyRef Name="originator_node" />
+            <PropertyRef Name="originator_db" />
+            <PropertyRef Name="originator_db_version" />
+            <PropertyRef Name="originator_version" />
+            <PropertyRef Name="inserted_date" />
+          </Key>
+          <Property Name="originator_publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="originator_id" Type="int" Nullable="false" />
+          <Property Name="originator_node" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="originator_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="originator_db_version" Type="int" Nullable="false" />
+          <Property Name="originator_version" Type="int" Nullable="false" />
+          <Property Name="inserted_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_request' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MSpeer_request">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="publication" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="sent_date" Type="datetime" />
+          <Property Name="description" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_response' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MSpeer_response">
+          <Key>
+            <PropertyRef Name="peer" />
+            <PropertyRef Name="peer_db" />
+          </Key>
+          <Property Name="request_id" Type="int" />
+          <Property Name="peer" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="peer_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="received_date" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_topologyrequest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MSpeer_topologyrequest">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="publication" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="publication" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="sent_date" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpeer_topologyresponse' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MSpeer_topologyresponse">
+          <Key>
+            <PropertyRef Name="peer" />
+            <PropertyRef Name="peer_db" />
+          </Key>
+          <Property Name="request_id" Type="int" />
+          <Property Name="peer" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="peer_version" Type="int" />
+          <Property Name="peer_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="originator_id" Type="int" />
+          <Property Name="peer_conflict_retention" Type="int" />
+          <Property Name="received_date" Type="datetime" />
+          <Property Name="connection_info" Type="xml" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.MSpub_identity_range' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MSpub_identity_range">
+          <Key>
+            <PropertyRef Name="objid" />
+            <PropertyRef Name="range" />
+            <PropertyRef Name="pub_range" />
+            <PropertyRef Name="current_pub_range" />
+            <PropertyRef Name="threshold" />
+          </Key>
+          <Property Name="objid" Type="int" Nullable="false" />
+          <Property Name="range" Type="bigint" Nullable="false" />
+          <Property Name="pub_range" Type="bigint" Nullable="false" />
+          <Property Name="current_pub_range" Type="bigint" Nullable="false" />
+          <Property Name="threshold" Type="int" Nullable="false" />
+          <Property Name="last_seed" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Narudzbenica">
+          <Key>
+            <PropertyRef Name="Narudzbenica_ID" />
+          </Key>
+          <Property Name="Narudzbenica_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Zaposleni_ID" Type="int" Nullable="false" />
+          <Property Name="Kompanija_ID" Type="int" Nullable="false" />
+          <Property Name="Broj_narudzbenice" Type="int" />
+          <Property Name="Datum" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Odbor">
+          <Key>
+            <PropertyRef Name="Odbor_ID" />
+          </Key>
+          <Property Name="Odbor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grad_ID" Type="int" Nullable="false" />
+          <Property Name="Politicka_stranka_ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+          <Property Name="Oznaka" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Politicka_stranka">
+          <Key>
+            <PropertyRef Name="Politicka_stranka_ID" />
+          </Key>
+          <Property Name="Politicka_stranka_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+          <Property Name="Mesto" Type="nvarchar" MaxLength="20" />
+          <Property Name="Opstina" Type="nvarchar" MaxLength="20" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Pozicija_zaposlenog">
+          <Key>
+            <PropertyRef Name="Poz_zaposlenog_ID" />
+          </Key>
+          <Property Name="Poz_zaposlenog_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pozicija" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Prikazuje">
+          <Key>
+            <PropertyRef Name="Prikazuje_ID" />
+          </Key>
+          <Property Name="Prikazuje_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kanali_ID" Type="int" Nullable="false" />
+          <Property Name="Reklama_ID" Type="int" Nullable="false" />
+          <Property Name="Termin_prikaza_Od" Type="datetime" />
+          <Property Name="Termin_prikaza_Do" Type="datetime" />
+          <Property Name="Broj_prikaza" Type="int" />
+        </EntityType>
+        <EntityType Name="Privredna_grana">
+          <Key>
+            <PropertyRef Name="Priv_grana_ID" />
+          </Key>
+          <Property Name="Priv_grana_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Region_ID" />
+          </Key>
+          <Property Name="Region_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Reklama">
+          <Key>
+            <PropertyRef Name="Reklama_ID" />
+          </Key>
+          <Property Name="Reklama_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Odbor_ID" Type="int" />
+          <Property Name="Tip_reklame_ID" Type="int" Nullable="false" />
+          <Property Name="Priv_grana_ID" Type="int" />
+          <Property Name="Agencija_ID" Type="int" Nullable="false" />
+          <Property Name="Cenovnik_ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="20" />
+          <Property Name="Sifra" Type="char" MaxLength="6" />
+          <Property Name="Duzina_trajanja" Type="int" />
+        </EntityType>
+        <EntityType Name="Stavka_narudzenice">
+          <Key>
+            <PropertyRef Name="Stavka_narudzenice_ID" />
+          </Key>
+          <Property Name="Stavka_narudzenice_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reklama_ID" Type="int" Nullable="false" />
+          <Property Name="Narudzbenica_ID" Type="int" Nullable="false" />
+          <Property Name="Kolicina" Type="int" />
+        </EntityType>
+        <EntityType Name="Struktura_vlasnistva">
+          <Key>
+            <PropertyRef Name="Struktura_vlasnistva_ID" />
+          </Key>
+          <Property Name="Struktura_vlasnistva_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Opis_strukture_vlasnistva" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysarticlecolumns' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sysarticlecolumns">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="colid" />
+          </Key>
+          <Property Name="artid" Type="int" Nullable="false" />
+          <Property Name="colid" Type="int" Nullable="false" />
+          <Property Name="is_udt" Type="bit" />
+          <Property Name="is_xml" Type="bit" />
+          <Property Name="is_max" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysarticles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sysarticles">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="dest_table" />
+            <PropertyRef Name="filter" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="objid" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="pre_creation_cmd" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="sync_objid" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="fire_triggers_on_snapshot" />
+          </Key>
+          <Property Name="artid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="creation_script" Type="nvarchar" MaxLength="255" />
+          <Property Name="del_cmd" Type="nvarchar" MaxLength="255" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="dest_table" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="filter" Type="int" Nullable="false" />
+          <Property Name="filter_clause" Type="ntext" />
+          <Property Name="ins_cmd" Type="nvarchar" MaxLength="255" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="objid" Type="int" Nullable="false" />
+          <Property Name="pubid" Type="int" Nullable="false" />
+          <Property Name="pre_creation_cmd" Type="tinyint" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="sync_objid" Type="int" Nullable="false" />
+          <Property Name="type" Type="tinyint" Nullable="false" />
+          <Property Name="upd_cmd" Type="nvarchar" MaxLength="255" />
+          <Property Name="schema_option" Type="binary" MaxLength="8" />
+          <Property Name="dest_owner" Type="nvarchar" MaxLength="128" />
+          <Property Name="ins_scripting_proc" Type="int" />
+          <Property Name="del_scripting_proc" Type="int" />
+          <Property Name="upd_scripting_proc" Type="int" />
+          <Property Name="custom_script" Type="nvarchar" MaxLength="2048" />
+          <Property Name="fire_triggers_on_snapshot" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysarticleupdates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sysarticleupdates">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="sync_ins_proc" />
+            <PropertyRef Name="sync_upd_proc" />
+            <PropertyRef Name="sync_del_proc" />
+            <PropertyRef Name="autogen" />
+            <PropertyRef Name="sync_upd_trig" />
+            <PropertyRef Name="identity_support" />
+          </Key>
+          <Property Name="artid" Type="int" Nullable="false" />
+          <Property Name="pubid" Type="int" Nullable="false" />
+          <Property Name="sync_ins_proc" Type="int" Nullable="false" />
+          <Property Name="sync_upd_proc" Type="int" Nullable="false" />
+          <Property Name="sync_del_proc" Type="int" Nullable="false" />
+          <Property Name="autogen" Type="bit" Nullable="false" />
+          <Property Name="sync_upd_trig" Type="int" Nullable="false" />
+          <Property Name="conflict_tableid" Type="int" />
+          <Property Name="ins_conflict_proc" Type="int" />
+          <Property Name="identity_support" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.syspublications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="syspublications">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="repl_freq" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="sync_method" />
+            <PropertyRef Name="independent_agent" />
+            <PropertyRef Name="immediate_sync" />
+            <PropertyRef Name="enabled_for_internet" />
+            <PropertyRef Name="allow_push" />
+            <PropertyRef Name="allow_pull" />
+            <PropertyRef Name="allow_anonymous" />
+            <PropertyRef Name="immediate_sync_ready" />
+            <PropertyRef Name="allow_sync_tran" />
+            <PropertyRef Name="autogen_sync_procs" />
+            <PropertyRef Name="allow_queued_tran" />
+            <PropertyRef Name="snapshot_in_defaultfolder" />
+            <PropertyRef Name="compress_snapshot" />
+            <PropertyRef Name="ftp_port" />
+            <PropertyRef Name="allow_dts" />
+            <PropertyRef Name="allow_subscription_copy" />
+            <PropertyRef Name="backward_comp_level" />
+            <PropertyRef Name="allow_initialize_from_backup" />
+            <PropertyRef Name="options" />
+          </Key>
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="pubid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="repl_freq" Type="tinyint" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="sync_method" Type="tinyint" Nullable="false" />
+          <Property Name="snapshot_jobid" Type="binary" MaxLength="16" />
+          <Property Name="independent_agent" Type="bit" Nullable="false" />
+          <Property Name="immediate_sync" Type="bit" Nullable="false" />
+          <Property Name="enabled_for_internet" Type="bit" Nullable="false" />
+          <Property Name="allow_push" Type="bit" Nullable="false" />
+          <Property Name="allow_pull" Type="bit" Nullable="false" />
+          <Property Name="allow_anonymous" Type="bit" Nullable="false" />
+          <Property Name="immediate_sync_ready" Type="bit" Nullable="false" />
+          <Property Name="allow_sync_tran" Type="bit" Nullable="false" />
+          <Property Name="autogen_sync_procs" Type="bit" Nullable="false" />
+          <Property Name="retention" Type="int" />
+          <Property Name="allow_queued_tran" Type="bit" Nullable="false" />
+          <Property Name="snapshot_in_defaultfolder" Type="bit" Nullable="false" />
+          <Property Name="alt_snapshot_folder" Type="nvarchar" MaxLength="255" />
+          <Property Name="pre_snapshot_script" Type="nvarchar" MaxLength="255" />
+          <Property Name="post_snapshot_script" Type="nvarchar" MaxLength="255" />
+          <Property Name="compress_snapshot" Type="bit" Nullable="false" />
+          <Property Name="ftp_address" Type="nvarchar" MaxLength="128" />
+          <Property Name="ftp_port" Type="int" Nullable="false" />
+          <Property Name="ftp_subdirectory" Type="nvarchar" MaxLength="255" />
+          <Property Name="ftp_login" Type="nvarchar" MaxLength="128" />
+          <Property Name="ftp_password" Type="nvarchar" MaxLength="524" />
+          <Property Name="allow_dts" Type="bit" Nullable="false" />
+          <Property Name="allow_subscription_copy" Type="bit" Nullable="false" />
+          <Property Name="centralized_conflicts" Type="bit" />
+          <Property Name="conflict_retention" Type="int" />
+          <Property Name="conflict_policy" Type="int" />
+          <Property Name="queue_type" Type="int" />
+          <Property Name="ad_guidname" Type="nvarchar" MaxLength="128" />
+          <Property Name="backward_comp_level" Type="int" Nullable="false" />
+          <Property Name="allow_initialize_from_backup" Type="bit" Nullable="false" />
+          <Property Name="min_autonosync_lsn" Type="binary" MaxLength="10" />
+          <Property Name="replicate_ddl" Type="int" />
+          <Property Name="options" Type="int" Nullable="false" />
+          <Property Name="originator_id" Type="int" />
+        </EntityType>
+        <EntityType Name="sysreplservers">
+          <Key>
+            <PropertyRef Name="srvname" />
+          </Key>
+          <Property Name="srvname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="srvid" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysschemaarticles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sysschemaarticles">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="dest_object" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="objid" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="pre_creation_cmd" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="artid" Type="int" Nullable="false" />
+          <Property Name="creation_script" Type="nvarchar" MaxLength="255" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="dest_object" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="objid" Type="int" Nullable="false" />
+          <Property Name="pubid" Type="int" Nullable="false" />
+          <Property Name="pre_creation_cmd" Type="tinyint" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="type" Type="tinyint" Nullable="false" />
+          <Property Name="schema_option" Type="binary" MaxLength="8" />
+          <Property Name="dest_owner" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.syssubscriptions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="syssubscriptions">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="srvid" />
+            <PropertyRef Name="dest_db" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="sync_type" />
+            <PropertyRef Name="login_name" />
+            <PropertyRef Name="subscription_type" />
+            <PropertyRef Name="timestamp" />
+            <PropertyRef Name="update_mode" />
+            <PropertyRef Name="loopback_detection" />
+            <PropertyRef Name="queued_reinit" />
+            <PropertyRef Name="nosync_type" />
+            <PropertyRef Name="srvname" />
+          </Key>
+          <Property Name="artid" Type="int" Nullable="false" />
+          <Property Name="srvid" Type="smallint" Nullable="false" />
+          <Property Name="dest_db" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="sync_type" Type="tinyint" Nullable="false" />
+          <Property Name="login_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="subscription_type" Type="int" Nullable="false" />
+          <Property Name="distribution_jobid" Type="binary" MaxLength="16" />
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="update_mode" Type="tinyint" Nullable="false" />
+          <Property Name="loopback_detection" Type="bit" Nullable="false" />
+          <Property Name="queued_reinit" Type="bit" Nullable="false" />
+          <Property Name="nosync_type" Type="tinyint" Nullable="false" />
+          <Property Name="srvname" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.systranschemas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="systranschemas">
+          <Key>
+            <PropertyRef Name="tabid" />
+            <PropertyRef Name="startlsn" />
+            <PropertyRef Name="endlsn" />
+            <PropertyRef Name="typeid" />
+          </Key>
+          <Property Name="tabid" Type="int" Nullable="false" />
+          <Property Name="startlsn" Type="binary" MaxLength="10" Nullable="false" />
+          <Property Name="endlsn" Type="binary" MaxLength="10" Nullable="false" />
+          <Property Name="typeid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tip_reklame">
+          <Key>
+            <PropertyRef Name="Tip_reklame_ID" />
+          </Key>
+          <Property Name="Tip_reklame_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TV_kuca">
+          <Key>
+            <PropertyRef Name="TV_kuca_ID" />
+          </Key>
+          <Property Name="TV_kuca_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Struktura_vlasnistva_ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="20" />
+          <Property Name="Sediste" Type="nvarchar" MaxLength="30" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="char" MaxLength="18" />
+          <Property Name="Email" Type="char" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Zaposleni">
+          <Key>
+            <PropertyRef Name="Zaposleni_ID" />
+          </Key>
+          <Property Name="Zaposleni_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Poz_zaposlenog_ID" Type="int" Nullable="false" />
+          <Property Name="Agencija_ID" Type="int" Nullable="false" />
+          <Property Name="Nadredjeni_ID" Type="int" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="20" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="20" />
+          <Property Name="JMBG" Type="char" MaxLength="13" />
+          <Property Name="Email" Type="char" MaxLength="20" />
+          <Property Name="Telefon" Type="char" MaxLength="18" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.sysextendedarticlesview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sysextendedarticlesview">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="dest_table" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="objid" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="pre_creation_cmd" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="fire_triggers_on_snapshot" />
+          </Key>
+          <Property Name="artid" Type="int" Nullable="false" />
+          <Property Name="creation_script" Type="nvarchar" MaxLength="255" />
+          <Property Name="del_cmd" Type="nvarchar" MaxLength="255" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="dest_table" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="filter" Type="int" />
+          <Property Name="filter_clause" Type="ntext" />
+          <Property Name="ins_cmd" Type="nvarchar" MaxLength="255" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="objid" Type="int" Nullable="false" />
+          <Property Name="pubid" Type="int" Nullable="false" />
+          <Property Name="pre_creation_cmd" Type="tinyint" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="sync_objid" Type="int" />
+          <Property Name="type" Type="tinyint" Nullable="false" />
+          <Property Name="upd_cmd" Type="nvarchar" MaxLength="255" />
+          <Property Name="schema_option" Type="binary" MaxLength="8" />
+          <Property Name="dest_owner" Type="nvarchar" MaxLength="128" />
+          <Property Name="ins_scripting_proc" Type="int" />
+          <Property Name="del_scripting_proc" Type="int" />
+          <Property Name="upd_scripting_proc" Type="int" />
+          <Property Name="custom_script" Type="nvarchar" MaxLength="2048" />
+          <Property Name="fire_triggers_on_snapshot" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.View_Dim_Odbor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Dim_Odbor">
+          <Key>
+            <PropertyRef Name="Odbor_ID" />
+          </Key>
+          <Property Name="Odbor_ID" Type="int" Nullable="false" />
+          <Property Name="Odbor" Type="nvarchar" MaxLength="30" />
+          <Property Name="Politicka_stranka" Type="nvarchar" MaxLength="30" />
+          <Property Name="Opstina_stranke" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.View_Dim_Region' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Dim_Region">
+          <Key>
+            <PropertyRef Name="Region_ID" />
+          </Key>
+          <Property Name="Region_ID" Type="int" Nullable="false" />
+          <Property Name="Grad" Type="nvarchar" MaxLength="30" />
+          <Property Name="Region" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.View_Dim_TV_kanali' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Dim_TV_kanali">
+          <Key>
+            <PropertyRef Name="Kanali_ID" />
+          </Key>
+          <Property Name="Kanali_ID" Type="int" Nullable="false" />
+          <Property Name="Kanal" Type="nvarchar" MaxLength="15" />
+          <Property Name="Vlasnistvo" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RDA.dbo.View_Dim_Zaposleni' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Dim_Zaposleni">
+          <Key>
+            <PropertyRef Name="Zaposleni_ID" />
+          </Key>
+          <Property Name="Zaposleni_ID" Type="int" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="20" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="20" />
+          <Property Name="JMBG" Type="char" MaxLength="13" />
+          <Property Name="Pozicija" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK_Agencija_Reklama">
+          <End Role="Agencija" Type="Self.Agencija" Multiplicity="1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencija">
+              <PropertyRef Name="Agencija_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Agencija_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agencija_Zaposleni">
+          <End Role="Agencija" Type="Self.Agencija" Multiplicity="1" />
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencija">
+              <PropertyRef Name="Agencija_ID" />
+            </Principal>
+            <Dependent Role="Zaposleni">
+              <PropertyRef Name="Agencija_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cenovinik_Reklama">
+          <End Role="Cenovnik" Type="Self.Cenovnik" Multiplicity="1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cenovnik">
+              <PropertyRef Name="Cenovnik_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Cenovnik_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grad_Odbor">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Odbor" Type="Self.Odbor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="Grad_ID" />
+            </Principal>
+            <Dependent Role="Odbor">
+              <PropertyRef Name="Grad_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kanali_Prikazuje">
+          <End Role="Kanali" Type="Self.Kanali" Multiplicity="1" />
+          <End Role="Prikazuje" Type="Self.Prikazuje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kanali">
+              <PropertyRef Name="Kanali_ID" />
+            </Principal>
+            <Dependent Role="Prikazuje">
+              <PropertyRef Name="Kanali_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kompanija_Narudzbenica">
+          <End Role="Kompanija" Type="Self.Kompanija" Multiplicity="1" />
+          <End Role="Narudzbenica" Type="Self.Narudzbenica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanija">
+              <PropertyRef Name="Kompanija_ID" />
+            </Principal>
+            <Dependent Role="Narudzbenica">
+              <PropertyRef Name="Kompanija_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nardredjeni_Zaposleni">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="0..1" />
+          <End Role="Zaposleni1" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="Zaposleni_ID" />
+            </Principal>
+            <Dependent Role="Zaposleni1">
+              <PropertyRef Name="Nadredjeni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Narudzbenica_Stavke_narudzbenice">
+          <End Role="Narudzbenica" Type="Self.Narudzbenica" Multiplicity="1" />
+          <End Role="Stavka_narudzenice" Type="Self.Stavka_narudzenice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Narudzbenica">
+              <PropertyRef Name="Narudzbenica_ID" />
+            </Principal>
+            <Dependent Role="Stavka_narudzenice">
+              <PropertyRef Name="Narudzbenica_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odbor_Reklama">
+          <End Role="Odbor" Type="Self.Odbor" Multiplicity="0..1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odbor">
+              <PropertyRef Name="Odbor_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Odbor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Politicka_stranka_Odbor">
+          <End Role="Politicka_stranka" Type="Self.Politicka_stranka" Multiplicity="1" />
+          <End Role="Odbor" Type="Self.Odbor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Politicka_stranka">
+              <PropertyRef Name="Politicka_stranka_ID" />
+            </Principal>
+            <Dependent Role="Odbor">
+              <PropertyRef Name="Politicka_stranka_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poz_zaposlenog_Zaposleni">
+          <End Role="Pozicija_zaposlenog" Type="Self.Pozicija_zaposlenog" Multiplicity="1" />
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pozicija_zaposlenog">
+              <PropertyRef Name="Poz_zaposlenog_ID" />
+            </Principal>
+            <Dependent Role="Zaposleni">
+              <PropertyRef Name="Poz_zaposlenog_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Privredna_grana_Reklama">
+          <End Role="Privredna_grana" Type="Self.Privredna_grana" Multiplicity="0..1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Privredna_grana">
+              <PropertyRef Name="Priv_grana_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Priv_grana_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_Grad">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Grad" Type="Self.Grad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Region_ID" />
+            </Principal>
+            <Dependent Role="Grad">
+              <PropertyRef Name="Region_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reklama_Prikazuje">
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="1" />
+          <End Role="Prikazuje" Type="Self.Prikazuje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reklama">
+              <PropertyRef Name="Reklama_ID" />
+            </Principal>
+            <Dependent Role="Prikazuje">
+              <PropertyRef Name="Reklama_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reklama_Stavke_narudzbenice">
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="1" />
+          <End Role="Stavka_narudzenice" Type="Self.Stavka_narudzenice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reklama">
+              <PropertyRef Name="Reklama_ID" />
+            </Principal>
+            <Dependent Role="Stavka_narudzenice">
+              <PropertyRef Name="Reklama_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Str_Vlasnistva_TV_kuca">
+          <End Role="Struktura_vlasnistva" Type="Self.Struktura_vlasnistva" Multiplicity="1" />
+          <End Role="TV_kuca" Type="Self.TV_kuca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Struktura_vlasnistva">
+              <PropertyRef Name="Struktura_vlasnistva_ID" />
+            </Principal>
+            <Dependent Role="TV_kuca">
+              <PropertyRef Name="Struktura_vlasnistva_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tip_reklame_Reklama">
+          <End Role="Tip_reklame" Type="Self.Tip_reklame" Multiplicity="1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_reklame">
+              <PropertyRef Name="Tip_reklame_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Tip_reklame_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TVkuca_Kanali">
+          <End Role="TV_kuca" Type="Self.TV_kuca" Multiplicity="1" />
+          <End Role="Kanali" Type="Self.Kanali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TV_kuca">
+              <PropertyRef Name="TV_kuca_ID" />
+            </Principal>
+            <Dependent Role="Kanali">
+              <PropertyRef Name="TV_kuca_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaposleni_Nardzbenica">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Narudzbenica" Type="Self.Narudzbenica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="Zaposleni_ID" />
+            </Principal>
+            <Dependent Role="Narudzbenica">
+              <PropertyRef Name="Zaposleni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="Insert_Agencija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Srediste" Type="nvarchar" Mode="In" />
+          <Parameter Name="Adresa" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telefon" Type="char" Mode="In" />
+          <Parameter Name="Email" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Insert_Cenovnik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CenaVazenjaOd" Type="datetime" Mode="In" />
+          <Parameter Name="CenaVazenjaDo" Type="datetime" Mode="In" />
+          <Parameter Name="Cena" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Grad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Region_ID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Kanali" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TV_kuca_ID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Kompanija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sifra" Type="char" Mode="In" />
+          <Parameter Name="Sediste" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Narudzbenica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Zaposleni_ID" Type="int" Mode="In" />
+          <Parameter Name="Kompanija_ID" Type="int" Mode="In" />
+          <Parameter Name="Broj_narudzbenice" Type="int" Mode="In" />
+          <Parameter Name="Datum" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Insert_Odbor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Grad_ID" Type="int" Mode="In" />
+          <Parameter Name="Politicka_stranka_ID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Oznaka" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Politicka_stranka" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mesto" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opstina" Type="nvarchar" Mode="In" />
+          <Parameter Name="Adresa" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Pozicija_zaposlenog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pozicija" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Prikazuje" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Kanali_ID" Type="int" Mode="In" />
+          <Parameter Name="Reklama_ID" Type="int" Mode="In" />
+          <Parameter Name="Termin_prikaza_Od" Type="datetime" Mode="In" />
+          <Parameter Name="Termin_prikaza_Do" Type="datetime" Mode="In" />
+          <Parameter Name="Broj_prikaza" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Privredna_grana" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Region" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Reklama" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Odbor_ID" Type="int" Mode="In" />
+          <Parameter Name="Tip_reklame_ID" Type="int" Mode="In" />
+          <Parameter Name="Priv_grana_ID" Type="int" Mode="In" />
+          <Parameter Name="Agencija_ID" Type="int" Mode="In" />
+          <Parameter Name="Cenovnik_ID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sifra" Type="char" Mode="In" />
+          <Parameter Name="Duzina_trajanja" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Stavka_narudzenice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Reklama_ID" Type="int" Mode="In" />
+          <Parameter Name="Narudzbenica_ID" Type="int" Mode="In" />
+          <Parameter Name="Kolicina" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Struktura_vlasnistva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Opis_strukture_vlasnistva" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Tip_reklame" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_TV_kuca" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Struktura_vlasnistva_ID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sediste" Type="nvarchar" Mode="In" />
+          <Parameter Name="Adresa" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telefon" Type="char" Mode="In" />
+          <Parameter Name="Email" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Insert_Zaposleni" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Poz_zaposlenog_ID" Type="int" Mode="In" />
+          <Parameter Name="Agencija_ID" Type="int" Mode="In" />
+          <Parameter Name="Nadredjeni_ID" Type="int" Mode="In" />
+          <Parameter Name="Ime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
+          <Parameter Name="JMBG" Type="char" Mode="In" />
+          <Parameter Name="Email" Type="char" Mode="In" />
+          <Parameter Name="Telefon" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Nedelje_U_Godini" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="DATE" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Transfer_DimVreme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Transfer_FactNarudzbine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Transfer_FactReklama" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="RDAModelStoreContainer">
+          <EntitySet Name="Agencija" EntityType="Self.Agencija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cenovnik" EntityType="Self.Cenovnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kanali" EntityType="Self.Kanali" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kompanija" EntityType="Self.Kompanija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSpeer_conflictdetectionconfigrequest" EntityType="Self.MSpeer_conflictdetectionconfigrequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSpeer_lsns" EntityType="Self.MSpeer_lsns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Narudzbenica" EntityType="Self.Narudzbenica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Odbor" EntityType="Self.Odbor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Politicka_stranka" EntityType="Self.Politicka_stranka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pozicija_zaposlenog" EntityType="Self.Pozicija_zaposlenog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prikazuje" EntityType="Self.Prikazuje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Privredna_grana" EntityType="Self.Privredna_grana" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reklama" EntityType="Self.Reklama" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stavka_narudzenice" EntityType="Self.Stavka_narudzenice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Struktura_vlasnistva" EntityType="Self.Struktura_vlasnistva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysreplservers" EntityType="Self.sysreplservers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tip_reklame" EntityType="Self.Tip_reklame" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TV_kuca" EntityType="Self.TV_kuca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zaposleni" EntityType="Self.Zaposleni" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSpeer_conflictdetectionconfigresponse" EntityType="Self.MSpeer_conflictdetectionconfigresponse" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MSpeer_conflictdetectionconfigresponse].[request_id] AS [request_id], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_node] AS [peer_node], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_db] AS [peer_db], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_version] AS [peer_version], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_db_version] AS [peer_db_version], 
+    [MSpeer_conflictdetectionconfigresponse].[is_peer] AS [is_peer], 
+    [MSpeer_conflictdetectionconfigresponse].[conflictdetection_enabled] AS [conflictdetection_enabled], 
+    [MSpeer_conflictdetectionconfigresponse].[originator_id] AS [originator_id], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_conflict_retention] AS [peer_conflict_retention], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_continue_onconflict] AS [peer_continue_onconflict], 
+    [MSpeer_conflictdetectionconfigresponse].[peer_subscriptions] AS [peer_subscriptions], 
+    [MSpeer_conflictdetectionconfigresponse].[progress_phase] AS [progress_phase], 
+    [MSpeer_conflictdetectionconfigresponse].[modified_date] AS [modified_date]
+    FROM [dbo].[MSpeer_conflictdetectionconfigresponse] AS [MSpeer_conflictdetectionconfigresponse]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MSpeer_originatorid_history" EntityType="Self.MSpeer_originatorid_history" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MSpeer_originatorid_history].[originator_publication] AS [originator_publication], 
+    [MSpeer_originatorid_history].[originator_id] AS [originator_id], 
+    [MSpeer_originatorid_history].[originator_node] AS [originator_node], 
+    [MSpeer_originatorid_history].[originator_db] AS [originator_db], 
+    [MSpeer_originatorid_history].[originator_db_version] AS [originator_db_version], 
+    [MSpeer_originatorid_history].[originator_version] AS [originator_version], 
+    [MSpeer_originatorid_history].[inserted_date] AS [inserted_date]
+    FROM [dbo].[MSpeer_originatorid_history] AS [MSpeer_originatorid_history]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MSpeer_request" EntityType="Self.MSpeer_request" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MSpeer_request].[id] AS [id], 
+    [MSpeer_request].[publication] AS [publication], 
+    [MSpeer_request].[sent_date] AS [sent_date], 
+    [MSpeer_request].[description] AS [description]
+    FROM [dbo].[MSpeer_request] AS [MSpeer_request]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MSpeer_response" EntityType="Self.MSpeer_response" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MSpeer_response].[request_id] AS [request_id], 
+    [MSpeer_response].[peer] AS [peer], 
+    [MSpeer_response].[peer_db] AS [peer_db], 
+    [MSpeer_response].[received_date] AS [received_date]
+    FROM [dbo].[MSpeer_response] AS [MSpeer_response]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MSpeer_topologyrequest" EntityType="Self.MSpeer_topologyrequest" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MSpeer_topologyrequest].[id] AS [id], 
+    [MSpeer_topologyrequest].[publication] AS [publication], 
+    [MSpeer_topologyrequest].[sent_date] AS [sent_date]
+    FROM [dbo].[MSpeer_topologyrequest] AS [MSpeer_topologyrequest]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MSpeer_topologyresponse" EntityType="Self.MSpeer_topologyresponse" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MSpeer_topologyresponse].[request_id] AS [request_id], 
+    [MSpeer_topologyresponse].[peer] AS [peer], 
+    [MSpeer_topologyresponse].[peer_version] AS [peer_version], 
+    [MSpeer_topologyresponse].[peer_db] AS [peer_db], 
+    [MSpeer_topologyresponse].[originator_id] AS [originator_id], 
+    [MSpeer_topologyresponse].[peer_conflict_retention] AS [peer_conflict_retention], 
+    [MSpeer_topologyresponse].[received_date] AS [received_date], 
+    [MSpeer_topologyresponse].[connection_info] AS [connection_info]
+    FROM [dbo].[MSpeer_topologyresponse] AS [MSpeer_topologyresponse]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MSpub_identity_range" EntityType="Self.MSpub_identity_range" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MSpub_identity_range].[objid] AS [objid], 
+    [MSpub_identity_range].[range] AS [range], 
+    [MSpub_identity_range].[pub_range] AS [pub_range], 
+    [MSpub_identity_range].[current_pub_range] AS [current_pub_range], 
+    [MSpub_identity_range].[threshold] AS [threshold], 
+    [MSpub_identity_range].[last_seed] AS [last_seed]
+    FROM [dbo].[MSpub_identity_range] AS [MSpub_identity_range]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sysarticlecolumns" EntityType="Self.sysarticlecolumns" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sysarticlecolumns].[artid] AS [artid], 
+    [sysarticlecolumns].[colid] AS [colid], 
+    [sysarticlecolumns].[is_udt] AS [is_udt], 
+    [sysarticlecolumns].[is_xml] AS [is_xml], 
+    [sysarticlecolumns].[is_max] AS [is_max]
+    FROM [dbo].[sysarticlecolumns] AS [sysarticlecolumns]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sysarticles" EntityType="Self.sysarticles" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sysarticles].[artid] AS [artid], 
+    [sysarticles].[creation_script] AS [creation_script], 
+    [sysarticles].[del_cmd] AS [del_cmd], 
+    [sysarticles].[description] AS [description], 
+    [sysarticles].[dest_table] AS [dest_table], 
+    [sysarticles].[filter] AS [filter], 
+    [sysarticles].[filter_clause] AS [filter_clause], 
+    [sysarticles].[ins_cmd] AS [ins_cmd], 
+    [sysarticles].[name] AS [name], 
+    [sysarticles].[objid] AS [objid], 
+    [sysarticles].[pubid] AS [pubid], 
+    [sysarticles].[pre_creation_cmd] AS [pre_creation_cmd], 
+    [sysarticles].[status] AS [status], 
+    [sysarticles].[sync_objid] AS [sync_objid], 
+    [sysarticles].[type] AS [type], 
+    [sysarticles].[upd_cmd] AS [upd_cmd], 
+    [sysarticles].[schema_option] AS [schema_option], 
+    [sysarticles].[dest_owner] AS [dest_owner], 
+    [sysarticles].[ins_scripting_proc] AS [ins_scripting_proc], 
+    [sysarticles].[del_scripting_proc] AS [del_scripting_proc], 
+    [sysarticles].[upd_scripting_proc] AS [upd_scripting_proc], 
+    [sysarticles].[custom_script] AS [custom_script], 
+    [sysarticles].[fire_triggers_on_snapshot] AS [fire_triggers_on_snapshot]
+    FROM [dbo].[sysarticles] AS [sysarticles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sysarticleupdates" EntityType="Self.sysarticleupdates" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sysarticleupdates].[artid] AS [artid], 
+    [sysarticleupdates].[pubid] AS [pubid], 
+    [sysarticleupdates].[sync_ins_proc] AS [sync_ins_proc], 
+    [sysarticleupdates].[sync_upd_proc] AS [sync_upd_proc], 
+    [sysarticleupdates].[sync_del_proc] AS [sync_del_proc], 
+    [sysarticleupdates].[autogen] AS [autogen], 
+    [sysarticleupdates].[sync_upd_trig] AS [sync_upd_trig], 
+    [sysarticleupdates].[conflict_tableid] AS [conflict_tableid], 
+    [sysarticleupdates].[ins_conflict_proc] AS [ins_conflict_proc], 
+    [sysarticleupdates].[identity_support] AS [identity_support]
+    FROM [dbo].[sysarticleupdates] AS [sysarticleupdates]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="syspublications" EntityType="Self.syspublications" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [syspublications].[description] AS [description], 
+    [syspublications].[name] AS [name], 
+    [syspublications].[pubid] AS [pubid], 
+    [syspublications].[repl_freq] AS [repl_freq], 
+    [syspublications].[status] AS [status], 
+    [syspublications].[sync_method] AS [sync_method], 
+    [syspublications].[snapshot_jobid] AS [snapshot_jobid], 
+    [syspublications].[independent_agent] AS [independent_agent], 
+    [syspublications].[immediate_sync] AS [immediate_sync], 
+    [syspublications].[enabled_for_internet] AS [enabled_for_internet], 
+    [syspublications].[allow_push] AS [allow_push], 
+    [syspublications].[allow_pull] AS [allow_pull], 
+    [syspublications].[allow_anonymous] AS [allow_anonymous], 
+    [syspublications].[immediate_sync_ready] AS [immediate_sync_ready], 
+    [syspublications].[allow_sync_tran] AS [allow_sync_tran], 
+    [syspublications].[autogen_sync_procs] AS [autogen_sync_procs], 
+    [syspublications].[retention] AS [retention], 
+    [syspublications].[allow_queued_tran] AS [allow_queued_tran], 
+    [syspublications].[snapshot_in_defaultfolder] AS [snapshot_in_defaultfolder], 
+    [syspublications].[alt_snapshot_folder] AS [alt_snapshot_folder], 
+    [syspublications].[pre_snapshot_script] AS [pre_snapshot_script], 
+    [syspublications].[post_snapshot_script] AS [post_snapshot_script], 
+    [syspublications].[compress_snapshot] AS [compress_snapshot], 
+    [syspublications].[ftp_address] AS [ftp_address], 
+    [syspublications].[ftp_port] AS [ftp_port], 
+    [syspublications].[ftp_subdirectory] AS [ftp_subdirectory], 
+    [syspublications].[ftp_login] AS [ftp_login], 
+    [syspublications].[ftp_password] AS [ftp_password], 
+    [syspublications].[allow_dts] AS [allow_dts], 
+    [syspublications].[allow_subscription_copy] AS [allow_subscription_copy], 
+    [syspublications].[centralized_conflicts] AS [centralized_conflicts], 
+    [syspublications].[conflict_retention] AS [conflict_retention], 
+    [syspublications].[conflict_policy] AS [conflict_policy], 
+    [syspublications].[queue_type] AS [queue_type], 
+    [syspublications].[ad_guidname] AS [ad_guidname], 
+    [syspublications].[backward_comp_level] AS [backward_comp_level], 
+    [syspublications].[allow_initialize_from_backup] AS [allow_initialize_from_backup], 
+    [syspublications].[min_autonosync_lsn] AS [min_autonosync_lsn], 
+    [syspublications].[replicate_ddl] AS [replicate_ddl], 
+    [syspublications].[options] AS [options], 
+    [syspublications].[originator_id] AS [originator_id]
+    FROM [dbo].[syspublications] AS [syspublications]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sysschemaarticles" EntityType="Self.sysschemaarticles" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sysschemaarticles].[artid] AS [artid], 
+    [sysschemaarticles].[creation_script] AS [creation_script], 
+    [sysschemaarticles].[description] AS [description], 
+    [sysschemaarticles].[dest_object] AS [dest_object], 
+    [sysschemaarticles].[name] AS [name], 
+    [sysschemaarticles].[objid] AS [objid], 
+    [sysschemaarticles].[pubid] AS [pubid], 
+    [sysschemaarticles].[pre_creation_cmd] AS [pre_creation_cmd], 
+    [sysschemaarticles].[status] AS [status], 
+    [sysschemaarticles].[type] AS [type], 
+    [sysschemaarticles].[schema_option] AS [schema_option], 
+    [sysschemaarticles].[dest_owner] AS [dest_owner]
+    FROM [dbo].[sysschemaarticles] AS [sysschemaarticles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="syssubscriptions" EntityType="Self.syssubscriptions" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [syssubscriptions].[artid] AS [artid], 
+    [syssubscriptions].[srvid] AS [srvid], 
+    [syssubscriptions].[dest_db] AS [dest_db], 
+    [syssubscriptions].[status] AS [status], 
+    [syssubscriptions].[sync_type] AS [sync_type], 
+    [syssubscriptions].[login_name] AS [login_name], 
+    [syssubscriptions].[subscription_type] AS [subscription_type], 
+    [syssubscriptions].[distribution_jobid] AS [distribution_jobid], 
+    [syssubscriptions].[timestamp] AS [timestamp], 
+    [syssubscriptions].[update_mode] AS [update_mode], 
+    [syssubscriptions].[loopback_detection] AS [loopback_detection], 
+    [syssubscriptions].[queued_reinit] AS [queued_reinit], 
+    [syssubscriptions].[nosync_type] AS [nosync_type], 
+    [syssubscriptions].[srvname] AS [srvname]
+    FROM [dbo].[syssubscriptions] AS [syssubscriptions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="systranschemas" EntityType="Self.systranschemas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [systranschemas].[tabid] AS [tabid], 
+    [systranschemas].[startlsn] AS [startlsn], 
+    [systranschemas].[endlsn] AS [endlsn], 
+    [systranschemas].[typeid] AS [typeid]
+    FROM [dbo].[systranschemas] AS [systranschemas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sysextendedarticlesview" EntityType="Self.sysextendedarticlesview" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sysextendedarticlesview].[artid] AS [artid], 
+    [sysextendedarticlesview].[creation_script] AS [creation_script], 
+    [sysextendedarticlesview].[del_cmd] AS [del_cmd], 
+    [sysextendedarticlesview].[description] AS [description], 
+    [sysextendedarticlesview].[dest_table] AS [dest_table], 
+    [sysextendedarticlesview].[filter] AS [filter], 
+    [sysextendedarticlesview].[filter_clause] AS [filter_clause], 
+    [sysextendedarticlesview].[ins_cmd] AS [ins_cmd], 
+    [sysextendedarticlesview].[name] AS [name], 
+    [sysextendedarticlesview].[objid] AS [objid], 
+    [sysextendedarticlesview].[pubid] AS [pubid], 
+    [sysextendedarticlesview].[pre_creation_cmd] AS [pre_creation_cmd], 
+    [sysextendedarticlesview].[status] AS [status], 
+    [sysextendedarticlesview].[sync_objid] AS [sync_objid], 
+    [sysextendedarticlesview].[type] AS [type], 
+    [sysextendedarticlesview].[upd_cmd] AS [upd_cmd], 
+    [sysextendedarticlesview].[schema_option] AS [schema_option], 
+    [sysextendedarticlesview].[dest_owner] AS [dest_owner], 
+    [sysextendedarticlesview].[ins_scripting_proc] AS [ins_scripting_proc], 
+    [sysextendedarticlesview].[del_scripting_proc] AS [del_scripting_proc], 
+    [sysextendedarticlesview].[upd_scripting_proc] AS [upd_scripting_proc], 
+    [sysextendedarticlesview].[custom_script] AS [custom_script], 
+    [sysextendedarticlesview].[fire_triggers_on_snapshot] AS [fire_triggers_on_snapshot]
+    FROM [dbo].[sysextendedarticlesview] AS [sysextendedarticlesview]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Dim_Odbor" EntityType="Self.View_Dim_Odbor" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Dim_Odbor].[Odbor_ID] AS [Odbor_ID], 
+    [View_Dim_Odbor].[Odbor] AS [Odbor], 
+    [View_Dim_Odbor].[Politicka_stranka] AS [Politicka_stranka], 
+    [View_Dim_Odbor].[Opstina_stranke] AS [Opstina_stranke]
+    FROM [dbo].[View_Dim_Odbor] AS [View_Dim_Odbor]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Dim_Region" EntityType="Self.View_Dim_Region" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Dim_Region].[Region_ID] AS [Region_ID], 
+    [View_Dim_Region].[Grad] AS [Grad], 
+    [View_Dim_Region].[Region] AS [Region]
+    FROM [dbo].[View_Dim_Region] AS [View_Dim_Region]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Dim_TV_kanali" EntityType="Self.View_Dim_TV_kanali" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Dim_TV_kanali].[Kanali_ID] AS [Kanali_ID], 
+    [View_Dim_TV_kanali].[Kanal] AS [Kanal], 
+    [View_Dim_TV_kanali].[Vlasnistvo] AS [Vlasnistvo]
+    FROM [dbo].[View_Dim_TV_kanali] AS [View_Dim_TV_kanali]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Dim_Zaposleni" EntityType="Self.View_Dim_Zaposleni" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Dim_Zaposleni].[Zaposleni_ID] AS [Zaposleni_ID], 
+    [View_Dim_Zaposleni].[Ime] AS [Ime], 
+    [View_Dim_Zaposleni].[Prezime] AS [Prezime], 
+    [View_Dim_Zaposleni].[JMBG] AS [JMBG], 
+    [View_Dim_Zaposleni].[Pozicija] AS [Pozicija]
+    FROM [dbo].[View_Dim_Zaposleni] AS [View_Dim_Zaposleni]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Agencija_Reklama" Association="Self.FK_Agencija_Reklama">
+            <End Role="Agencija" EntitySet="Agencija" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agencija_Zaposleni" Association="Self.FK_Agencija_Zaposleni">
+            <End Role="Agencija" EntitySet="Agencija" />
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cenovinik_Reklama" Association="Self.FK_Cenovinik_Reklama">
+            <End Role="Cenovnik" EntitySet="Cenovnik" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grad_Odbor" Association="Self.FK_Grad_Odbor">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Odbor" EntitySet="Odbor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kanali_Prikazuje" Association="Self.FK_Kanali_Prikazuje">
+            <End Role="Kanali" EntitySet="Kanali" />
+            <End Role="Prikazuje" EntitySet="Prikazuje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kompanija_Narudzbenica" Association="Self.FK_Kompanija_Narudzbenica">
+            <End Role="Kompanija" EntitySet="Kompanija" />
+            <End Role="Narudzbenica" EntitySet="Narudzbenica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nardredjeni_Zaposleni" Association="Self.FK_Nardredjeni_Zaposleni">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Zaposleni1" EntitySet="Zaposleni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Narudzbenica_Stavke_narudzbenice" Association="Self.FK_Narudzbenica_Stavke_narudzbenice">
+            <End Role="Narudzbenica" EntitySet="Narudzbenica" />
+            <End Role="Stavka_narudzenice" EntitySet="Stavka_narudzenice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbor_Reklama" Association="Self.FK_Odbor_Reklama">
+            <End Role="Odbor" EntitySet="Odbor" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Politicka_stranka_Odbor" Association="Self.FK_Politicka_stranka_Odbor">
+            <End Role="Politicka_stranka" EntitySet="Politicka_stranka" />
+            <End Role="Odbor" EntitySet="Odbor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poz_zaposlenog_Zaposleni" Association="Self.FK_Poz_zaposlenog_Zaposleni">
+            <End Role="Pozicija_zaposlenog" EntitySet="Pozicija_zaposlenog" />
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Privredna_grana_Reklama" Association="Self.FK_Privredna_grana_Reklama">
+            <End Role="Privredna_grana" EntitySet="Privredna_grana" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Grad" Association="Self.FK_Region_Grad">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Grad" EntitySet="Grad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reklama_Prikazuje" Association="Self.FK_Reklama_Prikazuje">
+            <End Role="Reklama" EntitySet="Reklama" />
+            <End Role="Prikazuje" EntitySet="Prikazuje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reklama_Stavke_narudzbenice" Association="Self.FK_Reklama_Stavke_narudzbenice">
+            <End Role="Reklama" EntitySet="Reklama" />
+            <End Role="Stavka_narudzenice" EntitySet="Stavka_narudzenice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Str_Vlasnistva_TV_kuca" Association="Self.FK_Str_Vlasnistva_TV_kuca">
+            <End Role="Struktura_vlasnistva" EntitySet="Struktura_vlasnistva" />
+            <End Role="TV_kuca" EntitySet="TV_kuca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tip_reklame_Reklama" Association="Self.FK_Tip_reklame_Reklama">
+            <End Role="Tip_reklame" EntitySet="Tip_reklame" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TVkuca_Kanali" Association="Self.FK_TVkuca_Kanali">
+            <End Role="TV_kuca" EntitySet="TV_kuca" />
+            <End Role="Kanali" EntitySet="Kanali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaposleni_Nardzbenica" Association="Self.FK_Zaposleni_Nardzbenica">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Narudzbenica" EntitySet="Narudzbenica" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agencija">
+          <Key>
+            <PropertyRef Name="Agencija_ID" />
+          </Key>
+          <Property Name="Agencija_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Srediste" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Adresa" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Reklama" Relationship="Self.FK_Agencija_Reklama" FromRole="Agencija" ToRole="Reklama" />
+          <NavigationProperty Name="Zaposleni" Relationship="Self.FK_Agencija_Zaposleni" FromRole="Agencija" ToRole="Zaposleni" />
+        </EntityType>
+        <EntityType Name="Cenovnik">
+          <Key>
+            <PropertyRef Name="Cenovnik_ID" />
+          </Key>
+          <Property Name="Cenovnik_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CenaVazenjaOd" Type="DateTime" Precision="3" />
+          <Property Name="CenaVazenjaDo" Type="DateTime" Precision="3" />
+          <Property Name="Cena" Type="Int32" />
+          <NavigationProperty Name="Reklama" Relationship="Self.FK_Cenovinik_Reklama" FromRole="Cenovnik" ToRole="Reklama" />
+        </EntityType>
+        <EntityType Name="Grad">
+          <Key>
+            <PropertyRef Name="Grad_ID" />
+          </Key>
+          <Property Name="Grad_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Region_ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Odbor" Relationship="Self.FK_Grad_Odbor" FromRole="Grad" ToRole="Odbor" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_Region_Grad" FromRole="Grad" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Kanali">
+          <Key>
+            <PropertyRef Name="Kanali_ID" />
+          </Key>
+          <Property Name="Kanali_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TV_kuca_ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Prikazuje" Relationship="Self.FK_Kanali_Prikazuje" FromRole="Kanali" ToRole="Prikazuje" />
+          <NavigationProperty Name="TV_kuca" Relationship="Self.FK_TVkuca_Kanali" FromRole="Kanali" ToRole="TV_kuca" />
+        </EntityType>
+        <EntityType Name="Kompanija">
+          <Key>
+            <PropertyRef Name="Kompanija_ID" />
+          </Key>
+          <Property Name="Kompanija_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Sifra" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Sediste" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Narudzbenica" Relationship="Self.FK_Kompanija_Narudzbenica" FromRole="Kompanija" ToRole="Narudzbenica" />
+        </EntityType>
+        <EntityType Name="MSpeer_conflictdetectionconfigrequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="publication" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sent_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="timeout" Type="Int32" Nullable="false" />
+          <Property Name="modified_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="progress_phase" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phase_timed_out" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSpeer_lsns">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="last_updated" Type="DateTime" Precision="3" />
+          <Property Name="originator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="originator_db" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="originator_publication" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="originator_publication_id" Type="Int32" />
+          <Property Name="originator_db_version" Type="Int32" />
+          <Property Name="originator_lsn" Type="Binary" MaxLength="16" FixedLength="false" />
+          <Property Name="originator_version" Type="Int32" />
+          <Property Name="originator_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Narudzbenica">
+          <Key>
+            <PropertyRef Name="Narudzbenica_ID" />
+          </Key>
+          <Property Name="Narudzbenica_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Zaposleni_ID" Type="Int32" Nullable="false" />
+          <Property Name="Kompanija_ID" Type="Int32" Nullable="false" />
+          <Property Name="Broj_narudzbenice" Type="Int32" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kompanija" Relationship="Self.FK_Kompanija_Narudzbenica" FromRole="Narudzbenica" ToRole="Kompanija" />
+          <NavigationProperty Name="Stavka_narudzenice" Relationship="Self.FK_Narudzbenica_Stavke_narudzbenice" FromRole="Narudzbenica" ToRole="Stavka_narudzenice" />
+          <NavigationProperty Name="Zaposleni" Relationship="Self.FK_Zaposleni_Nardzbenica" FromRole="Narudzbenica" ToRole="Zaposleni" />
+        </EntityType>
+        <EntityType Name="Odbor">
+          <Key>
+            <PropertyRef Name="Odbor_ID" />
+          </Key>
+          <Property Name="Odbor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grad_ID" Type="Int32" Nullable="false" />
+          <Property Name="Politicka_stranka_ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Oznaka" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Grad" Relationship="Self.FK_Grad_Odbor" FromRole="Odbor" ToRole="Grad" />
+          <NavigationProperty Name="Reklama" Relationship="Self.FK_Odbor_Reklama" FromRole="Odbor" ToRole="Reklama" />
+          <NavigationProperty Name="Politicka_stranka" Relationship="Self.FK_Politicka_stranka_Odbor" FromRole="Odbor" ToRole="Politicka_stranka" />
+        </EntityType>
+        <EntityType Name="Politicka_stranka">
+          <Key>
+            <PropertyRef Name="Politicka_stranka_ID" />
+          </Key>
+          <Property Name="Politicka_stranka_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Mesto" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Opstina" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Adresa" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Odbor" Relationship="Self.FK_Politicka_stranka_Odbor" FromRole="Politicka_stranka" ToRole="Odbor" />
+        </EntityType>
+        <EntityType Name="Pozicija_zaposlenog">
+          <Key>
+            <PropertyRef Name="Poz_zaposlenog_ID" />
+          </Key>
+          <Property Name="Poz_zaposlenog_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pozicija" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zaposleni" Relationship="Self.FK_Poz_zaposlenog_Zaposleni" FromRole="Pozicija_zaposlenog" ToRole="Zaposleni" />
+        </EntityType>
+        <EntityType Name="Prikazuje">
+          <Key>
+            <PropertyRef Name="Prikazuje_ID" />
+          </Key>
+          <Property Name="Prikazuje_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kanali_ID" Type="Int32" Nullable="false" />
+          <Property Name="Reklama_ID" Type="Int32" Nullable="false" />
+          <Property Name="Termin_prikaza_Od" Type="DateTime" Precision="3" />
+          <Property Name="Termin_prikaza_Do" Type="DateTime" Precision="3" />
+          <Property Name="Broj_prikaza" Type="Int32" />
+          <NavigationProperty Name="Kanali" Relationship="Self.FK_Kanali_Prikazuje" FromRole="Prikazuje" ToRole="Kanali" />
+          <NavigationProperty Name="Reklama" Relationship="Self.FK_Reklama_Prikazuje" FromRole="Prikazuje" ToRole="Reklama" />
+        </EntityType>
+        <EntityType Name="Privredna_grana">
+          <Key>
+            <PropertyRef Name="Priv_grana_ID" />
+          </Key>
+          <Property Name="Priv_grana_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reklama" Relationship="Self.FK_Privredna_grana_Reklama" FromRole="Privredna_grana" ToRole="Reklama" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Region_ID" />
+          </Key>
+          <Property Name="Region_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Grad" Relationship="Self.FK_Region_Grad" FromRole="Region" ToRole="Grad" />
+        </EntityType>
+        <EntityType Name="Reklama">
+          <Key>
+            <PropertyRef Name="Reklama_ID" />
+          </Key>
+          <Property Name="Reklama_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Odbor_ID" Type="Int32" />
+          <Property Name="Tip_reklame_ID" Type="Int32" Nullable="false" />
+          <Property Name="Priv_grana_ID" Type="Int32" />
+          <Property Name="Agencija_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cenovnik_ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Sifra" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Duzina_trajanja" Type="Int32" />
+          <NavigationProperty Name="Agencija" Relationship="Self.FK_Agencija_Reklama" FromRole="Reklama" ToRole="Agencija" />
+          <NavigationProperty Name="Cenovnik" Relationship="Self.FK_Cenovinik_Reklama" FromRole="Reklama" ToRole="Cenovnik" />
+          <NavigationProperty Name="Odbor" Relationship="Self.FK_Odbor_Reklama" FromRole="Reklama" ToRole="Odbor" />
+          <NavigationProperty Name="Prikazuje" Relationship="Self.FK_Reklama_Prikazuje" FromRole="Reklama" ToRole="Prikazuje" />
+          <NavigationProperty Name="Privredna_grana" Relationship="Self.FK_Privredna_grana_Reklama" FromRole="Reklama" ToRole="Privredna_grana" />
+          <NavigationProperty Name="Stavka_narudzenice" Relationship="Self.FK_Reklama_Stavke_narudzbenice" FromRole="Reklama" ToRole="Stavka_narudzenice" />
+          <NavigationProperty Name="Tip_reklame" Relationship="Self.FK_Tip_reklame_Reklama" FromRole="Reklama" ToRole="Tip_reklame" />
+        </EntityType>
+        <EntityType Name="Stavka_narudzenice">
+          <Key>
+            <PropertyRef Name="Stavka_narudzenice_ID" />
+          </Key>
+          <Property Name="Stavka_narudzenice_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reklama_ID" Type="Int32" Nullable="false" />
+          <Property Name="Narudzbenica_ID" Type="Int32" Nullable="false" />
+          <Property Name="Kolicina" Type="Int32" />
+          <NavigationProperty Name="Narudzbenica" Relationship="Self.FK_Narudzbenica_Stavke_narudzbenice" FromRole="Stavka_narudzenice" ToRole="Narudzbenica" />
+          <NavigationProperty Name="Reklama" Relationship="Self.FK_Reklama_Stavke_narudzbenice" FromRole="Stavka_narudzenice" ToRole="Reklama" />
+        </EntityType>
+        <EntityType Name="Struktura_vlasnistva">
+          <Key>
+            <PropertyRef Name="Struktura_vlasnistva_ID" />
+          </Key>
+          <Property Name="Struktura_vlasnistva_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opis_strukture_vlasnistva" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TV_kuca" Relationship="Self.FK_Str_Vlasnistva_TV_kuca" FromRole="Struktura_vlasnistva" ToRole="TV_kuca" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="sysreplservers">
+          <Key>
+            <PropertyRef Name="srvname" />
+          </Key>
+          <Property Name="srvname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="srvid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Tip_reklame">
+          <Key>
+            <PropertyRef Name="Tip_reklame_ID" />
+          </Key>
+          <Property Name="Tip_reklame_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reklama" Relationship="Self.FK_Tip_reklame_Reklama" FromRole="Tip_reklame" ToRole="Reklama" />
+        </EntityType>
+        <EntityType Name="TV_kuca">
+          <Key>
+            <PropertyRef Name="TV_kuca_ID" />
+          </Key>
+          <Property Name="TV_kuca_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Struktura_vlasnistva_ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Sediste" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Adresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Kanali" Relationship="Self.FK_TVkuca_Kanali" FromRole="TV_kuca" ToRole="Kanali" />
+          <NavigationProperty Name="Struktura_vlasnistva" Relationship="Self.FK_Str_Vlasnistva_TV_kuca" FromRole="TV_kuca" ToRole="Struktura_vlasnistva" />
+        </EntityType>
+        <EntityType Name="Zaposleni">
+          <Key>
+            <PropertyRef Name="Zaposleni_ID" />
+          </Key>
+          <Property Name="Zaposleni_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Poz_zaposlenog_ID" Type="Int32" Nullable="false" />
+          <Property Name="Agencija_ID" Type="Int32" Nullable="false" />
+          <Property Name="Nadredjeni_ID" Type="Int32" />
+          <Property Name="Ime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Prezime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="JMBG" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Agencija" Relationship="Self.FK_Agencija_Zaposleni" FromRole="Zaposleni" ToRole="Agencija" />
+          <NavigationProperty Name="Narudzbenica" Relationship="Self.FK_Zaposleni_Nardzbenica" FromRole="Zaposleni" ToRole="Narudzbenica" />
+          <NavigationProperty Name="Pozicija_zaposlenog" Relationship="Self.FK_Poz_zaposlenog_Zaposleni" FromRole="Zaposleni" ToRole="Pozicija_zaposlenog" />
+          <NavigationProperty Name="Zaposleni1" Relationship="Self.FK_Nardredjeni_Zaposleni" FromRole="Zaposleni" ToRole="Zaposleni1" />
+          <NavigationProperty Name="Zaposleni2" Relationship="Self.FK_Nardredjeni_Zaposleni" FromRole="Zaposleni1" ToRole="Zaposleni" />
+        </EntityType>
+        <EntityType Name="MSpeer_conflictdetectionconfigresponse">
+          <Key>
+            <PropertyRef Name="request_id" />
+            <PropertyRef Name="peer_node" />
+            <PropertyRef Name="peer_db" />
+            <PropertyRef Name="progress_phase" />
+          </Key>
+          <Property Name="request_id" Type="Int32" Nullable="false" />
+          <Property Name="peer_node" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="peer_db" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="peer_version" Type="Int32" />
+          <Property Name="peer_db_version" Type="Int32" />
+          <Property Name="is_peer" Type="Boolean" />
+          <Property Name="conflictdetection_enabled" Type="Boolean" />
+          <Property Name="originator_id" Type="Int32" />
+          <Property Name="peer_conflict_retention" Type="Int32" />
+          <Property Name="peer_continue_onconflict" Type="Boolean" />
+          <Property Name="peer_subscriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="progress_phase" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MSpeer_originatorid_history">
+          <Key>
+            <PropertyRef Name="originator_publication" />
+            <PropertyRef Name="originator_id" />
+            <PropertyRef Name="originator_node" />
+            <PropertyRef Name="originator_db" />
+            <PropertyRef Name="originator_db_version" />
+            <PropertyRef Name="originator_version" />
+            <PropertyRef Name="inserted_date" />
+          </Key>
+          <Property Name="originator_publication" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="originator_id" Type="Int32" Nullable="false" />
+          <Property Name="originator_node" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="originator_db" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="originator_db_version" Type="Int32" Nullable="false" />
+          <Property Name="originator_version" Type="Int32" Nullable="false" />
+          <Property Name="inserted_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="MSpeer_request">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="publication" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="publication" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sent_date" Type="DateTime" Precision="3" />
+          <Property Name="description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MSpeer_response">
+          <Key>
+            <PropertyRef Name="peer" />
+            <PropertyRef Name="peer_db" />
+          </Key>
+          <Property Name="request_id" Type="Int32" />
+          <Property Name="peer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="peer_db" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="received_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MSpeer_topologyrequest">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="publication" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="publication" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sent_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MSpeer_topologyresponse">
+          <Key>
+            <PropertyRef Name="peer" />
+            <PropertyRef Name="peer_db" />
+          </Key>
+          <Property Name="request_id" Type="Int32" />
+          <Property Name="peer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="peer_version" Type="Int32" />
+          <Property Name="peer_db" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="originator_id" Type="Int32" />
+          <Property Name="peer_conflict_retention" Type="Int32" />
+          <Property Name="received_date" Type="DateTime" Precision="3" />
+          <Property Name="connection_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MSpub_identity_range">
+          <Key>
+            <PropertyRef Name="objid" />
+            <PropertyRef Name="range" />
+            <PropertyRef Name="pub_range" />
+            <PropertyRef Name="current_pub_range" />
+            <PropertyRef Name="threshold" />
+          </Key>
+          <Property Name="objid" Type="Int32" Nullable="false" />
+          <Property Name="range" Type="Int64" Nullable="false" />
+          <Property Name="pub_range" Type="Int64" Nullable="false" />
+          <Property Name="current_pub_range" Type="Int64" Nullable="false" />
+          <Property Name="threshold" Type="Int32" Nullable="false" />
+          <Property Name="last_seed" Type="Int64" />
+        </EntityType>
+        <EntityType Name="sysarticlecolumns">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="colid" />
+          </Key>
+          <Property Name="artid" Type="Int32" Nullable="false" />
+          <Property Name="colid" Type="Int32" Nullable="false" />
+          <Property Name="is_udt" Type="Boolean" />
+          <Property Name="is_xml" Type="Boolean" />
+          <Property Name="is_max" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="sysarticles">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="dest_table" />
+            <PropertyRef Name="filter" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="objid" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="pre_creation_cmd" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="sync_objid" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="fire_triggers_on_snapshot" />
+          </Key>
+          <Property Name="artid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="creation_script" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="del_cmd" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="dest_table" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="filter" Type="Int32" Nullable="false" />
+          <Property Name="filter_clause" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ins_cmd" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="objid" Type="Int32" Nullable="false" />
+          <Property Name="pubid" Type="Int32" Nullable="false" />
+          <Property Name="pre_creation_cmd" Type="Byte" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="sync_objid" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="Byte" Nullable="false" />
+          <Property Name="upd_cmd" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="schema_option" Type="Binary" MaxLength="8" FixedLength="true" />
+          <Property Name="dest_owner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ins_scripting_proc" Type="Int32" />
+          <Property Name="del_scripting_proc" Type="Int32" />
+          <Property Name="upd_scripting_proc" Type="Int32" />
+          <Property Name="custom_script" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="fire_triggers_on_snapshot" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysarticleupdates">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="sync_ins_proc" />
+            <PropertyRef Name="sync_upd_proc" />
+            <PropertyRef Name="sync_del_proc" />
+            <PropertyRef Name="autogen" />
+            <PropertyRef Name="sync_upd_trig" />
+            <PropertyRef Name="identity_support" />
+          </Key>
+          <Property Name="artid" Type="Int32" Nullable="false" />
+          <Property Name="pubid" Type="Int32" Nullable="false" />
+          <Property Name="sync_ins_proc" Type="Int32" Nullable="false" />
+          <Property Name="sync_upd_proc" Type="Int32" Nullable="false" />
+          <Property Name="sync_del_proc" Type="Int32" Nullable="false" />
+          <Property Name="autogen" Type="Boolean" Nullable="false" />
+          <Property Name="sync_upd_trig" Type="Int32" Nullable="false" />
+          <Property Name="conflict_tableid" Type="Int32" />
+          <Property Name="ins_conflict_proc" Type="Int32" />
+          <Property Name="identity_support" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="syspublications">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="repl_freq" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="sync_method" />
+            <PropertyRef Name="independent_agent" />
+            <PropertyRef Name="immediate_sync" />
+            <PropertyRef Name="enabled_for_internet" />
+            <PropertyRef Name="allow_push" />
+            <PropertyRef Name="allow_pull" />
+            <PropertyRef Name="allow_anonymous" />
+            <PropertyRef Name="immediate_sync_ready" />
+            <PropertyRef Name="allow_sync_tran" />
+            <PropertyRef Name="autogen_sync_procs" />
+            <PropertyRef Name="allow_queued_tran" />
+            <PropertyRef Name="snapshot_in_defaultfolder" />
+            <PropertyRef Name="compress_snapshot" />
+            <PropertyRef Name="ftp_port" />
+            <PropertyRef Name="allow_dts" />
+            <PropertyRef Name="allow_subscription_copy" />
+            <PropertyRef Name="backward_comp_level" />
+            <PropertyRef Name="allow_initialize_from_backup" />
+            <PropertyRef Name="options" />
+          </Key>
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pubid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="repl_freq" Type="Byte" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="sync_method" Type="Byte" Nullable="false" />
+          <Property Name="snapshot_jobid" Type="Binary" MaxLength="16" FixedLength="true" />
+          <Property Name="independent_agent" Type="Boolean" Nullable="false" />
+          <Property Name="immediate_sync" Type="Boolean" Nullable="false" />
+          <Property Name="enabled_for_internet" Type="Boolean" Nullable="false" />
+          <Property Name="allow_push" Type="Boolean" Nullable="false" />
+          <Property Name="allow_pull" Type="Boolean" Nullable="false" />
+          <Property Name="allow_anonymous" Type="Boolean" Nullable="false" />
+          <Property Name="immediate_sync_ready" Type="Boolean" Nullable="false" />
+          <Property Name="allow_sync_tran" Type="Boolean" Nullable="false" />
+          <Property Name="autogen_sync_procs" Type="Boolean" Nullable="false" />
+          <Property Name="retention" Type="Int32" />
+          <Property Name="allow_queued_tran" Type="Boolean" Nullable="false" />
+          <Property Name="snapshot_in_defaultfolder" Type="Boolean" Nullable="false" />
+          <Property Name="alt_snapshot_folder" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="pre_snapshot_script" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="post_snapshot_script" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="compress_snapshot" Type="Boolean" Nullable="false" />
+          <Property Name="ftp_address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ftp_port" Type="Int32" Nullable="false" />
+          <Property Name="ftp_subdirectory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ftp_login" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ftp_password" Type="String" MaxLength="524" FixedLength="false" Unicode="true" />
+          <Property Name="allow_dts" Type="Boolean" Nullable="false" />
+          <Property Name="allow_subscription_copy" Type="Boolean" Nullable="false" />
+          <Property Name="centralized_conflicts" Type="Boolean" />
+          <Property Name="conflict_retention" Type="Int32" />
+          <Property Name="conflict_policy" Type="Int32" />
+          <Property Name="queue_type" Type="Int32" />
+          <Property Name="ad_guidname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="backward_comp_level" Type="Int32" Nullable="false" />
+          <Property Name="allow_initialize_from_backup" Type="Boolean" Nullable="false" />
+          <Property Name="min_autonosync_lsn" Type="Binary" MaxLength="10" FixedLength="true" />
+          <Property Name="replicate_ddl" Type="Int32" />
+          <Property Name="options" Type="Int32" Nullable="false" />
+          <Property Name="originator_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sysschemaarticles">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="dest_object" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="objid" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="pre_creation_cmd" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="artid" Type="Int32" Nullable="false" />
+          <Property Name="creation_script" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="dest_object" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="objid" Type="Int32" Nullable="false" />
+          <Property Name="pubid" Type="Int32" Nullable="false" />
+          <Property Name="pre_creation_cmd" Type="Byte" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="Byte" Nullable="false" />
+          <Property Name="schema_option" Type="Binary" MaxLength="8" FixedLength="true" />
+          <Property Name="dest_owner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="syssubscriptions">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="srvid" />
+            <PropertyRef Name="dest_db" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="sync_type" />
+            <PropertyRef Name="login_name" />
+            <PropertyRef Name="subscription_type" />
+            <PropertyRef Name="timestamp" />
+            <PropertyRef Name="update_mode" />
+            <PropertyRef Name="loopback_detection" />
+            <PropertyRef Name="queued_reinit" />
+            <PropertyRef Name="nosync_type" />
+            <PropertyRef Name="srvname" />
+          </Key>
+          <Property Name="artid" Type="Int32" Nullable="false" />
+          <Property Name="srvid" Type="Int16" Nullable="false" />
+          <Property Name="dest_db" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="sync_type" Type="Byte" Nullable="false" />
+          <Property Name="login_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="subscription_type" Type="Int32" Nullable="false" />
+          <Property Name="distribution_jobid" Type="Binary" MaxLength="16" FixedLength="true" />
+          <Property Name="timestamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="update_mode" Type="Byte" Nullable="false" />
+          <Property Name="loopback_detection" Type="Boolean" Nullable="false" />
+          <Property Name="queued_reinit" Type="Boolean" Nullable="false" />
+          <Property Name="nosync_type" Type="Byte" Nullable="false" />
+          <Property Name="srvname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="systranschemas">
+          <Key>
+            <PropertyRef Name="tabid" />
+            <PropertyRef Name="startlsn" />
+            <PropertyRef Name="endlsn" />
+            <PropertyRef Name="typeid" />
+          </Key>
+          <Property Name="tabid" Type="Int32" Nullable="false" />
+          <Property Name="startlsn" Type="Binary" MaxLength="10" FixedLength="true" Nullable="false" />
+          <Property Name="endlsn" Type="Binary" MaxLength="10" FixedLength="true" Nullable="false" />
+          <Property Name="typeid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysextendedarticlesview">
+          <Key>
+            <PropertyRef Name="artid" />
+            <PropertyRef Name="dest_table" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="objid" />
+            <PropertyRef Name="pubid" />
+            <PropertyRef Name="pre_creation_cmd" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="fire_triggers_on_snapshot" />
+          </Key>
+          <Property Name="artid" Type="Int32" Nullable="false" />
+          <Property Name="creation_script" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="del_cmd" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="dest_table" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="filter" Type="Int32" />
+          <Property Name="filter_clause" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ins_cmd" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="objid" Type="Int32" Nullable="false" />
+          <Property Name="pubid" Type="Int32" Nullable="false" />
+          <Property Name="pre_creation_cmd" Type="Byte" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="sync_objid" Type="Int32" />
+          <Property Name="type" Type="Byte" Nullable="false" />
+          <Property Name="upd_cmd" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="schema_option" Type="Binary" MaxLength="8" FixedLength="true" />
+          <Property Name="dest_owner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ins_scripting_proc" Type="Int32" />
+          <Property Name="del_scripting_proc" Type="Int32" />
+          <Property Name="upd_scripting_proc" Type="Int32" />
+          <Property Name="custom_script" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="fire_triggers_on_snapshot" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_Dim_Odbor">
+          <Key>
+            <PropertyRef Name="Odbor_ID" />
+          </Key>
+          <Property Name="Odbor_ID" Type="Int32" Nullable="false" />
+          <Property Name="Odbor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Politicka_stranka" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Opstina_stranke" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_Dim_Region">
+          <Key>
+            <PropertyRef Name="Region_ID" />
+          </Key>
+          <Property Name="Region_ID" Type="Int32" Nullable="false" />
+          <Property Name="Grad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_Dim_TV_kanali">
+          <Key>
+            <PropertyRef Name="Kanali_ID" />
+          </Key>
+          <Property Name="Kanali_ID" Type="Int32" Nullable="false" />
+          <Property Name="Kanal" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Vlasnistvo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_Dim_Zaposleni">
+          <Key>
+            <PropertyRef Name="Zaposleni_ID" />
+          </Key>
+          <Property Name="Zaposleni_ID" Type="Int32" Nullable="false" />
+          <Property Name="Ime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Prezime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="JMBG" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="Pozicija" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Agencija_Reklama">
+          <End Role="Agencija" Type="Self.Agencija" Multiplicity="1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencija">
+              <PropertyRef Name="Agencija_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Agencija_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agencija_Zaposleni">
+          <End Role="Agencija" Type="Self.Agencija" Multiplicity="1" />
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencija">
+              <PropertyRef Name="Agencija_ID" />
+            </Principal>
+            <Dependent Role="Zaposleni">
+              <PropertyRef Name="Agencija_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cenovinik_Reklama">
+          <End Role="Cenovnik" Type="Self.Cenovnik" Multiplicity="1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cenovnik">
+              <PropertyRef Name="Cenovnik_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Cenovnik_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grad_Odbor">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Odbor" Type="Self.Odbor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="Grad_ID" />
+            </Principal>
+            <Dependent Role="Odbor">
+              <PropertyRef Name="Grad_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_Grad">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Grad" Type="Self.Grad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Region_ID" />
+            </Principal>
+            <Dependent Role="Grad">
+              <PropertyRef Name="Region_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kanali_Prikazuje">
+          <End Role="Kanali" Type="Self.Kanali" Multiplicity="1" />
+          <End Role="Prikazuje" Type="Self.Prikazuje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kanali">
+              <PropertyRef Name="Kanali_ID" />
+            </Principal>
+            <Dependent Role="Prikazuje">
+              <PropertyRef Name="Kanali_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TVkuca_Kanali">
+          <End Role="TV_kuca" Type="Self.TV_kuca" Multiplicity="1" />
+          <End Role="Kanali" Type="Self.Kanali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TV_kuca">
+              <PropertyRef Name="TV_kuca_ID" />
+            </Principal>
+            <Dependent Role="Kanali">
+              <PropertyRef Name="TV_kuca_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kompanija_Narudzbenica">
+          <End Role="Kompanija" Type="Self.Kompanija" Multiplicity="1" />
+          <End Role="Narudzbenica" Type="Self.Narudzbenica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanija">
+              <PropertyRef Name="Kompanija_ID" />
+            </Principal>
+            <Dependent Role="Narudzbenica">
+              <PropertyRef Name="Kompanija_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Narudzbenica_Stavke_narudzbenice">
+          <End Role="Narudzbenica" Type="Self.Narudzbenica" Multiplicity="1" />
+          <End Role="Stavka_narudzenice" Type="Self.Stavka_narudzenice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Narudzbenica">
+              <PropertyRef Name="Narudzbenica_ID" />
+            </Principal>
+            <Dependent Role="Stavka_narudzenice">
+              <PropertyRef Name="Narudzbenica_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zaposleni_Nardzbenica">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Narudzbenica" Type="Self.Narudzbenica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="Zaposleni_ID" />
+            </Principal>
+            <Dependent Role="Narudzbenica">
+              <PropertyRef Name="Zaposleni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odbor_Reklama">
+          <End Role="Odbor" Type="Self.Odbor" Multiplicity="0..1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odbor">
+              <PropertyRef Name="Odbor_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Odbor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Politicka_stranka_Odbor">
+          <End Role="Politicka_stranka" Type="Self.Politicka_stranka" Multiplicity="1" />
+          <End Role="Odbor" Type="Self.Odbor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Politicka_stranka">
+              <PropertyRef Name="Politicka_stranka_ID" />
+            </Principal>
+            <Dependent Role="Odbor">
+              <PropertyRef Name="Politicka_stranka_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poz_zaposlenog_Zaposleni">
+          <End Role="Pozicija_zaposlenog" Type="Self.Pozicija_zaposlenog" Multiplicity="1" />
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pozicija_zaposlenog">
+              <PropertyRef Name="Poz_zaposlenog_ID" />
+            </Principal>
+            <Dependent Role="Zaposleni">
+              <PropertyRef Name="Poz_zaposlenog_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reklama_Prikazuje">
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="1" />
+          <End Role="Prikazuje" Type="Self.Prikazuje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reklama">
+              <PropertyRef Name="Reklama_ID" />
+            </Principal>
+            <Dependent Role="Prikazuje">
+              <PropertyRef Name="Reklama_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Privredna_grana_Reklama">
+          <End Role="Privredna_grana" Type="Self.Privredna_grana" Multiplicity="0..1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Privredna_grana">
+              <PropertyRef Name="Priv_grana_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Priv_grana_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reklama_Stavke_narudzbenice">
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="1" />
+          <End Role="Stavka_narudzenice" Type="Self.Stavka_narudzenice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reklama">
+              <PropertyRef Name="Reklama_ID" />
+            </Principal>
+            <Dependent Role="Stavka_narudzenice">
+              <PropertyRef Name="Reklama_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tip_reklame_Reklama">
+          <End Role="Tip_reklame" Type="Self.Tip_reklame" Multiplicity="1" />
+          <End Role="Reklama" Type="Self.Reklama" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_reklame">
+              <PropertyRef Name="Tip_reklame_ID" />
+            </Principal>
+            <Dependent Role="Reklama">
+              <PropertyRef Name="Tip_reklame_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Str_Vlasnistva_TV_kuca">
+          <End Role="Struktura_vlasnistva" Type="Self.Struktura_vlasnistva" Multiplicity="1" />
+          <End Role="TV_kuca" Type="Self.TV_kuca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Struktura_vlasnistva">
+              <PropertyRef Name="Struktura_vlasnistva_ID" />
+            </Principal>
+            <Dependent Role="TV_kuca">
+              <PropertyRef Name="Struktura_vlasnistva_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nardredjeni_Zaposleni">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="0..1" />
+          <End Role="Zaposleni1" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="Zaposleni_ID" />
+            </Principal>
+            <Dependent Role="Zaposleni1">
+              <PropertyRef Name="Nadredjeni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RDAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agencija" EntityType="Self.Agencija" />
+          <EntitySet Name="Cenovnik" EntityType="Self.Cenovnik" />
+          <EntitySet Name="Grad" EntityType="Self.Grad" />
+          <EntitySet Name="Kanali" EntityType="Self.Kanali" />
+          <EntitySet Name="Kompanija" EntityType="Self.Kompanija" />
+          <EntitySet Name="MSpeer_conflictdetectionconfigrequest" EntityType="Self.MSpeer_conflictdetectionconfigrequest" />
+          <EntitySet Name="MSpeer_lsns" EntityType="Self.MSpeer_lsns" />
+          <EntitySet Name="Narudzbenica" EntityType="Self.Narudzbenica" />
+          <EntitySet Name="Odbor" EntityType="Self.Odbor" />
+          <EntitySet Name="Politicka_stranka" EntityType="Self.Politicka_stranka" />
+          <EntitySet Name="Pozicija_zaposlenog" EntityType="Self.Pozicija_zaposlenog" />
+          <EntitySet Name="Prikazuje" EntityType="Self.Prikazuje" />
+          <EntitySet Name="Privredna_grana" EntityType="Self.Privredna_grana" />
+          <EntitySet Name="Region" EntityType="Self.Region" />
+          <EntitySet Name="Reklama" EntityType="Self.Reklama" />
+          <EntitySet Name="Stavka_narudzenice" EntityType="Self.Stavka_narudzenice" />
+          <EntitySet Name="Struktura_vlasnistva" EntityType="Self.Struktura_vlasnistva" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="sysreplservers" EntityType="Self.sysreplservers" />
+          <EntitySet Name="Tip_reklame" EntityType="Self.Tip_reklame" />
+          <EntitySet Name="TV_kuca" EntityType="Self.TV_kuca" />
+          <EntitySet Name="Zaposleni" EntityType="Self.Zaposleni" />
+          <EntitySet Name="MSpeer_conflictdetectionconfigresponse" EntityType="Self.MSpeer_conflictdetectionconfigresponse" />
+          <EntitySet Name="MSpeer_originatorid_history" EntityType="Self.MSpeer_originatorid_history" />
+          <EntitySet Name="MSpeer_request" EntityType="Self.MSpeer_request" />
+          <EntitySet Name="MSpeer_response" EntityType="Self.MSpeer_response" />
+          <EntitySet Name="MSpeer_topologyrequest" EntityType="Self.MSpeer_topologyrequest" />
+          <EntitySet Name="MSpeer_topologyresponse" EntityType="Self.MSpeer_topologyresponse" />
+          <EntitySet Name="MSpub_identity_range" EntityType="Self.MSpub_identity_range" />
+          <EntitySet Name="sysarticlecolumns" EntityType="Self.sysarticlecolumns" />
+          <EntitySet Name="sysarticles" EntityType="Self.sysarticles" />
+          <EntitySet Name="sysarticleupdates" EntityType="Self.sysarticleupdates" />
+          <EntitySet Name="syspublications" EntityType="Self.syspublications" />
+          <EntitySet Name="sysschemaarticles" EntityType="Self.sysschemaarticles" />
+          <EntitySet Name="syssubscriptions" EntityType="Self.syssubscriptions" />
+          <EntitySet Name="systranschemas" EntityType="Self.systranschemas" />
+          <EntitySet Name="sysextendedarticlesview" EntityType="Self.sysextendedarticlesview" />
+          <EntitySet Name="View_Dim_Odbor" EntityType="Self.View_Dim_Odbor" />
+          <EntitySet Name="View_Dim_Region" EntityType="Self.View_Dim_Region" />
+          <EntitySet Name="View_Dim_TV_kanali" EntityType="Self.View_Dim_TV_kanali" />
+          <EntitySet Name="View_Dim_Zaposleni" EntityType="Self.View_Dim_Zaposleni" />
+          <AssociationSet Name="FK_Agencija_Reklama" Association="Self.FK_Agencija_Reklama">
+            <End Role="Agencija" EntitySet="Agencija" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agencija_Zaposleni" Association="Self.FK_Agencija_Zaposleni">
+            <End Role="Agencija" EntitySet="Agencija" />
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cenovinik_Reklama" Association="Self.FK_Cenovinik_Reklama">
+            <End Role="Cenovnik" EntitySet="Cenovnik" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grad_Odbor" Association="Self.FK_Grad_Odbor">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Odbor" EntitySet="Odbor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Grad" Association="Self.FK_Region_Grad">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Grad" EntitySet="Grad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kanali_Prikazuje" Association="Self.FK_Kanali_Prikazuje">
+            <End Role="Kanali" EntitySet="Kanali" />
+            <End Role="Prikazuje" EntitySet="Prikazuje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TVkuca_Kanali" Association="Self.FK_TVkuca_Kanali">
+            <End Role="TV_kuca" EntitySet="TV_kuca" />
+            <End Role="Kanali" EntitySet="Kanali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kompanija_Narudzbenica" Association="Self.FK_Kompanija_Narudzbenica">
+            <End Role="Kompanija" EntitySet="Kompanija" />
+            <End Role="Narudzbenica" EntitySet="Narudzbenica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Narudzbenica_Stavke_narudzbenice" Association="Self.FK_Narudzbenica_Stavke_narudzbenice">
+            <End Role="Narudzbenica" EntitySet="Narudzbenica" />
+            <End Role="Stavka_narudzenice" EntitySet="Stavka_narudzenice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zaposleni_Nardzbenica" Association="Self.FK_Zaposleni_Nardzbenica">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Narudzbenica" EntitySet="Narudzbenica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbor_Reklama" Association="Self.FK_Odbor_Reklama">
+            <End Role="Odbor" EntitySet="Odbor" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Politicka_stranka_Odbor" Association="Self.FK_Politicka_stranka_Odbor">
+            <End Role="Politicka_stranka" EntitySet="Politicka_stranka" />
+            <End Role="Odbor" EntitySet="Odbor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poz_zaposlenog_Zaposleni" Association="Self.FK_Poz_zaposlenog_Zaposleni">
+            <End Role="Pozicija_zaposlenog" EntitySet="Pozicija_zaposlenog" />
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reklama_Prikazuje" Association="Self.FK_Reklama_Prikazuje">
+            <End Role="Reklama" EntitySet="Reklama" />
+            <End Role="Prikazuje" EntitySet="Prikazuje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Privredna_grana_Reklama" Association="Self.FK_Privredna_grana_Reklama">
+            <End Role="Privredna_grana" EntitySet="Privredna_grana" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reklama_Stavke_narudzbenice" Association="Self.FK_Reklama_Stavke_narudzbenice">
+            <End Role="Reklama" EntitySet="Reklama" />
+            <End Role="Stavka_narudzenice" EntitySet="Stavka_narudzenice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tip_reklame_Reklama" Association="Self.FK_Tip_reklame_Reklama">
+            <End Role="Tip_reklame" EntitySet="Tip_reklame" />
+            <End Role="Reklama" EntitySet="Reklama" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Str_Vlasnistva_TV_kuca" Association="Self.FK_Str_Vlasnistva_TV_kuca">
+            <End Role="Struktura_vlasnistva" EntitySet="Struktura_vlasnistva" />
+            <End Role="TV_kuca" EntitySet="TV_kuca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nardredjeni_Zaposleni" Association="Self.FK_Nardredjeni_Zaposleni">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Zaposleni1" EntitySet="Zaposleni" />
+          </AssociationSet>
+          <FunctionImport Name="Insert_Agencija">
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Srediste" Mode="In" Type="String" />
+            <Parameter Name="Adresa" Mode="In" Type="String" />
+            <Parameter Name="Telefon" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Cenovnik">
+            <Parameter Name="CenaVazenjaOd" Mode="In" Type="DateTime" />
+            <Parameter Name="CenaVazenjaDo" Mode="In" Type="DateTime" />
+            <Parameter Name="Cena" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Grad">
+            <Parameter Name="Region_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Kanali">
+            <Parameter Name="TV_kuca_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Kompanija">
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Sifra" Mode="In" Type="String" />
+            <Parameter Name="Sediste" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Narudzbenica">
+            <Parameter Name="Zaposleni_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Kompanija_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Broj_narudzbenice" Mode="In" Type="Int32" />
+            <Parameter Name="Datum" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Odbor">
+            <Parameter Name="Grad_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Politicka_stranka_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Oznaka" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Politicka_stranka">
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Mesto" Mode="In" Type="String" />
+            <Parameter Name="Opstina" Mode="In" Type="String" />
+            <Parameter Name="Adresa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Pozicija_zaposlenog">
+            <Parameter Name="Pozicija" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Prikazuje">
+            <Parameter Name="Kanali_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Reklama_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Termin_prikaza_Od" Mode="In" Type="DateTime" />
+            <Parameter Name="Termin_prikaza_Do" Mode="In" Type="DateTime" />
+            <Parameter Name="Broj_prikaza" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Privredna_grana">
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Region">
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Reklama">
+            <Parameter Name="Odbor_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Tip_reklame_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Priv_grana_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Agencija_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Cenovnik_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Sifra" Mode="In" Type="String" />
+            <Parameter Name="Duzina_trajanja" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Stavka_narudzenice">
+            <Parameter Name="Reklama_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Narudzbenica_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Kolicina" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Struktura_vlasnistva">
+            <Parameter Name="Opis_strukture_vlasnistva" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Tip_reklame">
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_TV_kuca">
+            <Parameter Name="Struktura_vlasnistva_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Sediste" Mode="In" Type="String" />
+            <Parameter Name="Adresa" Mode="In" Type="String" />
+            <Parameter Name="Telefon" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Zaposleni">
+            <Parameter Name="Poz_zaposlenog_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Agencija_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Nadredjeni_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Ime" Mode="In" Type="String" />
+            <Parameter Name="Prezime" Mode="In" Type="String" />
+            <Parameter Name="JMBG" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Telefon" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(RDAModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(RDAModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="Transfer_DimVreme" ReturnType="Collection(RDAModel.Transfer_DimVreme_Result)" />
+          <FunctionImport Name="Transfer_FactNarudzbine" />
+          <FunctionImport Name="Transfer_FactReklama" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Transfer_DimVreme_Result">
+          <Property Type="DateTime" Name="Datum_prikaza" Nullable="true" />
+          <Property Type="Time" Name="Termin_prikaza" Nullable="true" />
+          <Property Type="Int32" Name="Godina" Nullable="true" />
+          <Property Type="Int32" Name="Kvartal" Nullable="true" />
+          <Property Type="Int32" Name="Mesec" Nullable="true" />
+          <Property Type="Int32" Name="Nedelja" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RDAModelStoreContainer" CdmEntityContainer="RDAEntities">
+          <EntitySetMapping Name="Agencija">
+            <EntityTypeMapping TypeName="RDAModel.Agencija">
+              <MappingFragment StoreEntitySet="Agencija">
+                <ScalarProperty Name="Agencija_ID" ColumnName="Agencija_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Srediste" ColumnName="Srediste" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cenovnik">
+            <EntityTypeMapping TypeName="RDAModel.Cenovnik">
+              <MappingFragment StoreEntitySet="Cenovnik">
+                <ScalarProperty Name="Cenovnik_ID" ColumnName="Cenovnik_ID" />
+                <ScalarProperty Name="CenaVazenjaOd" ColumnName="CenaVazenjaOd" />
+                <ScalarProperty Name="CenaVazenjaDo" ColumnName="CenaVazenjaDo" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grad">
+            <EntityTypeMapping TypeName="RDAModel.Grad">
+              <MappingFragment StoreEntitySet="Grad">
+                <ScalarProperty Name="Grad_ID" ColumnName="Grad_ID" />
+                <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kanali">
+            <EntityTypeMapping TypeName="RDAModel.Kanali">
+              <MappingFragment StoreEntitySet="Kanali">
+                <ScalarProperty Name="Kanali_ID" ColumnName="Kanali_ID" />
+                <ScalarProperty Name="TV_kuca_ID" ColumnName="TV_kuca_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kompanija">
+            <EntityTypeMapping TypeName="RDAModel.Kompanija">
+              <MappingFragment StoreEntitySet="Kompanija">
+                <ScalarProperty Name="Kompanija_ID" ColumnName="Kompanija_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+                <ScalarProperty Name="Sediste" ColumnName="Sediste" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSpeer_conflictdetectionconfigrequest">
+            <EntityTypeMapping TypeName="RDAModel.MSpeer_conflictdetectionconfigrequest">
+              <MappingFragment StoreEntitySet="MSpeer_conflictdetectionconfigrequest">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="publication" ColumnName="publication" />
+                <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+                <ScalarProperty Name="timeout" ColumnName="timeout" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="progress_phase" ColumnName="progress_phase" />
+                <ScalarProperty Name="phase_timed_out" ColumnName="phase_timed_out" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSpeer_lsns">
+            <EntityTypeMapping TypeName="RDAModel.MSpeer_lsns">
+              <MappingFragment StoreEntitySet="MSpeer_lsns">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="last_updated" ColumnName="last_updated" />
+                <ScalarProperty Name="originator" ColumnName="originator" />
+                <ScalarProperty Name="originator_db" ColumnName="originator_db" />
+                <ScalarProperty Name="originator_publication" ColumnName="originator_publication" />
+                <ScalarProperty Name="originator_publication_id" ColumnName="originator_publication_id" />
+                <ScalarProperty Name="originator_db_version" ColumnName="originator_db_version" />
+                <ScalarProperty Name="originator_lsn" ColumnName="originator_lsn" />
+                <ScalarProperty Name="originator_version" ColumnName="originator_version" />
+                <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Narudzbenica">
+            <EntityTypeMapping TypeName="RDAModel.Narudzbenica">
+              <MappingFragment StoreEntitySet="Narudzbenica">
+                <ScalarProperty Name="Narudzbenica_ID" ColumnName="Narudzbenica_ID" />
+                <ScalarProperty Name="Zaposleni_ID" ColumnName="Zaposleni_ID" />
+                <ScalarProperty Name="Kompanija_ID" ColumnName="Kompanija_ID" />
+                <ScalarProperty Name="Broj_narudzbenice" ColumnName="Broj_narudzbenice" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Odbor">
+            <EntityTypeMapping TypeName="RDAModel.Odbor">
+              <MappingFragment StoreEntitySet="Odbor">
+                <ScalarProperty Name="Odbor_ID" ColumnName="Odbor_ID" />
+                <ScalarProperty Name="Grad_ID" ColumnName="Grad_ID" />
+                <ScalarProperty Name="Politicka_stranka_ID" ColumnName="Politicka_stranka_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Oznaka" ColumnName="Oznaka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Politicka_stranka">
+            <EntityTypeMapping TypeName="RDAModel.Politicka_stranka">
+              <MappingFragment StoreEntitySet="Politicka_stranka">
+                <ScalarProperty Name="Politicka_stranka_ID" ColumnName="Politicka_stranka_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Mesto" ColumnName="Mesto" />
+                <ScalarProperty Name="Opstina" ColumnName="Opstina" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pozicija_zaposlenog">
+            <EntityTypeMapping TypeName="RDAModel.Pozicija_zaposlenog">
+              <MappingFragment StoreEntitySet="Pozicija_zaposlenog">
+                <ScalarProperty Name="Poz_zaposlenog_ID" ColumnName="Poz_zaposlenog_ID" />
+                <ScalarProperty Name="Pozicija" ColumnName="Pozicija" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prikazuje">
+            <EntityTypeMapping TypeName="RDAModel.Prikazuje">
+              <MappingFragment StoreEntitySet="Prikazuje">
+                <ScalarProperty Name="Prikazuje_ID" ColumnName="Prikazuje_ID" />
+                <ScalarProperty Name="Kanali_ID" ColumnName="Kanali_ID" />
+                <ScalarProperty Name="Reklama_ID" ColumnName="Reklama_ID" />
+                <ScalarProperty Name="Termin_prikaza_Od" ColumnName="Termin_prikaza_Od" />
+                <ScalarProperty Name="Termin_prikaza_Do" ColumnName="Termin_prikaza_Do" />
+                <ScalarProperty Name="Broj_prikaza" ColumnName="Broj_prikaza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Privredna_grana">
+            <EntityTypeMapping TypeName="RDAModel.Privredna_grana">
+              <MappingFragment StoreEntitySet="Privredna_grana">
+                <ScalarProperty Name="Priv_grana_ID" ColumnName="Priv_grana_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Region">
+            <EntityTypeMapping TypeName="RDAModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reklama">
+            <EntityTypeMapping TypeName="RDAModel.Reklama">
+              <MappingFragment StoreEntitySet="Reklama">
+                <ScalarProperty Name="Reklama_ID" ColumnName="Reklama_ID" />
+                <ScalarProperty Name="Odbor_ID" ColumnName="Odbor_ID" />
+                <ScalarProperty Name="Tip_reklame_ID" ColumnName="Tip_reklame_ID" />
+                <ScalarProperty Name="Priv_grana_ID" ColumnName="Priv_grana_ID" />
+                <ScalarProperty Name="Agencija_ID" ColumnName="Agencija_ID" />
+                <ScalarProperty Name="Cenovnik_ID" ColumnName="Cenovnik_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+                <ScalarProperty Name="Duzina_trajanja" ColumnName="Duzina_trajanja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stavka_narudzenice">
+            <EntityTypeMapping TypeName="RDAModel.Stavka_narudzenice">
+              <MappingFragment StoreEntitySet="Stavka_narudzenice">
+                <ScalarProperty Name="Stavka_narudzenice_ID" ColumnName="Stavka_narudzenice_ID" />
+                <ScalarProperty Name="Reklama_ID" ColumnName="Reklama_ID" />
+                <ScalarProperty Name="Narudzbenica_ID" ColumnName="Narudzbenica_ID" />
+                <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Struktura_vlasnistva">
+            <EntityTypeMapping TypeName="RDAModel.Struktura_vlasnistva">
+              <MappingFragment StoreEntitySet="Struktura_vlasnistva">
+                <ScalarProperty Name="Struktura_vlasnistva_ID" ColumnName="Struktura_vlasnistva_ID" />
+                <ScalarProperty Name="Opis_strukture_vlasnistva" ColumnName="Opis_strukture_vlasnistva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RDAModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysreplservers">
+            <EntityTypeMapping TypeName="RDAModel.sysreplservers">
+              <MappingFragment StoreEntitySet="sysreplservers">
+                <ScalarProperty Name="srvname" ColumnName="srvname" />
+                <ScalarProperty Name="srvid" ColumnName="srvid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tip_reklame">
+            <EntityTypeMapping TypeName="RDAModel.Tip_reklame">
+              <MappingFragment StoreEntitySet="Tip_reklame">
+                <ScalarProperty Name="Tip_reklame_ID" ColumnName="Tip_reklame_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TV_kuca">
+            <EntityTypeMapping TypeName="RDAModel.TV_kuca">
+              <MappingFragment StoreEntitySet="TV_kuca">
+                <ScalarProperty Name="TV_kuca_ID" ColumnName="TV_kuca_ID" />
+                <ScalarProperty Name="Struktura_vlasnistva_ID" ColumnName="Struktura_vlasnistva_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Sediste" ColumnName="Sediste" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zaposleni">
+            <EntityTypeMapping TypeName="RDAModel.Zaposleni">
+              <MappingFragment StoreEntitySet="Zaposleni">
+                <ScalarProperty Name="Zaposleni_ID" ColumnName="Zaposleni_ID" />
+                <ScalarProperty Name="Poz_zaposlenog_ID" ColumnName="Poz_zaposlenog_ID" />
+                <ScalarProperty Name="Agencija_ID" ColumnName="Agencija_ID" />
+                <ScalarProperty Name="Nadredjeni_ID" ColumnName="Nadredjeni_ID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSpeer_conflictdetectionconfigresponse">
+            <EntityTypeMapping TypeName="RDAModel.MSpeer_conflictdetectionconfigresponse">
+              <MappingFragment StoreEntitySet="MSpeer_conflictdetectionconfigresponse">
+                <ScalarProperty Name="request_id" ColumnName="request_id" />
+                <ScalarProperty Name="peer_node" ColumnName="peer_node" />
+                <ScalarProperty Name="peer_db" ColumnName="peer_db" />
+                <ScalarProperty Name="peer_version" ColumnName="peer_version" />
+                <ScalarProperty Name="peer_db_version" ColumnName="peer_db_version" />
+                <ScalarProperty Name="is_peer" ColumnName="is_peer" />
+                <ScalarProperty Name="conflictdetection_enabled" ColumnName="conflictdetection_enabled" />
+                <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+                <ScalarProperty Name="peer_conflict_retention" ColumnName="peer_conflict_retention" />
+                <ScalarProperty Name="peer_continue_onconflict" ColumnName="peer_continue_onconflict" />
+                <ScalarProperty Name="peer_subscriptions" ColumnName="peer_subscriptions" />
+                <ScalarProperty Name="progress_phase" ColumnName="progress_phase" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSpeer_originatorid_history">
+            <EntityTypeMapping TypeName="RDAModel.MSpeer_originatorid_history">
+              <MappingFragment StoreEntitySet="MSpeer_originatorid_history">
+                <ScalarProperty Name="originator_publication" ColumnName="originator_publication" />
+                <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+                <ScalarProperty Name="originator_node" ColumnName="originator_node" />
+                <ScalarProperty Name="originator_db" ColumnName="originator_db" />
+                <ScalarProperty Name="originator_db_version" ColumnName="originator_db_version" />
+                <ScalarProperty Name="originator_version" ColumnName="originator_version" />
+                <ScalarProperty Name="inserted_date" ColumnName="inserted_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSpeer_request">
+            <EntityTypeMapping TypeName="RDAModel.MSpeer_request">
+              <MappingFragment StoreEntitySet="MSpeer_request">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="publication" ColumnName="publication" />
+                <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSpeer_response">
+            <EntityTypeMapping TypeName="RDAModel.MSpeer_response">
+              <MappingFragment StoreEntitySet="MSpeer_response">
+                <ScalarProperty Name="request_id" ColumnName="request_id" />
+                <ScalarProperty Name="peer" ColumnName="peer" />
+                <ScalarProperty Name="peer_db" ColumnName="peer_db" />
+                <ScalarProperty Name="received_date" ColumnName="received_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSpeer_topologyrequest">
+            <EntityTypeMapping TypeName="RDAModel.MSpeer_topologyrequest">
+              <MappingFragment StoreEntitySet="MSpeer_topologyrequest">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="publication" ColumnName="publication" />
+                <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSpeer_topologyresponse">
+            <EntityTypeMapping TypeName="RDAModel.MSpeer_topologyresponse">
+              <MappingFragment StoreEntitySet="MSpeer_topologyresponse">
+                <ScalarProperty Name="request_id" ColumnName="request_id" />
+                <ScalarProperty Name="peer" ColumnName="peer" />
+                <ScalarProperty Name="peer_version" ColumnName="peer_version" />
+                <ScalarProperty Name="peer_db" ColumnName="peer_db" />
+                <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+                <ScalarProperty Name="peer_conflict_retention" ColumnName="peer_conflict_retention" />
+                <ScalarProperty Name="received_date" ColumnName="received_date" />
+                <ScalarProperty Name="connection_info" ColumnName="connection_info" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSpub_identity_range">
+            <EntityTypeMapping TypeName="RDAModel.MSpub_identity_range">
+              <MappingFragment StoreEntitySet="MSpub_identity_range">
+                <ScalarProperty Name="objid" ColumnName="objid" />
+                <ScalarProperty Name="range" ColumnName="range" />
+                <ScalarProperty Name="pub_range" ColumnName="pub_range" />
+                <ScalarProperty Name="current_pub_range" ColumnName="current_pub_range" />
+                <ScalarProperty Name="threshold" ColumnName="threshold" />
+                <ScalarProperty Name="last_seed" ColumnName="last_seed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysarticlecolumns">
+            <EntityTypeMapping TypeName="RDAModel.sysarticlecolumns">
+              <MappingFragment StoreEntitySet="sysarticlecolumns">
+                <ScalarProperty Name="artid" ColumnName="artid" />
+                <ScalarProperty Name="colid" ColumnName="colid" />
+                <ScalarProperty Name="is_udt" ColumnName="is_udt" />
+                <ScalarProperty Name="is_xml" ColumnName="is_xml" />
+                <ScalarProperty Name="is_max" ColumnName="is_max" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysarticles">
+            <EntityTypeMapping TypeName="RDAModel.sysarticles">
+              <MappingFragment StoreEntitySet="sysarticles">
+                <ScalarProperty Name="artid" ColumnName="artid" />
+                <ScalarProperty Name="creation_script" ColumnName="creation_script" />
+                <ScalarProperty Name="del_cmd" ColumnName="del_cmd" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="dest_table" ColumnName="dest_table" />
+                <ScalarProperty Name="filter" ColumnName="filter" />
+                <ScalarProperty Name="filter_clause" ColumnName="filter_clause" />
+                <ScalarProperty Name="ins_cmd" ColumnName="ins_cmd" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="objid" ColumnName="objid" />
+                <ScalarProperty Name="pubid" ColumnName="pubid" />
+                <ScalarProperty Name="pre_creation_cmd" ColumnName="pre_creation_cmd" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="sync_objid" ColumnName="sync_objid" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="upd_cmd" ColumnName="upd_cmd" />
+                <ScalarProperty Name="schema_option" ColumnName="schema_option" />
+                <ScalarProperty Name="dest_owner" ColumnName="dest_owner" />
+                <ScalarProperty Name="ins_scripting_proc" ColumnName="ins_scripting_proc" />
+                <ScalarProperty Name="del_scripting_proc" ColumnName="del_scripting_proc" />
+                <ScalarProperty Name="upd_scripting_proc" ColumnName="upd_scripting_proc" />
+                <ScalarProperty Name="custom_script" ColumnName="custom_script" />
+                <ScalarProperty Name="fire_triggers_on_snapshot" ColumnName="fire_triggers_on_snapshot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysarticleupdates">
+            <EntityTypeMapping TypeName="RDAModel.sysarticleupdates">
+              <MappingFragment StoreEntitySet="sysarticleupdates">
+                <ScalarProperty Name="artid" ColumnName="artid" />
+                <ScalarProperty Name="pubid" ColumnName="pubid" />
+                <ScalarProperty Name="sync_ins_proc" ColumnName="sync_ins_proc" />
+                <ScalarProperty Name="sync_upd_proc" ColumnName="sync_upd_proc" />
+                <ScalarProperty Name="sync_del_proc" ColumnName="sync_del_proc" />
+                <ScalarProperty Name="autogen" ColumnName="autogen" />
+                <ScalarProperty Name="sync_upd_trig" ColumnName="sync_upd_trig" />
+                <ScalarProperty Name="conflict_tableid" ColumnName="conflict_tableid" />
+                <ScalarProperty Name="ins_conflict_proc" ColumnName="ins_conflict_proc" />
+                <ScalarProperty Name="identity_support" ColumnName="identity_support" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="syspublications">
+            <EntityTypeMapping TypeName="RDAModel.syspublications">
+              <MappingFragment StoreEntitySet="syspublications">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="pubid" ColumnName="pubid" />
+                <ScalarProperty Name="repl_freq" ColumnName="repl_freq" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="sync_method" ColumnName="sync_method" />
+                <ScalarProperty Name="snapshot_jobid" ColumnName="snapshot_jobid" />
+                <ScalarProperty Name="independent_agent" ColumnName="independent_agent" />
+                <ScalarProperty Name="immediate_sync" ColumnName="immediate_sync" />
+                <ScalarProperty Name="enabled_for_internet" ColumnName="enabled_for_internet" />
+                <ScalarProperty Name="allow_push" ColumnName="allow_push" />
+                <ScalarProperty Name="allow_pull" ColumnName="allow_pull" />
+                <ScalarProperty Name="allow_anonymous" ColumnName="allow_anonymous" />
+                <ScalarProperty Name="immediate_sync_ready" ColumnName="immediate_sync_ready" />
+                <ScalarProperty Name="allow_sync_tran" ColumnName="allow_sync_tran" />
+                <ScalarProperty Name="autogen_sync_procs" ColumnName="autogen_sync_procs" />
+                <ScalarProperty Name="retention" ColumnName="retention" />
+                <ScalarProperty Name="allow_queued_tran" ColumnName="allow_queued_tran" />
+                <ScalarProperty Name="snapshot_in_defaultfolder" ColumnName="snapshot_in_defaultfolder" />
+                <ScalarProperty Name="alt_snapshot_folder" ColumnName="alt_snapshot_folder" />
+                <ScalarProperty Name="pre_snapshot_script" ColumnName="pre_snapshot_script" />
+                <ScalarProperty Name="post_snapshot_script" ColumnName="post_snapshot_script" />
+                <ScalarProperty Name="compress_snapshot" ColumnName="compress_snapshot" />
+                <ScalarProperty Name="ftp_address" ColumnName="ftp_address" />
+                <ScalarProperty Name="ftp_port" ColumnName="ftp_port" />
+                <ScalarProperty Name="ftp_subdirectory" ColumnName="ftp_subdirectory" />
+                <ScalarProperty Name="ftp_login" ColumnName="ftp_login" />
+                <ScalarProperty Name="ftp_password" ColumnName="ftp_password" />
+                <ScalarProperty Name="allow_dts" ColumnName="allow_dts" />
+                <ScalarProperty Name="allow_subscription_copy" ColumnName="allow_subscription_copy" />
+                <ScalarProperty Name="centralized_conflicts" ColumnName="centralized_conflicts" />
+                <ScalarProperty Name="conflict_retention" ColumnName="conflict_retention" />
+                <ScalarProperty Name="conflict_policy" ColumnName="conflict_policy" />
+                <ScalarProperty Name="queue_type" ColumnName="queue_type" />
+                <ScalarProperty Name="ad_guidname" ColumnName="ad_guidname" />
+                <ScalarProperty Name="backward_comp_level" ColumnName="backward_comp_level" />
+                <ScalarProperty Name="allow_initialize_from_backup" ColumnName="allow_initialize_from_backup" />
+                <ScalarProperty Name="min_autonosync_lsn" ColumnName="min_autonosync_lsn" />
+                <ScalarProperty Name="replicate_ddl" ColumnName="replicate_ddl" />
+                <ScalarProperty Name="options" ColumnName="options" />
+                <ScalarProperty Name="originator_id" ColumnName="originator_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysschemaarticles">
+            <EntityTypeMapping TypeName="RDAModel.sysschemaarticles">
+              <MappingFragment StoreEntitySet="sysschemaarticles">
+                <ScalarProperty Name="artid" ColumnName="artid" />
+                <ScalarProperty Name="creation_script" ColumnName="creation_script" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="dest_object" ColumnName="dest_object" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="objid" ColumnName="objid" />
+                <ScalarProperty Name="pubid" ColumnName="pubid" />
+                <ScalarProperty Name="pre_creation_cmd" ColumnName="pre_creation_cmd" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="schema_option" ColumnName="schema_option" />
+                <ScalarProperty Name="dest_owner" ColumnName="dest_owner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="syssubscriptions">
+            <EntityTypeMapping TypeName="RDAModel.syssubscriptions">
+              <MappingFragment StoreEntitySet="syssubscriptions">
+                <ScalarProperty Name="artid" ColumnName="artid" />
+                <ScalarProperty Name="srvid" ColumnName="srvid" />
+                <ScalarProperty Name="dest_db" ColumnName="dest_db" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="sync_type" ColumnName="sync_type" />
+                <ScalarProperty Name="login_name" ColumnName="login_name" />
+                <ScalarProperty Name="subscription_type" ColumnName="subscription_type" />
+                <ScalarProperty Name="distribution_jobid" ColumnName="distribution_jobid" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="update_mode" ColumnName="update_mode" />
+                <ScalarProperty Name="loopback_detection" ColumnName="loopback_detection" />
+                <ScalarProperty Name="queued_reinit" ColumnName="queued_reinit" />
+                <ScalarProperty Name="nosync_type" ColumnName="nosync_type" />
+                <ScalarProperty Name="srvname" ColumnName="srvname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="systranschemas">
+            <EntityTypeMapping TypeName="RDAModel.systranschemas">
+              <MappingFragment StoreEntitySet="systranschemas">
+                <ScalarProperty Name="tabid" ColumnName="tabid" />
+                <ScalarProperty Name="startlsn" ColumnName="startlsn" />
+                <ScalarProperty Name="endlsn" ColumnName="endlsn" />
+                <ScalarProperty Name="typeid" ColumnName="typeid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysextendedarticlesview">
+            <EntityTypeMapping TypeName="RDAModel.sysextendedarticlesview">
+              <MappingFragment StoreEntitySet="sysextendedarticlesview">
+                <ScalarProperty Name="artid" ColumnName="artid" />
+                <ScalarProperty Name="creation_script" ColumnName="creation_script" />
+                <ScalarProperty Name="del_cmd" ColumnName="del_cmd" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="dest_table" ColumnName="dest_table" />
+                <ScalarProperty Name="filter" ColumnName="filter" />
+                <ScalarProperty Name="filter_clause" ColumnName="filter_clause" />
+                <ScalarProperty Name="ins_cmd" ColumnName="ins_cmd" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="objid" ColumnName="objid" />
+                <ScalarProperty Name="pubid" ColumnName="pubid" />
+                <ScalarProperty Name="pre_creation_cmd" ColumnName="pre_creation_cmd" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="sync_objid" ColumnName="sync_objid" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="upd_cmd" ColumnName="upd_cmd" />
+                <ScalarProperty Name="schema_option" ColumnName="schema_option" />
+                <ScalarProperty Name="dest_owner" ColumnName="dest_owner" />
+                <ScalarProperty Name="ins_scripting_proc" ColumnName="ins_scripting_proc" />
+                <ScalarProperty Name="del_scripting_proc" ColumnName="del_scripting_proc" />
+                <ScalarProperty Name="upd_scripting_proc" ColumnName="upd_scripting_proc" />
+                <ScalarProperty Name="custom_script" ColumnName="custom_script" />
+                <ScalarProperty Name="fire_triggers_on_snapshot" ColumnName="fire_triggers_on_snapshot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Dim_Odbor">
+            <EntityTypeMapping TypeName="RDAModel.View_Dim_Odbor">
+              <MappingFragment StoreEntitySet="View_Dim_Odbor">
+                <ScalarProperty Name="Odbor_ID" ColumnName="Odbor_ID" />
+                <ScalarProperty Name="Odbor" ColumnName="Odbor" />
+                <ScalarProperty Name="Politicka_stranka" ColumnName="Politicka_stranka" />
+                <ScalarProperty Name="Opstina_stranke" ColumnName="Opstina_stranke" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Dim_Region">
+            <EntityTypeMapping TypeName="RDAModel.View_Dim_Region">
+              <MappingFragment StoreEntitySet="View_Dim_Region">
+                <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+                <ScalarProperty Name="Grad" ColumnName="Grad" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Dim_TV_kanali">
+            <EntityTypeMapping TypeName="RDAModel.View_Dim_TV_kanali">
+              <MappingFragment StoreEntitySet="View_Dim_TV_kanali">
+                <ScalarProperty Name="Kanali_ID" ColumnName="Kanali_ID" />
+                <ScalarProperty Name="Kanal" ColumnName="Kanal" />
+                <ScalarProperty Name="Vlasnistvo" ColumnName="Vlasnistvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Dim_Zaposleni">
+            <EntityTypeMapping TypeName="RDAModel.View_Dim_Zaposleni">
+              <MappingFragment StoreEntitySet="View_Dim_Zaposleni">
+                <ScalarProperty Name="Zaposleni_ID" ColumnName="Zaposleni_ID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+                <ScalarProperty Name="Pozicija" ColumnName="Pozicija" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Insert_Agencija" FunctionName="RDAModel.Store.Insert_Agencija" />
+          <FunctionImportMapping FunctionImportName="Insert_Cenovnik" FunctionName="RDAModel.Store.Insert_Cenovnik" />
+          <FunctionImportMapping FunctionImportName="Insert_Grad" FunctionName="RDAModel.Store.Insert_Grad" />
+          <FunctionImportMapping FunctionImportName="Insert_Kanali" FunctionName="RDAModel.Store.Insert_Kanali" />
+          <FunctionImportMapping FunctionImportName="Insert_Kompanija" FunctionName="RDAModel.Store.Insert_Kompanija" />
+          <FunctionImportMapping FunctionImportName="Insert_Narudzbenica" FunctionName="RDAModel.Store.Insert_Narudzbenica" />
+          <FunctionImportMapping FunctionImportName="Insert_Odbor" FunctionName="RDAModel.Store.Insert_Odbor" />
+          <FunctionImportMapping FunctionImportName="Insert_Politicka_stranka" FunctionName="RDAModel.Store.Insert_Politicka_stranka" />
+          <FunctionImportMapping FunctionImportName="Insert_Pozicija_zaposlenog" FunctionName="RDAModel.Store.Insert_Pozicija_zaposlenog" />
+          <FunctionImportMapping FunctionImportName="Insert_Prikazuje" FunctionName="RDAModel.Store.Insert_Prikazuje" />
+          <FunctionImportMapping FunctionImportName="Insert_Privredna_grana" FunctionName="RDAModel.Store.Insert_Privredna_grana" />
+          <FunctionImportMapping FunctionImportName="Insert_Region" FunctionName="RDAModel.Store.Insert_Region" />
+          <FunctionImportMapping FunctionImportName="Insert_Reklama" FunctionName="RDAModel.Store.Insert_Reklama" />
+          <FunctionImportMapping FunctionImportName="Insert_Stavka_narudzenice" FunctionName="RDAModel.Store.Insert_Stavka_narudzenice" />
+          <FunctionImportMapping FunctionImportName="Insert_Struktura_vlasnistva" FunctionName="RDAModel.Store.Insert_Struktura_vlasnistva" />
+          <FunctionImportMapping FunctionImportName="Insert_Tip_reklame" FunctionName="RDAModel.Store.Insert_Tip_reklame" />
+          <FunctionImportMapping FunctionImportName="Insert_TV_kuca" FunctionName="RDAModel.Store.Insert_TV_kuca" />
+          <FunctionImportMapping FunctionImportName="Insert_Zaposleni" FunctionName="RDAModel.Store.Insert_Zaposleni" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="RDAModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="RDAModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="RDAModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="RDAModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDAModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="RDAModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDAModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RDAModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RDAModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="Transfer_DimVreme" FunctionName="RDAModel.Store.Transfer_DimVreme">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDAModel.Transfer_DimVreme_Result">
+                <ScalarProperty Name="Datum_prikaza" ColumnName="Datum_prikaza" />
+                <ScalarProperty Name="Termin_prikaza" ColumnName="Termin_prikaza" />
+                <ScalarProperty Name="Godina" ColumnName="Godina" />
+                <ScalarProperty Name="Kvartal" ColumnName="Kvartal" />
+                <ScalarProperty Name="Mesec" ColumnName="Mesec" />
+                <ScalarProperty Name="Nedelja" ColumnName="Nedelja" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Transfer_FactNarudzbine" FunctionName="RDAModel.Store.Transfer_FactNarudzbine" />
+          <FunctionImportMapping FunctionImportName="Transfer_FactReklama" FunctionName="RDAModel.Store.Transfer_FactReklama" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,82 @@
+﻿@model RDA_APP.Models.Reklama
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reklama</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sifra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sifra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duzina_trajanja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duzina_trajanja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Agencija.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Agencija.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cenovnik.Cenovnik_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cenovnik.Cenovnik_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Odbor.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Odbor.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Privredna_grana.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Privredna_grana.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tip_reklame.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tip_reklame.Naziv)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Reklama_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
